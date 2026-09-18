@@ -59,6 +59,10 @@ export interface HeirsInput {
   paternalUnclesPaternalCount: number;// العم لأب
   cousinsFullCount: number;           // ابن العم الشقيق
   cousinsPaternalCount: number;        // ابن العم لأب
+
+  // Optional Personalized Names
+  deceasedName?: string;
+  heirNames?: Record<string, string[]>;
 }
 
 export interface RationalFraction {
@@ -84,6 +88,7 @@ export interface CalculatedShare {
     ar: string;
     ur: string;
   };
+  customNames?: string[];
 }
 
 export interface BlockedHeir {
@@ -121,6 +126,7 @@ export interface MawarithResult {
   isUmariyyatan: boolean; // الغراوان / العمريتان
   surplusRemainderAmount: number; // If any residue remains (e.g. Beit al-Mal or unallocated)
   warnings: string[];
+  deceasedName?: string;
 }
 
 export type WirasatResult = MawarithResult;

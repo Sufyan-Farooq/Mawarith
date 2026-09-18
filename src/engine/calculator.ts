@@ -1122,6 +1122,28 @@ export function calculateInheritance(
   const totalAllocatedAmount = finalCalculatedShares.reduce((acc, curr) => acc + curr.totalMonetaryValue, 0);
   const surplusRemainderAmount = Math.max(0, netEstate - totalAllocatedAmount);
 
+  // Attach custom names if provided
+  if (heirsInput.heirNames) {
+    for (const s of finalCalculatedShares) {
+      const explicit = heirsInput.heirNames[s.heirId] || heirsInput.heirNames[s.relationshipKey];
+      if (explicit && explicit.length > 0) {
+        s.customNames = explicit;
+      } else if (s.heirId === 'maternalSiblings') {
+        const combined = [
+          ...(heirsInput.heirNames['maternalBrothers'] || []),
+          ...(heirsInput.heirNames['maternalSisters'] || []),
+        ].filter(Boolean);
+        if (combined.length > 0) s.customNames = combined;
+      } else if (s.heirId === 'grandmothers') {
+        const combined = [
+          ...(heirsInput.heirNames['maternalGrandmother'] || []),
+          ...(heirsInput.heirNames['paternalGrandmother'] || []),
+        ].filter(Boolean);
+        if (combined.length > 0) s.customNames = combined;
+      }
+    }
+  }
+
   return {
     summary: estateSummary,
     heirs: finalCalculatedShares,
@@ -1133,5 +1155,6 @@ export function calculateInheritance(
     isUmariyyatan,
     surplusRemainderAmount,
     warnings,
+    deceasedName: heirsInput.deceasedName,
   };
 }

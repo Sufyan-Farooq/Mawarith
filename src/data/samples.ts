@@ -41,6 +41,8 @@ const defaultHeirs: HeirsInput = {
   paternalUnclesPaternalCount: 0,
   cousinsFullCount: 0,
   cousinsPaternalCount: 0,
+  deceasedName: '',
+  heirNames: {},
 };
 
 export const SAMPLE_SCENARIOS: SampleScenario[] = [
@@ -69,9 +71,15 @@ export const SAMPLE_SCENARIOS: SampleScenario[] = [
     },
     heirs: {
       ...defaultHeirs,
+      deceasedName: 'Tariq Al-Mansoor',
       wivesCount: 1,
       sonsCount: 1,
       daughtersCount: 2,
+      heirNames: {
+        wives: ['Amina'],
+        sons: ['Zayd'],
+        daughters: ['Maryam', 'Sara'],
+      },
     },
   },
   {

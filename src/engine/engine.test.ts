@@ -283,7 +283,34 @@ export function runSanityTests() {
     console.log('✔ Test 11: Full Estate Liquidation Waterfall Passed');
   }
 
-  console.log('🌟 ALL 11 SHARIAH CALCULATION ENGINE TESTS PASSED SUCCESSFULLY! 🌟');
+  // TEST 12: Personalized Deceased & Heir Names Mapping
+  {
+    const heirs = createBlankHeirs();
+    heirs.deceasedName = 'Sufyan Farooq';
+    heirs.wivesCount = 1;
+    heirs.sonsCount = 1;
+    heirs.daughtersCount = 2;
+    heirs.heirNames = {
+      wives: ['Khadijah'],
+      sons: ['Ali'],
+      daughters: ['Fatimah', 'Zainab'],
+    };
+
+    const res = calculateInheritance('male', createEstate(240000), heirs);
+
+    console.assert(res.deceasedName === 'Sufyan Farooq', 'Test 12 deceasedName failed');
+    const wife = res.heirs.find(h => h.heirId === 'wives');
+    const son = res.heirs.find(h => h.heirId === 'sons');
+    const daughters = res.heirs.find(h => h.heirId === 'daughters');
+
+    console.assert(wife && wife.customNames && wife.customNames[0] === 'Khadijah', 'Test 12 wife custom name failed');
+    console.assert(son && son.customNames && son.customNames[0] === 'Ali', 'Test 12 son custom name failed');
+    console.assert(daughters && daughters.customNames && daughters.customNames.length === 2, 'Test 12 daughters custom names failed');
+    console.assert(daughters?.customNames?.[0] === 'Fatimah' && daughters?.customNames?.[1] === 'Zainab', 'Test 12 daughters individual names failed');
+    console.log('✔ Test 12: Personalized Deceased & Heir Names Mapping Passed');
+  }
+
+  console.log('🌟 ALL 12 SHARIAH CALCULATION ENGINE TESTS PASSED SUCCESSFULLY! 🌟');
 }
 
 // Auto-run if executed directly

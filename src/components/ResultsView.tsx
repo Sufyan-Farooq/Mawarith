@@ -40,6 +40,9 @@ export const ResultsView: React.FC<ResultsViewProps> = ({
     if (isAr) {
       text = `*بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ*\n`;
       text += `*ملخص قسمة التركة الشرعية (منصة مَوارِيث)*\n`;
+      if (result.deceasedName?.trim()) {
+        text += `*المتوفى (المورث):* ${result.deceasedName.trim()}\n`;
+      }
       text += `─────────────────────────\n`;
       text += `• *إجمالي التركة:* ${formatCurrency(summary.grossEstate, currency, language)}\n`;
       text += `• *مؤن التجهيز والديون:* -${formatCurrency(summary.burialCosts + summary.debtsTotal, currency, language)}\n`;
@@ -50,7 +53,10 @@ export const ResultsView: React.FC<ResultsViewProps> = ({
       text += `─────────────────────────\n`;
       text += `*السهام والأنصبة المقدرة للورثة:*\n`;
       heirs.forEach((h) => {
-        text += `▸ *${getHeirDisplayName(h, language)}* (${h.count}):\n`;
+        const namesStr = h.customNames && h.customNames.filter(Boolean).length > 0
+          ? ` [${h.customNames.filter(Boolean).join('، ')}]`
+          : '';
+        text += `▸ *${getHeirDisplayName(h, language)}*${namesStr} (${h.count}):\n`;
         text += `   الفرض: ${h.totalFraction.numerator}/${h.totalFraction.denominator} (${h.percentage.toFixed(1)}%)\n`;
         text += `   النصيب: ${formatCurrency(h.totalMonetaryValue, currency, language)}`;
         if (h.count > 1) {
@@ -63,6 +69,9 @@ export const ResultsView: React.FC<ResultsViewProps> = ({
     } else if (isUr) {
       text = `*بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ*\n`;
       text += `*شرعی تقسیمِ ترکہ کا خلاصہ (مواریث پلیٹ فارم)*\n`;
+      if (result.deceasedName?.trim()) {
+        text += `*میت (مرحوم):* ${result.deceasedName.trim()}\n`;
+      }
       text += `─────────────────────────\n`;
       text += `• *کل ترکہ:* ${formatCurrency(summary.grossEstate, currency, language)}\n`;
       text += `• *کفن دفن اور قرض:* -${formatCurrency(summary.burialCosts + summary.debtsTotal, currency, language)}\n`;
@@ -73,7 +82,10 @@ export const ResultsView: React.FC<ResultsViewProps> = ({
       text += `─────────────────────────\n`;
       text += `*ورثاء اور ان کے شرعی حصص:*\n`;
       heirs.forEach((h) => {
-        text += `▸ *${getHeirDisplayName(h, language)}* (تعداد: ${h.count}):\n`;
+        const namesStr = h.customNames && h.customNames.filter(Boolean).length > 0
+          ? ` [${h.customNames.filter(Boolean).join('، ')}]`
+          : '';
+        text += `▸ *${getHeirDisplayName(h, language)}*${namesStr} (تعداد: ${h.count}):\n`;
         text += `   حصہ: ${h.totalFraction.numerator}/${h.totalFraction.denominator} (${h.percentage.toFixed(1)}%)\n`;
         text += `   رقم: ${formatCurrency(h.totalMonetaryValue, currency, language)}`;
         if (h.count > 1) {
@@ -86,6 +98,9 @@ export const ResultsView: React.FC<ResultsViewProps> = ({
     } else {
       text = `*Bismillāh ar-Rahmān ar-Rahīm*\n`;
       text += `*Shariah Estate Distribution Summary (Mawarith)*\n`;
+      if (result.deceasedName?.trim()) {
+        text += `*Deceased:* ${result.deceasedName.trim()}\n`;
+      }
       text += `─────────────────────────\n`;
       text += `• *Gross Estate:* ${formatCurrency(summary.grossEstate, currency, language)}\n`;
       text += `• *Burial & Debts Cleared:* -${formatCurrency(summary.burialCosts + summary.debtsTotal, currency, language)}\n`;
@@ -96,7 +111,10 @@ export const ResultsView: React.FC<ResultsViewProps> = ({
       text += `─────────────────────────\n`;
       text += `*Entitled Legal Heirs & Prescribed Shares:*\n`;
       heirs.forEach((h) => {
-        text += `▸ *${getHeirDisplayName(h, language)}* (Count: ${h.count}):\n`;
+        const namesStr = h.customNames && h.customNames.filter(Boolean).length > 0
+          ? ` [${h.customNames.filter(Boolean).join(', ')}]`
+          : '';
+        text += `▸ *${getHeirDisplayName(h, language)}*${namesStr} (Count: ${h.count}):\n`;
         text += `   Share: ${h.totalFraction.numerator}/${h.totalFraction.denominator} (${h.percentage.toFixed(1)}%)\n`;
         text += `   Amount: ${formatCurrency(h.totalMonetaryValue, currency, language)}`;
         if (h.count > 1) {
@@ -411,6 +429,11 @@ export const ResultsView: React.FC<ResultsViewProps> = ({
                         </span>
                       )}
                     </div>
+                    {h.customNames && h.customNames.filter(Boolean).length > 0 && (
+                      <div className="text-[11px] font-medium text-jade-800 mt-0.5">
+                        {h.customNames.filter(Boolean).join('، ')}
+                      </div>
+                    )}
                     <span className="text-[11px] text-obsidian-400 block mt-0.5">
                       {t[h.category] || h.category}
                     </span>

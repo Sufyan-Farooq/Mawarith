@@ -52,6 +52,8 @@ const initialHeirs: HeirsInput = {
   paternalUnclesPaternalCount: 0,
   cousinsFullCount: 0,
   cousinsPaternalCount: 0,
+  deceasedName: '',
+  heirNames: {},
 };
 
 export const App: React.FC = () => {
@@ -149,6 +151,8 @@ export const App: React.FC = () => {
       paternalUnclesPaternalCount: 0,
       cousinsFullCount: 0,
       cousinsPaternalCount: 0,
+      deceasedName: '',
+      heirNames: {},
     });
   };
 

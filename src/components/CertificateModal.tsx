@@ -45,14 +45,21 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
       ? `بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ\nتقسیمِ ترکہ کا شرعی گوشوارہ\n(﴿ فَرِيضَةً مِّنَ اللَّهِ ۗ إِنَّ اللَّهَ كَانَ عَلِيمًا حَكِيمًا ﴾)\n\n`
       : `Bismillāh ar-Rahmān ar-Rahīm\nDecree of Islamic Estate Distribution\n\n`;
 
-    text += `• ${isAr ? 'المتوفى' : isUr ? 'میت' : 'Deceased'}: ${gender === 'male' ? (isAr ? 'رجل (مورث)' : 'Male') : (isAr ? 'امرأة (مورثة)' : 'Female')}\n`;
+    const deceasedDisplay = result.deceasedName?.trim()
+      ? `${result.deceasedName.trim()} (${gender === 'male' ? (isAr ? 'رجل' : 'Male') : (isAr ? 'امرأة' : 'Female')})`
+      : gender === 'male' ? (isAr ? 'رجل (مورث)' : 'Male') : (isAr ? 'امرأة (مورثة)' : 'Female');
+
+    text += `• ${isAr ? 'المتوفى' : isUr ? 'میت' : 'Deceased'}: ${deceasedDisplay}\n`;
     text += `• ${isAr ? 'إجمالي التركة' : 'Gross Estate'}: ${formatCurrency(result.summary.grossEstate, currency, language)}\n`;
     text += `• ${isAr ? 'مؤن التجهيز والديون' : 'Burial & Debts'}: -${formatCurrency(result.summary.burialCosts + result.summary.debtsTotal, currency, language)}\n`;
     text += `• ${isAr ? 'صافي التركة للإرث' : 'Net Distributable Estate'}: ${formatCurrency(result.summary.netInheritableEstate, currency, language)}\n\n`;
     text += `${isAr ? 'بيان سهام الورثة المستحقين:' : 'Entitled Heirs Distribution:'}\n`;
 
     result.heirs.forEach((h) => {
-      text += `- ${getHeirDisplayName(h, language)} (${h.count}): ${h.totalFraction.numerator}/${h.totalFraction.denominator} (${h.percentage.toFixed(2)}%) = ${formatCurrency(h.totalMonetaryValue, currency, language)}\n`;
+      const namesStr = h.customNames && h.customNames.filter(Boolean).length > 0
+        ? ` [${h.customNames.filter(Boolean).join('، ')}]`
+        : '';
+      text += `- ${getHeirDisplayName(h, language)}${namesStr} (${h.count}): ${h.totalFraction.numerator}/${h.totalFraction.denominator} (${h.percentage.toFixed(2)}%) = ${formatCurrency(h.totalMonetaryValue, currency, language)}\n`;
     });
 
     try {
@@ -130,20 +137,32 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
               <h1 className="text-2xl sm:text-3xl font-bold text-obsidian-900 tracking-tight font-sans">
                 {language === 'ar' ? 'صك توزيع الفريضة الشرعية' : language === 'ur' ? 'تقسیمِ ترکہ کا شرعی گوشوارہ' : 'Decree of Islamic Estate Distribution'}
               </h1>
-              <p className="font-arabic text-sm text-jade-800 font-medium">
-                {language === 'ar'
-                  ? '﴿ فَرِيضَةً مِّنَ اللَّهِ ۗ إِنَّ اللَّهَ كَانَ عَلِيمًا حَكِيمًا ﴾ [النساء: ١١]'
-                  : '﴿ فَرِيضَةً مِّنَ اللَّهِ ۗ إِنَّ اللَّهَ كَانَ عَلِيمًا حَكِيمًا ﴾ [Surah An-Nisa: 11]'}
-              </p>
+              <div className="pt-2 space-y-1">
+                <p className="font-arabic text-lg sm:text-xl text-jade-800 font-medium leading-relaxed" dir="rtl">
+                  ﴿ فَرِيضَةً مِّنَ اللَّهِ ۗ إِنَّ اللَّهَ كَانَ عَلِيمًا حَكِيمًا ﴾
+                </p>
+                <p className="text-[11px] text-obsidian-500 font-sans tracking-wide">
+                  {language === 'ar' ? '[سورة النساء: آية ١١]' : language === 'ur' ? '[سورۃ النساء: آیت 11]' : '[Surah An-Nisa: 11]'}
+                </p>
+              </div>
             </div>
 
             {/* Deceased & Estate Ledger Summary */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs">
               <div>
                 <span className="block text-obsidian-400 font-medium">{language === 'ar' ? 'المتوفى' : language === 'ur' ? 'میت' : 'Deceased'}</span>
-                <span className="font-bold text-obsidian-900 text-sm">
-                  {gender === 'male' ? (language === 'ar' ? 'رجل (مورث)' : language === 'ur' ? 'مرد (مرحوم)' : 'Male') : (language === 'ar' ? 'امرأة (مورثة)' : language === 'ur' ? 'عورت (مرحومہ)' : 'Female')}
+                <span className="font-bold text-obsidian-900 text-sm block truncate">
+                  {result.deceasedName?.trim() ? result.deceasedName.trim() : (
+                    gender === 'male'
+                      ? (language === 'ar' ? 'رجل (مورث)' : language === 'ur' ? 'مرد (مرحوم)' : 'Male (Deceased)')
+                      : (language === 'ar' ? 'امرأة (مورثة)' : language === 'ur' ? 'عورت (مرحومہ)' : 'Female (Deceased)')
+                  )}
                 </span>
+                {result.deceasedName?.trim() && (
+                  <span className="text-[10px] text-obsidian-400 block">
+                    {gender === 'male' ? (language === 'ar' ? 'رجل (مورث)' : language === 'ur' ? 'مرد' : 'Male') : (language === 'ar' ? 'امرأة (مورثة)' : language === 'ur' ? 'عورت' : 'Female')}
+                  </span>
+                )}
               </div>
               <div>
                 <span className="block text-obsidian-400 font-medium">{language === 'ar' ? 'إجمالي التركة' : language === 'ur' ? 'کل ترکہ' : 'Gross Estate'}</span>
@@ -218,7 +237,12 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
                     {result.heirs.map((h, i) => (
                       <tr key={i}>
                         <td className="py-2.5 px-3 font-semibold text-obsidian-900 text-start">
-                          {getHeirDisplayName(h, language)}
+                          <div>{getHeirDisplayName(h, language)}</div>
+                          {h.customNames && h.customNames.filter(Boolean).length > 0 && (
+                            <div className="text-[11px] font-normal text-obsidian-500 mt-0.5">
+                              {h.customNames.filter(Boolean).join('، ')}
+                            </div>
+                          )}
                         </td>
                         <td className="py-2.5 px-3 text-center font-mono">{h.count}</td>
                         <td className="py-2.5 px-3 text-center font-mono font-bold text-jade-700">
