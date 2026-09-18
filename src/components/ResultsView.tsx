@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BookOpen, AlertCircle, Printer, ArrowRight, Ban, CheckCircle, ShieldCheck, Layers, ChevronDown, ChevronUp } from 'lucide-react';
+import { BookOpen, AlertCircle, Printer, ArrowRight, Ban, CheckCircle, Layers, ChevronDown, ChevronUp, Share2, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MawarithResult, DeceasedGender, EstateInput } from '../engine/types';
 import { SupportedLanguage, TRANSLATIONS } from '../i18n/translations';
@@ -30,6 +30,92 @@ export const ResultsView: React.FC<ResultsViewProps> = ({
   const { summary, heirs, blockedHeirs, isAwl, isRadd, isUmariyyatan } = result;
 
   const [showStackedBreakdown, setShowStackedBreakdown] = useState(false);
+  const [copiedToast, setCopiedToast] = useState(false);
+
+  const handleCopyWhatsAppSummary = async () => {
+    const isAr = language === 'ar';
+    const isUr = language === 'ur';
+
+    let text = '';
+    if (isAr) {
+      text = `*بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ*\n`;
+      text += `*ملخص قسمة التركة الشرعية (منصة مَوارِيث)*\n`;
+      text += `─────────────────────────\n`;
+      text += `• *إجمالي التركة:* ${formatCurrency(summary.grossEstate, currency, language)}\n`;
+      text += `• *مؤن التجهيز والديون:* -${formatCurrency(summary.burialCosts + summary.debtsTotal, currency, language)}\n`;
+      if (summary.wasiyyahApproved > 0) {
+        text += `• *الوصية الشرعية (لغير وارث):* -${formatCurrency(summary.wasiyyahApproved, currency, language)}\n`;
+      }
+      text += `• *صافي التركة للإرث:* ${formatCurrency(summary.netInheritableEstate, currency, language)}\n`;
+      text += `─────────────────────────\n`;
+      text += `*السهام والأنصبة المقدرة للورثة:*\n`;
+      heirs.forEach((h) => {
+        text += `▸ *${getHeirDisplayName(h, language)}* (${h.count}):\n`;
+        text += `   الفرض: ${h.totalFraction.numerator}/${h.totalFraction.denominator} (${h.percentage.toFixed(1)}%)\n`;
+        text += `   النصيب: ${formatCurrency(h.totalMonetaryValue, currency, language)}`;
+        if (h.count > 1) {
+          text += ` (لكل فرد: ${formatCurrency(h.perIndividualMonetaryValue, currency, language)})`;
+        }
+        text += `\n`;
+      });
+      text += `─────────────────────────\n`;
+      text += `حُسبت الفريضة وفق أصول الفقه الإسلامي المعتمد (الكتاب والسنة وإجماع الصحابة).`;
+    } else if (isUr) {
+      text = `*بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ*\n`;
+      text += `*شرعی تقسیمِ ترکہ کا خلاصہ (مواریث پلیٹ فارم)*\n`;
+      text += `─────────────────────────\n`;
+      text += `• *کل ترکہ:* ${formatCurrency(summary.grossEstate, currency, language)}\n`;
+      text += `• *کفن دفن اور قرض:* -${formatCurrency(summary.burialCosts + summary.debtsTotal, currency, language)}\n`;
+      if (summary.wasiyyahApproved > 0) {
+        text += `• *وصیت (غیر وارث کے لیے):* -${formatCurrency(summary.wasiyyahApproved, currency, language)}\n`;
+      }
+      text += `• *خالص ترکہ تقسیم کے لیے:* ${formatCurrency(summary.netInheritableEstate, currency, language)}\n`;
+      text += `─────────────────────────\n`;
+      text += `*ورثاء اور ان کے شرعی حصص:*\n`;
+      heirs.forEach((h) => {
+        text += `▸ *${getHeirDisplayName(h, language)}* (تعداد: ${h.count}):\n`;
+        text += `   حصہ: ${h.totalFraction.numerator}/${h.totalFraction.denominator} (${h.percentage.toFixed(1)}%)\n`;
+        text += `   رقم: ${formatCurrency(h.totalMonetaryValue, currency, language)}`;
+        if (h.count > 1) {
+          text += ` (فی کس: ${formatCurrency(h.perIndividualMonetaryValue, currency, language)})`;
+        }
+        text += `\n`;
+      });
+      text += `─────────────────────────\n`;
+      text += `حساب کتاب قرآن و سنت اور متفقہ فقہی اصولوں کے عین مطابق ہے۔`;
+    } else {
+      text = `*Bismillāh ar-Rahmān ar-Rahīm*\n`;
+      text += `*Shariah Estate Distribution Summary (Mawarith)*\n`;
+      text += `─────────────────────────\n`;
+      text += `• *Gross Estate:* ${formatCurrency(summary.grossEstate, currency, language)}\n`;
+      text += `• *Burial & Debts Cleared:* -${formatCurrency(summary.burialCosts + summary.debtsTotal, currency, language)}\n`;
+      if (summary.wasiyyahApproved > 0) {
+        text += `• *Bequest (Wasiyyah):* -${formatCurrency(summary.wasiyyahApproved, currency, language)}\n`;
+      }
+      text += `• *Net Distributable Estate:* ${formatCurrency(summary.netInheritableEstate, currency, language)}\n`;
+      text += `─────────────────────────\n`;
+      text += `*Entitled Legal Heirs & Prescribed Shares:*\n`;
+      heirs.forEach((h) => {
+        text += `▸ *${getHeirDisplayName(h, language)}* (Count: ${h.count}):\n`;
+        text += `   Share: ${h.totalFraction.numerator}/${h.totalFraction.denominator} (${h.percentage.toFixed(1)}%)\n`;
+        text += `   Amount: ${formatCurrency(h.totalMonetaryValue, currency, language)}`;
+        if (h.count > 1) {
+          text += ` (${formatCurrency(h.perIndividualMonetaryValue, currency, language)} each)`;
+        }
+        text += `\n`;
+      });
+      text += `─────────────────────────\n`;
+      text += `Calculated strictly in accordance with classical Sunni jurisprudence (Jumhur).`;
+    }
+
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopiedToast(true);
+      setTimeout(() => setCopiedToast(false), 2500);
+    } catch {
+      // Fallback
+    }
+  };
 
   const stackedItemsList = [
     ...(estate?.cashItems || []),
@@ -41,7 +127,7 @@ export const ResultsView: React.FC<ResultsViewProps> = ({
 
   // Proportional palette for visual distribution bar
   const colorPalette = [
-    '#059669', // jade-600
+    '#047857', // jade-700
     '#d97706', // brass-600
     '#0d9488', // teal-600
     '#b45309', // amber-700
@@ -61,28 +147,49 @@ export const ResultsView: React.FC<ResultsViewProps> = ({
         
         <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2 mb-1">
-              <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-brass-400 bg-brass-400/10 px-2 py-0.5 rounded-full border border-brass-400/20">
-                <ShieldCheck className="w-3 h-3 text-brass-400" />
-                <span>{language === 'ar' ? 'فقه إسلامي معتمد' : language === 'ur' ? 'مستند شرعی گوشوارہ' : 'Verified Shariah Allocation'}</span>
-              </span>
-            </div>
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-white font-sans">
               {t.resultsTitle}
             </h2>
-            <p className="text-xs text-obsidian-400 mt-0.5 max-w-sm">
+            <p className="text-xs text-obsidian-400 mt-1 max-w-sm">
               {t.scholarBasis}
             </p>
           </div>
 
-          <button
-            type="button"
-            onClick={onOpenCertificate}
-            className="self-start sm:self-auto inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/[0.08] hover:bg-white/[0.14] text-white font-medium text-xs border border-white/[0.12] transition-all duration-200 active:scale-95 shadow-sheen"
-          >
-            <Printer className="w-3.5 h-3.5 text-brass-400" />
-            <span>{t.printCertificate}</span>
-          </button>
+          <div className="flex flex-wrap items-center gap-2">
+            {/* WhatsApp Family Share Button */}
+            <button
+              type="button"
+              onClick={handleCopyWhatsAppSummary}
+              className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold border transition-all duration-200 active:scale-95 cursor-pointer ${
+                copiedToast
+                  ? 'bg-jade-700 border-jade-600 text-white'
+                  : 'bg-white/[0.08] hover:bg-white/[0.14] text-white border-white/[0.12]'
+              }`}
+              title="Copy formatted summary for WhatsApp / SMS"
+            >
+              {copiedToast ? (
+                <>
+                  <Check className="w-3.5 h-3.5 text-jade-200" />
+                  <span>{language === 'ar' ? 'تم النسخ بنجاح' : language === 'ur' ? 'کاپی ہو گیا' : 'Copied!'}</span>
+                </>
+              ) : (
+                <>
+                  <Share2 className="w-3.5 h-3.5 text-brass-400" />
+                  <span>{language === 'ar' ? 'مشاركة الأسرة (واتساب)' : language === 'ur' ? 'اہل خانہ کو بھیجیں' : 'Family Share (WhatsApp)'}</span>
+                </>
+              )}
+            </button>
+
+            {/* Print Decree Button */}
+            <button
+              type="button"
+              onClick={onOpenCertificate}
+              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/[0.08] hover:bg-white/[0.14] text-white font-semibold text-xs border border-white/[0.12] transition-all duration-200 active:scale-95 shadow-sheen cursor-pointer"
+            >
+              <Printer className="w-3.5 h-3.5 text-brass-400" />
+              <span>{t.printCertificate}</span>
+            </button>
+          </div>
         </div>
 
         {/* Financial Flow Breakdown */}

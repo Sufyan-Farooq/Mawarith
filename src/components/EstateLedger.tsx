@@ -178,8 +178,8 @@ export const EstateLedger: React.FC<EstateLedgerProps> = ({
           </label>
 
           {isWasiyyahExceeded && (
-            <div className="flex items-center gap-1.5 text-brass-700 border-s-2 border-brass-500 ps-2 py-0.5">
-              <AlertCircle className="w-3.5 h-3.5 text-brass-600 shrink-0" />
+            <div className="flex items-center gap-2 p-2.5 rounded-xl bg-amber-50/80 border border-amber-200/90 text-amber-900 text-xs font-medium">
+              <AlertCircle className="w-4 h-4 text-amber-700 shrink-0" />
               <span>{t.wasiyyahNotice}</span>
             </div>
           )}

@@ -1,5 +1,5 @@
-import React from 'react';
-import { X, Printer, Award } from 'lucide-react';
+import React, { useState } from 'react';
+import { X, Printer, Copy, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MawarithResult, DeceasedGender, EstateInput } from '../engine/types';
 import { SupportedLanguage } from '../i18n/translations';
@@ -26,12 +26,42 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
   currency,
   language,
 }) => {
+  const [copied, setCopied] = useState(false);
   if (!isOpen) return null;
 
   const isRtl = language === 'ar' || language === 'ur';
 
   const handlePrint = () => {
     window.print();
+  };
+
+  const handleCopyText = async () => {
+    const isAr = language === 'ar';
+    const isUr = language === 'ur';
+
+    let text = isAr
+      ? `بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ\nصك توزيع الفريضة الشرعية\n(﴿ فَرِيضَةً مِّنَ اللَّهِ ۗ إِنَّ اللَّهَ كَانَ عَلِيمًا حَكِيمًا ﴾ [النساء: ١١])\n\n`
+      : isUr
+      ? `بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ\nتقسیمِ ترکہ کا شرعی گوشوارہ\n(﴿ فَرِيضَةً مِّنَ اللَّهِ ۗ إِنَّ اللَّهَ كَانَ عَلِيمًا حَكِيمًا ﴾)\n\n`
+      : `Bismillāh ar-Rahmān ar-Rahīm\nDecree of Islamic Estate Distribution\n\n`;
+
+    text += `• ${isAr ? 'المتوفى' : isUr ? 'میت' : 'Deceased'}: ${gender === 'male' ? (isAr ? 'رجل (مورث)' : 'Male') : (isAr ? 'امرأة (مورثة)' : 'Female')}\n`;
+    text += `• ${isAr ? 'إجمالي التركة' : 'Gross Estate'}: ${formatCurrency(result.summary.grossEstate, currency, language)}\n`;
+    text += `• ${isAr ? 'مؤن التجهيز والديون' : 'Burial & Debts'}: -${formatCurrency(result.summary.burialCosts + result.summary.debtsTotal, currency, language)}\n`;
+    text += `• ${isAr ? 'صافي التركة للإرث' : 'Net Distributable Estate'}: ${formatCurrency(result.summary.netInheritableEstate, currency, language)}\n\n`;
+    text += `${isAr ? 'بيان سهام الورثة المستحقين:' : 'Entitled Heirs Distribution:'}\n`;
+
+    result.heirs.forEach((h) => {
+      text += `- ${getHeirDisplayName(h, language)} (${h.count}): ${h.totalFraction.numerator}/${h.totalFraction.denominator} (${h.percentage.toFixed(2)}%) = ${formatCurrency(h.totalMonetaryValue, currency, language)}\n`;
+    });
+
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Fallback
+    }
   };
 
   return (
@@ -41,7 +71,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
           initial={{ opacity: 0, scale: 0.96, y: 8 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.96, y: 8 }}
-          transition={{ type: 'spring', bounce: 0.15, duration: 0.35 }}
+          transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
           className="w-full max-w-3xl bg-white border border-slate-200/90 shadow-float rounded-2xl overflow-hidden text-obsidian-900 print:border-none print:shadow-none print:rounded-none"
           dir={isRtl ? 'rtl' : 'ltr'}
         >
@@ -56,15 +86,34 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
 
             <div className="flex items-center gap-2">
               <button
+                type="button"
+                onClick={handleCopyText}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/[0.08] hover:bg-white/[0.15] text-white text-xs font-medium border border-white/[0.12] transition-colors cursor-pointer"
+              >
+                {copied ? (
+                  <>
+                    <Check className="w-3.5 h-3.5 text-jade-400" />
+                    <span>{language === 'ar' ? 'تم النسخ' : 'Copied'}</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-3.5 h-3.5 text-obsidian-300" />
+                    <span>{language === 'ar' ? 'نسخ النص' : 'Copy Text'}</span>
+                  </>
+                )}
+              </button>
+              <button
+                type="button"
                 onClick={handlePrint}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-jade-700 hover:bg-jade-600 text-white text-xs font-semibold shadow-micro transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-jade-700 hover:bg-jade-600 text-white text-xs font-semibold shadow-micro transition-colors cursor-pointer"
               >
                 <Printer className="w-3.5 h-3.5" />
                 <span>{language === 'ar' ? 'طباعة الصك' : language === 'ur' ? 'پرنٹ کریں' : 'Print Decree'}</span>
               </button>
               <button
+                type="button"
                 onClick={onClose}
-                className="p-1.5 rounded-lg text-obsidian-400 hover:text-white hover:bg-white/[0.1] transition-colors"
+                className="p-1.5 rounded-lg text-obsidian-400 hover:text-white hover:bg-white/[0.1] transition-colors cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -74,20 +123,14 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
           {/* Document Body */}
           <div className="p-8 sm:p-12 space-y-6 print:p-6 bg-white">
             {/* Basmalah & Heading */}
-            <div className="text-center space-y-2.5 pb-6 border-b border-slate-200">
+            <div className="text-center space-y-2 pb-6 border-b border-slate-200">
               <p className="font-arabic text-3xl text-obsidian-900 font-bold tracking-wide">
                 بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
               </p>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-brass-50 border border-brass-200/80 rounded-full text-xs font-bold text-brass-800">
-                <Award className="w-3.5 h-3.5 text-brass-600" />
-                <span>
-                  {language === 'ar' ? 'صك قسمة تركة شرعية مستندة إلى الكتاب والسنة' : language === 'ur' ? 'شرعی تقسیم نامہ بر بنیاد کتاب و سنت' : 'Official Islamic Estate Distribution Certificate'}
-                </span>
-              </div>
-              <h1 className="text-2xl font-bold text-obsidian-900 tracking-tight">
-                {language === 'ar' ? 'بيان توزيع الفريضة الشرعية' : language === 'ur' ? 'تقسیمِ ترکہ کا شرعی گوشوارہ' : 'Statement of Shariah Estate Division'}
+              <h1 className="text-2xl sm:text-3xl font-bold text-obsidian-900 tracking-tight font-sans">
+                {language === 'ar' ? 'صك توزيع الفريضة الشرعية' : language === 'ur' ? 'تقسیمِ ترکہ کا شرعی گوشوارہ' : 'Decree of Islamic Estate Distribution'}
               </h1>
-              <p className="font-arabic text-sm text-obsidian-600">
+              <p className="font-arabic text-sm text-jade-800 font-medium">
                 {language === 'ar'
                   ? '﴿ فَرِيضَةً مِّنَ اللَّهِ ۗ إِنَّ اللَّهَ كَانَ عَلِيمًا حَكِيمًا ﴾ [النساء: ١١]'
                   : '﴿ فَرِيضَةً مِّنَ اللَّهِ ۗ إِنَّ اللَّهَ كَانَ عَلِيمًا حَكِيمًا ﴾ [Surah An-Nisa: 11]'}
@@ -197,20 +240,55 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
               </div>
             </div>
 
+            {/* Formal Execution Ratification Blocks (Print & Court Ready) */}
+            <div className="pt-6 border-t border-slate-200 text-xs">
+              <div className="text-[11px] font-bold text-obsidian-700 uppercase tracking-wider mb-4">
+                {language === 'ar' ? 'اعتماد ومصادقة أصحاب الشأن' : language === 'ur' ? 'تصدیق و دستخط وارثان و گواہان' : 'Formal Ratification & Execution Signatures'}
+              </div>
+              <div className="grid grid-cols-3 gap-4 text-center">
+                <div className="p-3 rounded-xl border border-dashed border-slate-300 space-y-8 bg-slate-50/50">
+                  <span className="block font-semibold text-obsidian-800 text-[11px]">
+                    {language === 'ar' ? 'المصفي / وصي التركة' : language === 'ur' ? 'وصی ترکہ / منتظم' : 'Estate Executor'}
+                  </span>
+                  <div className="border-t border-slate-300 pt-1 text-[10px] text-obsidian-400">
+                    {language === 'ar' ? 'التوقيع والتاريخ' : 'Signature & Date'}
+                  </div>
+                </div>
+
+                <div className="p-3 rounded-xl border border-dashed border-slate-300 space-y-8 bg-slate-50/50">
+                  <span className="block font-semibold text-obsidian-800 text-[11px]">
+                    {language === 'ar' ? 'ممثل الورثة الشرعيين' : language === 'ur' ? 'نمائندہ ورثاء' : 'Heirs Representative'}
+                  </span>
+                  <div className="border-t border-slate-300 pt-1 text-[10px] text-obsidian-400">
+                    {language === 'ar' ? 'التوقيع والتاريخ' : 'Signature & Date'}
+                  </div>
+                </div>
+
+                <div className="p-3 rounded-xl border border-dashed border-slate-300 space-y-8 bg-slate-50/50">
+                  <span className="block font-semibold text-obsidian-800 text-[11px]">
+                    {language === 'ar' ? 'الشاهد / المفتي المعتمد' : language === 'ur' ? 'گواہ / مستند مفتی' : 'Witness / Certifying Scholar'}
+                  </span>
+                  <div className="border-t border-slate-300 pt-1 text-[10px] text-obsidian-400">
+                    {language === 'ar' ? 'التوقيع والختم' : 'Signature & Seal'}
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* Shariah Verification Statement & Seal */}
-            <div className="pt-5 border-t border-slate-200 text-xs text-obsidian-600 space-y-3">
-              <p className="leading-relaxed">
+            <div className="pt-4 border-t border-slate-200 text-xs text-obsidian-600 space-y-2">
+              <p className="leading-relaxed text-[11px]">
                 {language === 'ar'
                   ? 'تم حساب هذه الفريضة وفق الأحكام الشرعية المعتمدة في الفقه الإسلامي، استناداً إلى نصوص القرآن العظيم في سورة النساء وصحيح أحاديث المصطفى ﷺ، وفتاوى كبار العلماء (الشيخ ابن باز، الشيخ ابن عثيمين، والشيخ صالح الفوزان).'
                   : language === 'ur'
                   ? 'یہ شرعی حساب کتاب قرآن مجید کی آیات، صحیح احادیثِ نبوی، اور کبار علماء (شیخ ابن باز، شیخ ابن عثیمین اور شیخ صالح الفوزان) کے متفقہ فتاویٰ کے عین مطابق مرتب کیا گیا ہے۔'
                   : 'This calculation was conducted strictly under Islamic jurisprudence according to the Holy Quran (Surah An-Nisa), authentic Sunnah, and rulings of mainstream Sunni scholars including Shaykh Ibn Baz, Shaykh Ibn Uthaymeen, and Shaykh Salih al-Fawzan.'}
               </p>
-              <div className="flex items-center justify-between pt-2">
-                <span className="font-serif italic text-obsidian-400">
+              <div className="flex items-center justify-between pt-1">
+                <span className="font-serif italic text-obsidian-400 text-[11px]">
                   Mawarith Certification Engine v1.0 (Beta)
                 </span>
-                <span className="font-mono text-obsidian-500">
+                <span className="font-mono text-obsidian-500 text-[11px]">
                   {new Date().toLocaleDateString(language === 'ar' ? 'ar-SA' : language === 'ur' ? 'ur-PK' : 'en-US')}
                 </span>
               </div>

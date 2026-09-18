@@ -89,10 +89,10 @@ export const VisualStudio: React.FC<VisualStudioProps> = ({
 
           <motion.button
             type="button"
-            whileTap={{ scale: 0.9, rotate: -180 }}
+            whileTap={{ scale: 0.96 }}
             onClick={onReset}
-            className="p-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-obsidian-600 hover:text-obsidian-900 shadow-micro transition-colors"
-            title="Reset Everything"
+            className="p-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-obsidian-600 hover:text-obsidian-900 shadow-micro transition-colors cursor-pointer"
+            title={language === 'ar' ? 'إعادة ضبط الحساب' : language === 'ur' ? 'دوبارہ شروع کریں' : 'Reset Everything'}
           >
             <RotateCcw className="w-4 h-4" />
           </motion.button>

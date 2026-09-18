@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, User, Sparkles, Bot } from 'lucide-react';
+import { Send, User, Bot, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { SupportedLanguage, TRANSLATIONS } from '../i18n/translations';
 import { generateMawarithChatResponse, generateLocalFallbackResponse } from '../services/gemini';
@@ -245,8 +245,8 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
             <div className="w-8 h-8 rounded-xl bg-jade-50 border border-jade-200/60 text-jade-700 flex items-center justify-center">
               <Bot className="w-4 h-4" />
             </div>
-            <div className="px-4 py-3 rounded-2xl bg-white border border-slate-200/90 text-xs text-obsidian-500 flex items-center gap-2 shadow-micro">
-              <Sparkles className="w-3.5 h-3.5 text-brass-500 animate-spin" />
+            <div className="px-4 py-3 rounded-2xl bg-white border border-slate-200/90 text-xs text-obsidian-600 flex items-center gap-2 shadow-micro">
+              <Loader2 className="w-3.5 h-3.5 text-jade-700 animate-spin" />
               <span>{t.aiThinking}</span>
             </div>
           </motion.div>

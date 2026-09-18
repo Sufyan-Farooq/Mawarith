@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { X, Sparkles, BookOpen, ShieldCheck, HeartHandshake, Compass, ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { X, ArrowRight, ShieldCheck, Scale, Users, FileCheck } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { SupportedLanguage } from '../i18n/translations';
 import { BrandLogo } from './ui/BrandLogo';
@@ -17,13 +17,6 @@ export const WelcomeModal: React.FC<WelcomeModalProps> = ({
 }) => {
   const [dontShowAgain, setDontShowAgain] = useState(false);
 
-  useEffect(() => {
-    const stored = localStorage.getItem('mawarith_welcome_dismissed');
-    if (stored === 'true' && isOpen) {
-      // Parent can open explicitly if requested by user
-    }
-  }, [isOpen]);
-
   const handleClose = () => {
     if (dontShowAgain) {
       localStorage.setItem('mawarith_welcome_dismissed', 'true');
@@ -37,143 +30,132 @@ export const WelcomeModal: React.FC<WelcomeModalProps> = ({
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-obsidian-950/70 backdrop-blur-sm overflow-y-auto">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-obsidian-950/80 backdrop-blur-sm overflow-y-auto">
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 12 }}
+          initial={{ opacity: 0, scale: 0.96, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 12 }}
-          transition={{ type: 'spring', bounce: 0.15, duration: 0.4 }}
-          className="w-full max-w-2xl bg-white border border-slate-200/90 shadow-float rounded-3xl overflow-hidden text-obsidian-900 my-auto"
+          exit={{ opacity: 0, scale: 0.96, y: 10 }}
+          transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          className="w-full max-w-2xl bg-white border border-slate-200 shadow-float rounded-3xl overflow-hidden text-obsidian-900 my-auto"
           dir={isRtl ? 'rtl' : 'ltr'}
         >
-          {/* Header Banner with Sacred Geometry & Decorative Tint */}
-          <div className="relative bg-gradient-to-br from-obsidian-950 via-obsidian-900 to-jade-950 text-white p-6 sm:p-8 overflow-hidden">
-            <div className="absolute -right-12 -top-12 w-48 h-48 rounded-full bg-jade-500/10 blur-2xl pointer-events-none" />
-            <div className="absolute -left-12 -bottom-12 w-48 h-48 rounded-full bg-brass-500/10 blur-2xl pointer-events-none" />
-
-            <div className="relative z-10 flex items-start justify-between gap-4">
-              <div className="flex items-center gap-3">
+          {/* High-Contrast Solemn Obsidian Header */}
+          <div className="relative bg-obsidian-900 text-white p-6 sm:p-8 border-b border-white/[0.08]">
+            <div className="flex items-start justify-between gap-4">
+              <div className="flex items-center gap-3.5">
                 <BrandLogo size={42} />
                 <div>
-                  <div className="inline-flex items-center gap-1 text-[11px] font-semibold text-brass-400 bg-brass-400/10 px-2.5 py-0.5 rounded-full border border-brass-400/20 mb-1">
-                    <Sparkles className="w-3 h-3 text-brass-400" />
-                    <span>
-                      {language === 'ar'
-                        ? 'مرحباً بك في منصة مَوارِيث'
-                        : language === 'ur'
-                        ? 'منصۂ مواریث میں خوش آمدید'
-                        : 'Welcome to Mawarith Platform'}
-                    </span>
-                  </div>
-                  <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
+                  <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-white font-sans">
                     {language === 'ar'
-                      ? 'أهمية علم الفرائض في عصرنا الحاضر'
+                      ? 'مَوارِيث: علم الفرائض وقسمة التركات'
                       : language === 'ur'
-                      ? 'دورِ حاضر میں علمِ میراث کی شرعی اہمیت'
-                      : 'The Vital Importance of Inheritance in Today’s World'}
+                      ? 'مواریث: شرعی تقسیمِ ترکہ کا مستند نظام'
+                      : 'Mawarith: Shariah Estate Distribution'}
                   </h2>
+                  <p className="text-xs text-brass-300 font-medium mt-1">
+                    {language === 'ar'
+                      ? 'فريضة محكمة وقسمة عادلة مستندة إلى الكتاب والسنة'
+                      : language === 'ur'
+                      ? 'قرآن و سنت کی روشنی میں متفقہ شرعی اصول'
+                      : 'Scriptural precision anchored in Quran, Sunnah, and Ijma'}
+                  </p>
                 </div>
               </div>
 
               <button
                 type="button"
                 onClick={handleClose}
-                className="p-1.5 rounded-xl text-obsidian-400 hover:text-white hover:bg-white/[0.1] transition-colors"
+                className="p-2 rounded-xl text-obsidian-400 hover:text-white hover:bg-white/[0.1] transition-colors"
                 aria-label="Close"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            {/* Prophet's Hadith on Fara'id */}
-            <div className="relative z-10 mt-5 p-4 rounded-2xl bg-white/[0.06] border border-white/[0.1] text-xs space-y-2">
-              <div className="flex items-center gap-2 text-brass-300 font-semibold text-[11px]">
-                <BookOpen className="w-3.5 h-3.5" />
-                <span>
-                  {language === 'ar'
-                    ? 'حديث نبوي شريف عن رسول الله ﷺ'
-                    : language === 'ur'
-                    ? 'فرمانِ رسول اکرم ﷺ'
-                    : 'Prophetic Guidance (Sunnah)'}
-                </span>
-              </div>
-              <p className="font-arabic text-sm sm:text-base text-white/95 leading-relaxed">
+            {/* Prophetic Hadith Callout */}
+            <div className="mt-5 p-4 rounded-2xl bg-white/[0.05] border border-white/[0.1] space-y-2">
+              <p className="font-arabic text-base sm:text-lg text-white leading-relaxed text-right">
                 «تَعَلَّمُوا الْفَرَائِضَ وَعَلِّمُوهَا النَّاسَ، فَإِنَّهُ نِصْفُ الْعِلْمِ، وَهُوَ يُنْسَى، وَهُوَ أَوَّلُ شَيْءٍ يُنْتَزَعُ مِنْ أُمَّتِي»
               </p>
-              <p className="text-[11px] text-obsidian-300 font-mono">
-                {language === 'ar'
-                  ? 'رواه ابن ماجه (٢٧١٩) والحاكم في المستدرك'
-                  : language === 'ur'
-                  ? 'سنن ابن ماجہ (2719) اور حاکم فی المستدرک'
-                  : 'Narrated by Ibn Majah (2719) and Al-Hakim in Al-Mustadrak'}
-              </p>
+              <div className="flex items-center justify-between text-[11px] text-obsidian-400 font-mono pt-1.5 border-t border-white/[0.08]">
+                <span>{language === 'ar' ? 'حديث شريف' : 'Prophetic Sunnah'}</span>
+                <span>{language === 'ar' ? 'رواه ابن ماجه (٢٧١٩) والحاكم' : 'Sunan Ibn Majah (2719)'}</span>
+              </div>
             </div>
           </div>
 
-          {/* Core Content: Why Mawarith Matters Today */}
-          <div className="p-6 sm:p-8 space-y-6 text-xs sm:text-sm text-obsidian-700">
-            <p className="leading-relaxed text-obsidian-800 font-medium">
+          {/* Structured Guidance: Why Mawarith Matters in Modern Estates */}
+          <div className="p-6 sm:p-8 space-y-5 text-xs sm:text-sm text-obsidian-700">
+            <p className="leading-relaxed text-obsidian-800 font-medium text-sm">
               {language === 'ar'
-                ? 'في ظل تعقد المعاملات المالية المعاصرة — من حسابات بنكية متعددة، وعقارات، وحصص تجارية، وصناديق استثمارية — أصبحت قسمة التركات مسألة بالغة الحساسية، وغالباً ما تنشأ عنها قطيعة الأرحام وتأخير حقوق الورثة.'
+                ? 'في ظل تعقد المعاملات المالية المعاصرة — من حسابات بنكية متعددة، وعقارات، وحصص تجارية، وصناديق استثمارية — أوجب الله تعالى قسمة التركات بالميزان الإلهي صيانةً لحقوق الأرامل والأيتام والورثة ومنعاً للنزاعات الأسرية.'
                 : language === 'ur'
-                ? 'موجودہ دور میں جب مالی اثاثے بینک اکاؤنٹس، جائیدادوں اور کاروباروں میں تقسیم ہیں، ترکہ کی درست شرعی تقسیم ایک اہم ترین ضرورت ہے۔ عدم آگاہی کی وجہ سے اکثر خاندانی تنازعات اور کمزور ورثاء کے حقوق ضائع ہو جاتے ہیں۔'
-                : 'In our interconnected modern world—with multiple bank accounts, complex real estate, business equity, and international holdings—estate distribution has become increasingly intricate. Lack of clarity often leads to protracted family disputes and delayed rights.'}
+                ? 'موجودہ دور میں جب مالی اثاثے بینک اکاؤنٹس، جائیدادوں اور کاروباروں میں منقسم ہیں، ترکہ کی درست شرعی تقسیم ایک اہم ترین ضرورت ہے۔ اسلام نے ترکے کی تقسیم کو الہی میزان پر قائم کیا ہے تاکہ تمام ورثاء کے حقوق محفوظ رہیں۔'
+                : 'In our interconnected modern world—with multiple bank accounts, real estate, debts, and commercial equity—estate distribution has become increasingly intricate. Islamic law establishes estate division on divine justice (Al-Mizan), safeguarding the unalterable Quranic rights of every heir.'}
             </p>
 
-            {/* Three Pillar Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
-              <div className="p-3.5 rounded-2xl bg-jade-50/60 border border-jade-200/80 space-y-1.5">
-                <div className="w-7 h-7 rounded-xl bg-jade-100 text-jade-800 flex items-center justify-center font-bold">
-                  <ShieldCheck className="w-4 h-4" />
+            {/* The Shariah Distribution Sequence (Tartib Huquq at-Tirka) */}
+            <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/90 space-y-3">
+              <div className="flex items-center justify-between text-xs font-bold text-obsidian-900 uppercase tracking-wider border-b border-slate-200/70 pb-2">
+                <div className="flex items-center gap-1.5">
+                  <Scale className="w-3.5 h-3.5 text-jade-700" />
+                  <span>
+                    {language === 'ar' ? 'ترتيب تصفية الحقوق الشرعية' : language === 'ur' ? 'ترکہ سے متعلق شرعی حقوق کی ترتیب' : 'The Strict Shariah Distribution Sequence'}
+                  </span>
                 </div>
-                <h4 className="font-bold text-obsidian-900 text-xs">
-                  {language === 'ar' ? 'حماية حقوق الضعفاء' : language === 'ur' ? 'حقوق کا تحفظ' : 'Protecting Rights'}
-                </h4>
-                <p className="text-[11px] text-obsidian-600 leading-relaxed">
-                  {language === 'ar'
-                    ? 'صيانة أنصبة الأمهات والأرامل والبنات والأيتام كما شرعها الله بقطعية لا لبس فيها.'
-                    : language === 'ur'
-                    ? 'بیواؤں، بیٹیوں اور یتیموں کے شرعی حصص کا قطعی تحفظ۔'
-                    : 'Guarantees the unalterable Quranic shares of widows, daughters, and orphans.'}
-                </p>
+                <span className="font-mono text-[11px] text-obsidian-400 font-normal">
+                  {language === 'ar' ? 'قضاء النبي ﷺ' : 'Prophetic Order'}
+                </span>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-brass-50/60 border border-brass-200/80 space-y-1.5">
-                <div className="w-7 h-7 rounded-xl bg-brass-100 text-brass-800 flex items-center justify-center font-bold">
-                  <HeartHandshake className="w-4 h-4" />
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs pt-1">
+                <div className="space-y-1 p-2.5 rounded-xl bg-white border border-slate-200/70">
+                  <div className="flex items-center gap-1.5 font-bold text-obsidian-900 font-mono text-jade-700">
+                    <ShieldCheck className="w-3.5 h-3.5" />
+                    <span>1. {language === 'ar' ? 'الديون والوصية' : 'Debts & Bequests'}</span>
+                  </div>
+                  <p className="text-obsidian-600 text-[11px] leading-relaxed">
+                    {language === 'ar'
+                      ? 'تسديد الديون (بما فيها المهر المؤجل) ثم الوصية لغير وارث (بحد أقصى الثلث) قبل قسمة التركة.'
+                      : language === 'ur'
+                      ? 'کفن دفن اور قرضوں کی ادائیگی، پھر غیر وارث کے لیے وصیت (زیادہ سے زیادہ تہائی)۔'
+                      : 'Funeral costs and debts cleared first, then bequests to non-heirs capped at 1/3.'}
+                  </p>
                 </div>
-                <h4 className="font-bold text-obsidian-900 text-xs">
-                  {language === 'ar' ? 'حفظ المودة والأرحام' : language === 'ur' ? 'خاندانی یگانگت' : 'Family Peace'}
-                </h4>
-                <p className="text-[11px] text-obsidian-600 leading-relaxed">
-                  {language === 'ar'
-                    ? 'استبدال النزاعات والشكوك ببرهان رياضي وفقهي شفاف يُرضي جميع النفوس بالعدل الإلهي.'
-                    : language === 'ur'
-                    ? 'شک و شبہات کے خاتمے اور خاندانی محبت کو برقرار رکھنے کے لیے شفاف حساب۔'
-                    : 'Replaces ambiguity with mathematical precision and scriptural Daleel proofs.'}
-                </p>
-              </div>
 
-              <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-1.5">
-                <div className="w-7 h-7 rounded-xl bg-slate-100 text-obsidian-800 flex items-center justify-center font-bold">
-                  <Compass className="w-4 h-4" />
+                <div className="space-y-1 p-2.5 rounded-xl bg-white border border-slate-200/70">
+                  <div className="flex items-center gap-1.5 font-bold text-obsidian-900 font-mono text-jade-700">
+                    <Users className="w-3.5 h-3.5" />
+                    <span>2. {language === 'ar' ? 'حصر الورثة والحجب' : 'Surviving Heirs & Hajb'}</span>
+                  </div>
+                  <p className="text-obsidian-600 text-[11px] leading-relaxed">
+                    {language === 'ar'
+                      ? 'تحديد الورثة الأحياء لحظة الوفاة بدقة وتطبيق قواعد الحجب الشرعي التلقائي.'
+                      : language === 'ur'
+                      ? 'وفات کے وقت زندہ ورثاء کا اندراج، شرعی حجب کے قواعد خودکار لاگو ہوتے ہیں۔'
+                      : 'Immediate and collateral relatives evaluated with automatic blocking rules.'}
+                  </p>
                 </div>
-                <h4 className="font-bold text-obsidian-900 text-xs">
-                  {language === 'ar' ? 'إبراء الذمة الشرعية' : language === 'ur' ? 'بری الذمہ ہونا' : 'Spiritual Assurance'}
-                </h4>
-                <p className="text-[11px] text-obsidian-600 leading-relaxed">
-                  {language === 'ar'
-                    ? 'تنفيذ فريضة الله عز وجل وامتثال أمره: ﴿فَرِيضَةً مِّنَ اللَّهِ إِنَّ اللَّهَ كَانَ عَلِيمًا حَكِيمًا﴾.'
-                    : language === 'ur'
-                    ? 'اللہ تعالیٰ کے حکم پر عمل پیرا ہو کر ترکہ کو پاک صاف کرنا۔'
-                    : 'Fulfills the divine decree of Surah An-Nisa: "An obligation ordained by Allah".'}
-                </p>
+
+                <div className="space-y-1 p-2.5 rounded-xl bg-white border border-slate-200/70">
+                  <div className="flex items-center gap-1.5 font-bold text-obsidian-900 font-mono text-jade-700">
+                    <FileCheck className="w-3.5 h-3.5" />
+                    <span>3. {language === 'ar' ? 'الصك ومشاركة الأسرة' : 'Decree & Family Share'}</span>
+                  </div>
+                  <p className="text-obsidian-600 text-[11px] leading-relaxed">
+                    {language === 'ar'
+                      ? 'استخراج صك رسمي معتمد ومشاركة الملخص الفوري مع العائلة عبر تطبيق واتساب.'
+                      : language === 'ur'
+                      ? 'مستند تقسیم نامہ اور واٹس ایپ پر اہل خانہ کے ساتھ فوری خلاصہ شیئر کرنے کی سہولت۔'
+                      : 'Official printable decree, Daleel citations, and 1-tap WhatsApp family summary.'}
+                  </p>
+                </div>
               </div>
             </div>
 
-            {/* Footer Notice & Actions */}
-            <div className="pt-3 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <label className="flex items-center gap-2 cursor-pointer text-xs text-obsidian-500 select-none">
+            {/* Footer with Checkbox and Action Button */}
+            <div className="pt-3 border-t border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <label className="flex items-center gap-2 cursor-pointer text-xs text-obsidian-600 select-none">
                 <input
                   type="checkbox"
                   checked={dontShowAgain}
@@ -182,24 +164,24 @@ export const WelcomeModal: React.FC<WelcomeModalProps> = ({
                 />
                 <span>
                   {language === 'ar'
-                    ? 'عدم إظهار هذه الرسالة الترحيبية مجدداً'
+                    ? 'عدم إظهار هذا البيان تلقائياً عند الدخول'
                     : language === 'ur'
-                    ? 'یہ تعارفی پیغام دوبارہ نہ دکھائیں'
-                    : 'Don’t show this welcome message automatically'}
+                    ? 'یہ تعارفی پیغام خودکار نہ دکھائیں'
+                    : 'Do not show this guidance automatically'}
                 </span>
               </label>
 
               <button
                 type="button"
                 onClick={handleClose}
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-jade-700 hover:bg-jade-800 text-white font-semibold text-xs shadow-micro transition-all duration-150 active:scale-95"
+                className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-jade-700 hover:bg-jade-800 text-white font-semibold text-xs shadow-micro transition-all duration-150 active:scale-95 cursor-pointer"
               >
                 <span>
                   {language === 'ar'
-                    ? 'ابدأ استكشاف المنصة'
+                    ? 'متابعة إلى حساب التركة'
                     : language === 'ur'
-                    ? 'مواریث شروع کریں'
-                    : 'Explore Mawarith'}
+                    ? 'حساب شروع کریں'
+                    : 'Proceed to Estate Studio'}
                 </span>
                 <ArrowRight className={`w-3.5 h-3.5 ${isRtl ? 'rotate-180' : ''}`} />
               </button>
