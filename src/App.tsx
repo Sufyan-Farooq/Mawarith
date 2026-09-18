@@ -70,6 +70,13 @@ export const App: React.FC = () => {
   const [gender, setGender] = useState<DeceasedGender>('male');
   const [estate, setEstate] = useState<EstateInput>(initialEstate);
   const [heirs, setHeirs] = useState<HeirsInput>(initialHeirs);
+  const [activeScenarioId, setActiveScenarioId] = useState<string | null>('standard-family');
+  const [undoState, setUndoState] = useState<{
+    gender: DeceasedGender;
+    estate: EstateInput;
+    heirs: HeirsInput;
+    scenarioId: string | null;
+  } | null>(null);
 
   // Daleel & Certificate Modals
   const [daleelModal, setDaleelModal] = useState<{
@@ -104,13 +111,35 @@ export const App: React.FC = () => {
     return calculateInheritance(gender, estate, heirs);
   }, [gender, estate, heirs]);
 
+  const handleGenderChange = (g: DeceasedGender) => {
+    setGender(g);
+    setActiveScenarioId(null);
+  };
+
+  const handleEstateChange = (updater: EstateInput | ((prev: EstateInput) => EstateInput)) => {
+    setEstate(updater);
+    setActiveScenarioId(null);
+  };
+
+  const handleHeirsChange = (updated: HeirsInput) => {
+    setHeirs(updated);
+    setActiveScenarioId(null);
+  };
+
   const handleLoadScenario = (scenario: SampleScenario) => {
     setGender(scenario.gender);
     setEstate(scenario.estate);
     setHeirs(scenario.heirs);
+    setActiveScenarioId(scenario.id);
   };
 
   const handleReset = () => {
+    setUndoState({
+      gender,
+      estate,
+      heirs,
+      scenarioId: activeScenarioId,
+    });
     setGender('male');
     setEstate({
       cash: 0,
@@ -154,6 +183,16 @@ export const App: React.FC = () => {
       deceasedName: '',
       heirNames: {},
     });
+    setActiveScenarioId(null);
+  };
+
+  const handleUndoReset = () => {
+    if (!undoState) return;
+    setGender(undoState.gender);
+    setEstate(undoState.estate);
+    setHeirs(undoState.heirs);
+    setActiveScenarioId(undoState.scenarioId);
+    setUndoState(null);
   };
 
   const t = TRANSLATIONS[language];
@@ -186,11 +225,11 @@ export const App: React.FC = () => {
         {currentMode === 'studio' ? (
           <VisualStudio
             gender={gender}
-            onChangeGender={setGender}
+            onChangeGender={handleGenderChange}
             estate={estate}
-            onChangeEstate={setEstate}
+            onChangeEstate={handleEstateChange}
             heirs={heirs}
-            onChangeHeirs={setHeirs}
+            onChangeHeirs={handleHeirsChange}
             result={calculationResult}
             currency={currency}
             language={language}
@@ -198,6 +237,9 @@ export const App: React.FC = () => {
             onOpenCertificate={() => setIsCertificateOpen(true)}
             onLoadScenario={handleLoadScenario}
             onReset={handleReset}
+            activeScenarioId={activeScenarioId}
+            onUndoReset={handleUndoReset}
+            canUndoReset={Boolean(undoState)}
           />
         ) : (
           <ChatInterface
@@ -206,6 +248,7 @@ export const App: React.FC = () => {
               setGender(g);
               setEstate(e);
               setHeirs(h);
+              setActiveScenarioId(null);
               setCurrentMode('studio');
             }}
           />
@@ -245,6 +288,13 @@ export const App: React.FC = () => {
         isOpen={isWelcomeOpen}
         onClose={() => setIsWelcomeOpen(false)}
         language={language}
+        onStartFresh={() => {
+          handleReset();
+          setIsWelcomeOpen(false);
+        }}
+        onExploreDemo={() => {
+          setIsWelcomeOpen(false);
+        }}
       />
 
       <DaleelModal

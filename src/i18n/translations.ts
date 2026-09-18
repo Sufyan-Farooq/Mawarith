@@ -95,6 +95,20 @@ export interface Translations {
   fard_and_asabah: string;
   awl_adjusted: string;
   radd_adjusted: string;
+  startFresh: string;
+  startFreshDesc: string;
+  viewingSample: string;
+  customEstate: string;
+  readyForEstateTitle: string;
+  readyForEstateSubtitle: string;
+  exploreDemo: string;
+  startMyEstate: string;
+  confirmResetTitle: string;
+  confirmResetDesc: string;
+  confirmResetConfirm: string;
+  cancel: string;
+  undo: string;
+  resetSuccessToast: string;
 }
 
 export const TRANSLATIONS: Record<SupportedLanguage, Translations> = {
@@ -193,6 +207,20 @@ export const TRANSLATIONS: Record<SupportedLanguage, Translations> = {
     fard_and_asabah: 'Fard & Asabah',
     awl_adjusted: 'Awl Proportional',
     radd_adjusted: 'Radd Surplus',
+    startFresh: 'Start Fresh',
+    startFreshDesc: 'Clear all values and calculate your family\'s estate from scratch',
+    viewingSample: 'Viewing Demo Scenario:',
+    customEstate: 'Custom Family Estate',
+    readyForEstateTitle: 'Ready to Calculate Your Family\'s Estate',
+    readyForEstateSubtitle: 'Enter estate assets & liabilities, then select surviving relatives on the left. Shariah shares, Hajb blocking rules, and official decrees will generate live in real-time.',
+    exploreDemo: 'Explore Demo Scenario',
+    startMyEstate: 'Start Fresh with My Estate',
+    confirmResetTitle: 'Start fresh with a clean estate?',
+    confirmResetDesc: 'This will clear all entered assets, debts, and selected relatives so you can start from scratch.',
+    confirmResetConfirm: 'Yes, Start Fresh',
+    cancel: 'Cancel',
+    undo: 'Undo',
+    resetSuccessToast: 'Estate reset to blank canvas.',
   },
   ar: {
     appName: 'مَوارِيث',
@@ -289,6 +317,20 @@ export const TRANSLATIONS: Record<SupportedLanguage, Translations> = {
     fard_and_asabah: 'فرضاً وتعصيباً',
     awl_adjusted: 'بالعول',
     radd_adjusted: 'بالرد',
+    startFresh: 'تصفير والبدء من جديد',
+    startFreshDesc: 'مسح جميع المدخلات وبدء حساب تركة جديدة من الصفر',
+    viewingSample: 'تشاهد حالياً مسألة نموذجية:',
+    customEstate: 'حساب تركة عائلتك المخصصة',
+    readyForEstateTitle: 'جاهز لحساب تركة عائلتك الشرعية',
+    readyForEstateSubtitle: 'أدخل أموال التركة والديون، ثم حدد أصحاب الفروض والعصبات الأحياء على اليمين. وستظهر السهام الشرعية وقواعد الحجب والصك الشرعي فوراً وتلقائياً.',
+    exploreDemo: 'استعراض مسألة تجريبية',
+    startMyEstate: 'البدء بحساب تركة عائلتي',
+    confirmResetTitle: 'تصفير البيانات والبدء من جديد؟',
+    confirmResetDesc: 'سيؤدي هذا إلى مسح كافة الأصول والديون والورثة المحددين لتبدأ بحساب جديد من الصفر.',
+    confirmResetConfirm: 'نعم، ابدأ من الصفر',
+    cancel: 'إلغاء',
+    undo: 'تراجع',
+    resetSuccessToast: 'تم تصفير التركة، يمكنك البدء الآن.',
   },
   ur: {
     appName: 'مواریث',
@@ -385,5 +427,19 @@ export const TRANSLATIONS: Record<SupportedLanguage, Translations> = {
     fard_and_asabah: 'فرض اور عصبہ',
     awl_adjusted: 'عول کے ساتھ',
     radd_adjusted: 'رد کے ساتھ',
+    startFresh: 'نیا حساب شروع کریں',
+    startFreshDesc: 'تمام معلومات صاف کر کے اپنے خاندان کا نیا حساب شروع کریں',
+    viewingSample: 'آپ نمونہ کیس دیکھ رہے ہیں:',
+    customEstate: 'آپ کا ذاتی خاندانی ترکہ',
+    readyForEstateTitle: 'اپنے خاندان کے شرعی ترکے کے حساب کے لیے تیار',
+    readyForEstateSubtitle: 'بائیں جانب ترکہ کے اثاثے اور قرض درج کریں، پھر زندہ ورثاء کا انتخاب کریں۔ شرعی حصص، حجب کے قواعد اور تقسیم نامہ فوری تیار ہو جائے گا۔',
+    exploreDemo: 'نمونہ کیس دیکھیں',
+    startMyEstate: 'اپنے خاندان کا ترکہ شروع کریں',
+    confirmResetTitle: 'کیا آپ نیا حساب شروع کرنا چاہتے ہیں؟',
+    confirmResetDesc: 'اس سے تمام درج شدہ اثاثے، قرض اور منتخب ورثاء صاف ہو جائیں گے تاکہ آپ نئے سرے سے شروع کر سکیں۔',
+    confirmResetConfirm: 'ہاں، نیا حساب شروع کریں',
+    cancel: 'منسوخ',
+    undo: 'واپس لائیں',
+    resetSuccessToast: 'ترکہ صاف کر دیا گیا ہے، اب نیا اندراج کریں۔',
   },
 };

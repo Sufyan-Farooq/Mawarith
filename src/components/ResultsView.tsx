@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BookOpen, AlertCircle, Printer, ArrowRight, Ban, CheckCircle, Layers, ChevronDown, ChevronUp, Share2, Check } from 'lucide-react';
+import { BookOpen, AlertCircle, Printer, ArrowRight, Ban, CheckCircle, Layers, ChevronDown, ChevronUp, Share2, Check, Scale } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MawarithResult, DeceasedGender, EstateInput } from '../engine/types';
 import { SupportedLanguage, TRANSLATIONS } from '../i18n/translations';
@@ -14,6 +14,7 @@ interface ResultsViewProps {
   language: SupportedLanguage;
   onOpenDaleel: (daleelIds: string[], title: string) => void;
   onOpenCertificate: () => void;
+  onLoadSample?: () => void;
 }
 
 export const ResultsView: React.FC<ResultsViewProps> = ({
@@ -24,6 +25,7 @@ export const ResultsView: React.FC<ResultsViewProps> = ({
   language,
   onOpenDaleel,
   onOpenCertificate,
+  onLoadSample,
 }) => {
   const t = TRANSLATIONS[language];
 
@@ -417,65 +419,97 @@ export const ResultsView: React.FC<ResultsViewProps> = ({
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
-              {heirs.map((h) => (
-                <tr key={h.heirId} className="hover:bg-slate-50/70 transition-colors">
-                  {/* Heir Name and Category Badge */}
-                  <td className="px-4 py-3 text-start">
-                    <div className="font-bold text-obsidian-900 flex items-center gap-1.5">
-                      <span>{getHeirDisplayName(h, language)}</span>
-                      {h.count > 1 && (
-                        <span className="text-[11px] font-medium text-obsidian-400">
-                          (×{h.count})
-                        </span>
+              {heirs.length === 0 ? (
+                <tr>
+                  <td colSpan={5} className="py-12 px-6 text-center bg-slate-50/40">
+                    <div className="max-w-md mx-auto space-y-3">
+                      <div className="w-12 h-12 rounded-2xl bg-jade-50 text-jade-700 flex items-center justify-center mx-auto border border-jade-200/80 shadow-micro">
+                        <Scale className="w-6 h-6 text-jade-700" />
+                      </div>
+                      <div className="space-y-1">
+                        <h4 className="text-sm font-bold text-obsidian-900">
+                          {t.readyForEstateTitle}
+                        </h4>
+                        <p className="text-xs text-obsidian-500 leading-relaxed max-w-sm mx-auto">
+                          {t.readyForEstateSubtitle}
+                        </p>
+                      </div>
+                      {onLoadSample && (
+                        <div className="pt-2">
+                          <button
+                            type="button"
+                            onClick={onLoadSample}
+                            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-obsidian-800 text-xs font-semibold shadow-micro transition-all active:scale-95 cursor-pointer"
+                          >
+                            <span>{t.exploreDemo}</span>
+                            <ArrowRight className={`w-3.5 h-3.5 ${language === 'ar' || language === 'ur' ? 'rotate-180' : ''}`} />
+                          </button>
+                        </div>
                       )}
                     </div>
-                    {h.customNames && h.customNames.filter(Boolean).length > 0 && (
-                      <div className="text-[11px] font-medium text-jade-800 mt-0.5">
-                        {h.customNames.filter(Boolean).join('، ')}
-                      </div>
-                    )}
-                    <span className="text-[11px] text-obsidian-400 block mt-0.5">
-                      {t[h.category] || h.category}
-                    </span>
-                  </td>
-
-                  {/* Fractional Fraction Disc */}
-                  <td className="px-3 py-3 text-center">
-                    <span className="inline-flex items-center px-2 py-0.5 rounded-md font-mono text-xs font-bold bg-jade-50 text-jade-800 border border-jade-200/60">
-                      {h.totalFraction.numerator}/{h.totalFraction.denominator}
-                    </span>
-                  </td>
-
-                  {/* Percentage */}
-                  <td className="px-3 py-3 text-center font-mono text-xs text-obsidian-500">
-                    {h.percentage.toFixed(1)}%
-                  </td>
-
-                  {/* Monetary Amount */}
-                  <td className="px-4 py-3 text-end">
-                    <span className="font-mono font-bold text-obsidian-950 text-sm block">
-                      {formatCurrency(h.totalMonetaryValue, currency, language)}
-                    </span>
-                    {h.count > 1 && (
-                      <span className="text-[11px] text-obsidian-400 font-mono block">
-                        {formatCurrency(h.perIndividualMonetaryValue, currency, language)} {language === 'ar' ? '/ فرد' : '/ each'}
-                      </span>
-                    )}
-                  </td>
-
-                  {/* Daleel Button with Golden Badge */}
-                  <td className="px-4 py-3 text-center">
-                    <button
-                      type="button"
-                      onClick={() => onOpenDaleel(h.daleelIds, getHeirDisplayName(h, language))}
-                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold text-brass-700 bg-brass-50 hover:bg-brass-100 border border-brass-300/60 transition-all active:scale-95 shadow-micro"
-                    >
-                      <BookOpen className="w-3.5 h-3.5 text-brass-600" />
-                      <span>{t.viewDaleel}</span>
-                    </button>
                   </td>
                 </tr>
-              ))}
+              ) : (
+                heirs.map((h) => (
+                  <tr key={h.heirId} className="hover:bg-slate-50/70 transition-colors">
+                    {/* Heir Name and Category Badge */}
+                    <td className="px-4 py-3 text-start">
+                      <div className="font-bold text-obsidian-900 flex items-center gap-1.5">
+                        <span>{getHeirDisplayName(h, language)}</span>
+                        {h.count > 1 && (
+                          <span className="text-[11px] font-medium text-obsidian-400">
+                            (×{h.count})
+                          </span>
+                        )}
+                      </div>
+                      {h.customNames && h.customNames.filter(Boolean).length > 0 && (
+                        <div className="text-[11px] font-medium text-jade-800 mt-0.5">
+                          {h.customNames.filter(Boolean).join('، ')}
+                        </div>
+                      )}
+                      <span className="text-[11px] text-obsidian-400 block mt-0.5">
+                        {t[h.category] || h.category}
+                      </span>
+                    </td>
+
+                    {/* Fractional Fraction Disc */}
+                    <td className="px-3 py-3 text-center">
+                      <span className="inline-flex items-center px-2 py-0.5 rounded-md font-mono text-xs font-bold bg-jade-50 text-jade-800 border border-jade-200/60">
+                        {h.totalFraction.numerator}/{h.totalFraction.denominator}
+                      </span>
+                    </td>
+
+                    {/* Percentage */}
+                    <td className="px-3 py-3 text-center font-mono text-xs text-obsidian-500">
+                      {h.percentage.toFixed(1)}%
+                    </td>
+
+                    {/* Monetary Amount */}
+                    <td className="px-4 py-3 text-end">
+                      <span className="font-mono font-bold text-obsidian-950 text-sm block">
+                        {formatCurrency(h.totalMonetaryValue, currency, language)}
+                      </span>
+                      {h.count > 1 && (
+                        <span className="text-[11px] text-obsidian-400 font-mono block">
+                          {formatCurrency(h.perIndividualMonetaryValue, currency, language)} {language === 'ar' ? '/ فرد' : '/ each'}
+                        </span>
+                      )}
+                    </td>
+
+                    {/* Daleel Button with Golden Badge */}
+                    <td className="px-4 py-3 text-center">
+                      <button
+                        type="button"
+                        onClick={() => onOpenDaleel(h.daleelIds, getHeirDisplayName(h, language))}
+                        className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold text-brass-700 bg-brass-50 hover:bg-brass-100 border border-brass-300/60 transition-all active:scale-95 shadow-micro"
+                      >
+                        <BookOpen className="w-3.5 h-3.5 text-brass-600" />
+                        <span>{t.viewDaleel}</span>
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>

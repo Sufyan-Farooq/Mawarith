@@ -8,20 +8,46 @@ interface WelcomeModalProps {
   isOpen: boolean;
   onClose: () => void;
   language: SupportedLanguage;
+  onStartFresh?: () => void;
+  onExploreDemo?: () => void;
 }
 
 export const WelcomeModal: React.FC<WelcomeModalProps> = ({
   isOpen,
   onClose,
   language,
+  onStartFresh,
+  onExploreDemo,
 }) => {
   const [dontShowAgain, setDontShowAgain] = useState(false);
 
-  const handleClose = () => {
+  const persistDismissal = () => {
     if (dontShowAgain) {
       localStorage.setItem('mawarith_welcome_dismissed', 'true');
     }
+  };
+
+  const handleClose = () => {
+    persistDismissal();
     onClose();
+  };
+
+  const handleStartFresh = () => {
+    persistDismissal();
+    if (onStartFresh) {
+      onStartFresh();
+    } else {
+      onClose();
+    }
+  };
+
+  const handleExploreDemo = () => {
+    persistDismissal();
+    if (onExploreDemo) {
+      onExploreDemo();
+    } else {
+      onClose();
+    }
   };
 
   if (!isOpen) return null;
@@ -171,20 +197,34 @@ export const WelcomeModal: React.FC<WelcomeModalProps> = ({
                 </span>
               </label>
 
-              <button
-                type="button"
-                onClick={handleClose}
-                className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-jade-700 hover:bg-jade-800 text-white font-semibold text-xs shadow-micro transition-all duration-150 active:scale-95 cursor-pointer"
-              >
-                <span>
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  type="button"
+                  onClick={handleExploreDemo}
+                  className="px-4 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-obsidian-700 font-semibold text-xs transition-all duration-150 active:scale-95 cursor-pointer"
+                >
                   {language === 'ar'
-                    ? 'متابعة إلى حساب التركة'
+                    ? 'استعراض مسألة تجريبية'
                     : language === 'ur'
-                    ? 'حساب شروع کریں'
-                    : 'Proceed to Estate Studio'}
-                </span>
-                <ArrowRight className={`w-3.5 h-3.5 ${isRtl ? 'rotate-180' : ''}`} />
-              </button>
+                    ? 'نمونہ کیس دیکھیں'
+                    : 'Explore Demo Scenario'}
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleStartFresh}
+                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-jade-700 hover:bg-jade-800 text-white font-semibold text-xs shadow-micro transition-all duration-150 active:scale-95 cursor-pointer"
+                >
+                  <span>
+                    {language === 'ar'
+                      ? 'البدء بحساب تركة عائلتي (من الصفر)'
+                      : language === 'ur'
+                      ? 'اپنے خاندان کا ترکہ شروع کریں'
+                      : 'Start Fresh with My Estate'}
+                  </span>
+                  <ArrowRight className={`w-3.5 h-3.5 ${isRtl ? 'rotate-180' : ''}`} />
+                </button>
+              </div>
             </div>
           </div>
         </motion.div>
