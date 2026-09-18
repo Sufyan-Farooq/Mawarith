@@ -1,0 +1,89 @@
+﻿{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-18T00:00:00.000Z",
+  "title": "Design System: Mawarith",
+  "extensions": {
+    "colorMeta": {
+      "primary": { "role": "primary", "displayName": "Sanctuary Jade", "canonical": "#047857", "tonalRamp": ["#022c22", "#064e3b", "#065f46", "#047857", "#059669", "#10b981", "#34d399", "#d1fae5"] },
+      "primary-light": { "role": "primary", "displayName": "Jade Sheen", "canonical": "#10b981", "tonalRamp": ["#064e3b", "#047857", "#059669", "#10b981", "#34d399", "#6ee7b7", "#a7f3d0", "#ecfdf5"] },
+      "secondary": { "role": "secondary", "displayName": "Scholarly Brass", "canonical": "#d97706", "tonalRamp": ["#451a03", "#78350f", "#92400e", "#b45309", "#d97706", "#f59e0b", "#fbbf24", "#fef3c7"] },
+      "neutral-bg": { "role": "neutral", "displayName": "Warm Parchment", "canonical": "#fcfbfa", "tonalRamp": ["#1c1917", "#44403c", "#78716c", "#a8a29e", "#d6d3d1", "#e7e5e4", "#f5f5f4", "#fcfbfa"] },
+      "neutral-surface": { "role": "neutral", "displayName": "Pure Canvas", "canonical": "#ffffff", "tonalRamp": ["#0f172a", "#1e293b", "#334155", "#64748b", "#94a3b8", "#cbd5e1", "#f1f5f9", "#ffffff"] },
+      "neutral-text": { "role": "neutral", "displayName": "Obsidian Dark", "canonical": "#0c1015", "tonalRamp": ["#020617", "#0c1015", "#1e293b", "#334155", "#475569", "#64748b", "#94a3b8", "#f8fafc"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headlines and certificate banners." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles and major card headings." },
+      "title": { "displayName": "Title", "purpose": "Heir names, ledger item titles, and card headers." },
+      "body": { "displayName": "Body", "purpose": "Descriptions, daleel text, and explanatory notes." },
+      "label": { "displayName": "Label", "purpose": "Badges, pills, metadata, and form labels." }
+    },
+    "shadows": [
+      { "name": "micro", "value": "0 1px 2px 0 rgba(0, 0, 0, 0.05)", "purpose": "Standard resting card elevation." },
+      { "name": "float", "value": "0 12px 32px -4px rgba(12, 16, 21, 0.12), 0 4px 12px -2px rgba(12, 16, 21, 0.08)", "purpose": "Modals and elevated floating surfaces." },
+      { "name": "glow-jade", "value": "0 0 24px -4px rgba(16, 185, 129, 0.25)", "purpose": "Ambient highlight on active calculation results." }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Smooth fluid springs for calculation value updates and modals." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Primary action button with sanctuary jade fill.",
+      "html": "<button class=\"ds-btn-primary\">Calculate Distribution</button>",
+      "css": ".ds-btn-primary { background: #047857; color: #ffffff; padding: 10px 18px; border-radius: 10px; font-weight: 600; font-size: 14px; border: none; cursor: pointer; transition: background 0.15s ease, transform 0.15s ease; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05); } .ds-btn-primary:hover { background: #064e3b; transform: translateY(-1px); }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Clean border button for secondary interactions.",
+      "html": "<button class=\"ds-btn-secondary\">Reset</button>",
+      "css": ".ds-btn-secondary { background: #ffffff; color: #0c1015; border: 1px solid #e2e8f0; padding: 10px 18px; border-radius: 10px; font-weight: 500; font-size: 14px; cursor: pointer; transition: background 0.15s ease; } .ds-btn-secondary:hover { background: #f8fafc; }"
+    },
+    {
+      "name": "Card Container",
+      "kind": "card",
+      "refersTo": "card-base",
+      "description": "Clean surface card with hairline border and soft micro-elevation.",
+      "html": "<div class=\"ds-card\"><h3 class=\"ds-card-title\">Estate Overview</h3><p class=\"ds-card-body\">Net distributable estate after funeral and debts.</p></div>",
+      "css": ".ds-card { background: #ffffff; border: 1px solid rgba(226, 232, 240, 0.9); border-radius: 16px; padding: 20px; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05); } .ds-card-title { font-size: 16px; font-weight: 600; color: #0c1015; margin: 0 0 6px 0; } .ds-card-body { font-size: 14px; color: #64748b; margin: 0; line-height: 1.5; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Sacred Sanctuary",
+    "overview": "Mawarith embodies the reverent precision of classical Islamic jurisprudence combined with contemporary software craftsmanship. Dealing with the division of an estate after a death requires an atmosphere that is serene, unhurried, mathematically unassailable, and respectful of bereavement.",
+    "keyCharacteristics": [
+      "Quiet, sacred restraint that honors families in mourning.",
+      "First-class bidirectional typography treating Arabic, Urdu, and English with equal typographic weight.",
+      "Uncompromising mathematical transparency with live share breakdowns and evidentiary Daleel modals.",
+      "Clean planar layering with micro-shadows rather than gaudy gradients or heavy skeuomorphism."
+    ],
+    "rules": [
+      { "name": "The Reverence Rule", "body": "Colored accents must never exceed 15% of surface area. Primary jade and brass exist as beacons of clarity and scriptural authority, not decorative paint.", "section": "colors" },
+      { "name": "The Tabular Number Rule", "body": "All monetary amounts, fractions, and percentages must render with monospace tabular figures to preserve columnar scanability.", "section": "typography" },
+      { "name": "The Flat-Rest Rule", "body": "All cards rest flat against the parchment background with crisp hairline borders. Shadows indicate z-axis elevation during modal presentations or hover states.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do maintain authentic Arabic script typography (Amiri) with correct line heights when switching to Arabic or Urdu.",
+      "Do accompany every calculated heir fraction with a clickable Daleel citation.",
+      "Do format monetary values with currency symbols, thousand separators, and tabular numeric alignment.",
+      "Do use balanced 4-sided containment borders with soft icon badges for special jurisprudence alerts."
+    ],
+    "donts": [
+      "Don't use asymmetric colored side-tab borders (border-s-4 / border-l-4) on notice cards.",
+      "Don't use harsh neon colors or high-contrast saturation that disrupts the calm, solemn environment.",
+      "Don't hide or round off fractions in ways that obscure exact Quranic share definitions.",
+      "Don't break RTL layout harmony when rendering mixed Arabic and numeric/Latin strings."
+    ]
+  }
+}

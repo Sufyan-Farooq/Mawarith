@@ -1,0 +1,561 @@
+export interface DaleelItem {
+  id: string;
+  type: 'quran' | 'hadith' | 'scholar';
+  title: {
+    en: string;
+    ar: string;
+    ur: string;
+  };
+  source: string;
+  arabicText: string;
+  englishTranslation: string;
+  urduTranslation: string;
+  scholarlyNotes: {
+    en: string;
+    ar: string;
+    ur: string;
+  };
+}
+
+export const DALEEL_DATABASE: Record<string, DaleelItem> = {
+  'quran-4-11': {
+    id: 'quran-4-11',
+    type: 'quran',
+    title: {
+      en: 'Quran: Inheritance of Children and Parents',
+      ar: 'القرآن الكريم: ميراث الأولاد والوالدين',
+      ur: 'قرآن کریم: اولاد اور والدین کی وراثت کے احکام',
+    },
+    source: 'Surah An-Nisa (4:11) - سورة النساء الآية ١١',
+    arabicText: 'يُوصِيكُمُ اللَّهُ فِي أَوْلَادِكُمْ ۖ لِلذَّكَرِ مِثْلُ حَظِّ الْأُنْثَيَيْنِ ۚ فَإِنْ كُنَّ نِسَاءً فَوْقَ اثْنَتَيْنِ فَلَهُنَّ ثُلُثَا مَا تَرَكَ ۖ وَإِنْ كَانَتْ وَاحِدَةً فَلَهَا النِّصْفُ ۚ وَلِأَبَوَيْهِ لِكُلِّ وَاحِدٍ مِنْهُمَا السُّدُسُ مِمَّا تَرَكَ إِنْ كَانَ لَهُ وَلَدٌ ۚ فَإِنْ لَمْ يَكُنْ لَهُ وَلَدٌ وَوَرِثَهُ أَبَوَاهُ فَلِأُمِّهِ الثُّلُثُ ۚ فَإِنْ كَانَ لَهُ إِخْوَةٌ فَلِأُمِّهِ السُّدُسُ ۚ مِنْ بَعْدِ وَصِيَّةٍ يُوصِي بِهَا أَوْ دَيْنٍ ۗ آبَاؤُكُمْ وَأَبْنَاؤُكُمْ لَا تَدْرُونَ أَيُّهُمْ أَقْرَبُ لَكُمْ نَفْعًا ۚ فَرِيضَةً مِنَ اللَّهِ ۗ إِنَّ اللَّهَ كَانَ عَلِيمًا حَكِيمًا',
+    englishTranslation: 'Allah instructs you concerning your children: for the male, what is equal to the share of two females. But if there are only daughters, two or more, for them is two thirds of one\'s estate. And if there is only one, for her is half. And for one\'s parents, to each one of them is a sixth of his estate if he left children. But if he had no children and the parents [alone] inherit him, then for his mother is one third. And if he had brothers [or sisters], for his mother is a sixth, after any bequest he [may have] made or debt. Your parents or your children - you know not which of them are nearest to you in benefit. [These shares are] an obligation [imposed] by Allah. Indeed, Allah is ever Knowing and Wise.',
+    urduTranslation: 'اللہ تمہیں تمہاری اولاد کے بارے میں حکم دیتا ہے: ایک لڑکے کا حصہ دو لڑکیوں کے برابر ہے۔ پس اگر صرف لڑکیاں ہی ہوں دو یا دو سے زیادہ، تو ان کے لیے ترکے کا دو تہائی ہے، اور اگر ایک ہی لڑکی ہو تو اس کے لیے آدھا ہے۔ اور میت کے ماں باپ میں سے ہر ایک کے لیے ترکے کا چھٹا حصہ ہے اگر میت کی اولاد ہو۔ اور اگر اس کی اولاد نہ ہو اور اس کے وارث صرف ماں باپ ہی ہوں تو اس کی ماں کے لیے تہائی ہے۔ اور اگر اس کے کئی بھائی بہن ہوں تو اس کی ماں کا چھٹا حصہ ہوگا، اس وصیت کے بعد جو وہ کر گیا ہو یا قرض کی ادائیگی کے بعد۔ تمہارے باپ دادا اور تمہارے بیٹے، تمہیں نہیں معلوم کہ ان میں سے کون فائدے کے اعتبار سے تمہارے زیادہ قریب ہے۔ یہ اللہ کی طرف سے مقرر کردہ فریضہ ہے، بے شک اللہ سب کچھ جاننے والا، حکمت والا ہے۔',
+    scholarlyNotes: {
+      en: 'Shaykh Ibn Uthaymeen explains in Tashil al-Fara\'id: This noble verse establishes the primary foundation of Islamic inheritance: the 2:1 ratio for male to female offspring, the single daughter\'s 1/2, plural daughters\' 2/3, the father and mother\'s 1/6 with children, and the reduction of mother to 1/6 with two or more siblings.',
+      ar: 'قال الشيخ ابن عثيمين رحمه الله في "تسهيل الفرائض": هذه الآية الكريمة هي أم أبواب الفرائض، اشتملت على فرض الأولاد (للذكر مثل حظ الأنثيين، والنصف للواحدة، والثلثين لما فوقها) وفرض الأبوين مع الولد ومع الإخوة.',
+      ur: 'شیخ ابن عثیمین رحمہ اللہ "تسیل الفرائض" میں فرماتے ہیں: یہ مبارک آیت علم فرائض کی بنیاد ہے جس میں اولاد کے حصے (مرد کا عورت سے دوگنا، اکیلی کا نصف، دو یا زیادہ کا دو تہائی) اور والدین کے احکام بیان کیے گئے ہیں۔',
+    },
+  },
+  'quran-4-12-husband-quarter': {
+    id: 'quran-4-12-husband-quarter',
+    type: 'quran',
+    title: {
+      en: 'Husband\'s Share with Descendants (1/4)',
+      ar: 'ميراث الزوج مع وجود الفرع الوارث (الربع)',
+      ur: 'میت کی اولاد ہونے پر شوہر کا حصہ (چوتھائی - 1/4)',
+    },
+    source: 'Surah An-Nisa (4:12) - سورة النساء الآية ١٢',
+    arabicText: 'فَإِنْ كَانَ لَهُنَّ وَلَدٌ فَلَكُمُ الرُّبُعُ مِمَّا تَرَكْنَ مِنْ بَعْدِ وَصِيَّةٍ يُوصِينَ بِهَا أَوْ دَيْنٍ',
+    englishTranslation: 'But if they have a child, for you is a fourth of what they leave, after any bequest they [may have] made or debt.',
+    urduTranslation: 'پھر اگر ان (بیویوں) کی کوئی اولاد ہو تو تمہارے لیے ان کے ترکے کا چوتھائی (1/4) حصہ ہے، وصیت کی تکمیل یا قرض ادا کرنے کے بعد۔',
+    scholarlyNotes: {
+      en: 'Shaykh Salih al-Fawzan notes: The term "Walad" (child) in this verse includes sons, daughters, grandsons, and granddaughters down the agnatic line, whether from this husband or a previous one.',
+      ar: 'بين الشيخ صالح الفوزان في "التحقيقات المرضية": المراد بالولد هنا الفرع الوارث ذكراً كان أو أنثى، وسواء كان من هذا الزوج أو من غيره.',
+      ur: 'شیخ صالح الفوزان فرماتے ہیں: یہاں ولد سے مراد میت کی کوئی بھی اولاد (بیٹا، بیٹی، پوتا، پوتی) ہے، خواہ وہ موجودہ شوہر سے ہو یا سابقہ سے۔',
+    },
+  },
+  'quran-4-12-husband-half': {
+    id: 'quran-4-12-husband-half',
+    type: 'quran',
+    title: {
+      en: 'Husband\'s Share without Descendants (1/2)',
+      ar: 'ميراث الزوج عند عدم الفرع الوارث (النصف)',
+      ur: 'میت کی اولاد نہ ہونے پر شوہر کا حصہ (نصف - 1/2)',
+    },
+    source: 'Surah An-Nisa (4:12) - سورة النساء الآية ١٢',
+    arabicText: 'وَلَكُمْ نِصْفُ مَا تَرَكَ أَزْوَاجُكُمْ إِنْ لَمْ يَكُنْ لَهُنَّ وَلَدٌ',
+    englishTranslation: 'And for you is half of what your wives leave if they have no child.',
+    urduTranslation: 'اور تمہارے لیے تمہاری بیویوں کے چھوڑے ہوئے مال کا نصف (1/2) ہے اگر ان کی کوئی اولاد نہ ہو۔',
+    scholarlyNotes: {
+      en: 'Shaykh Ibn Baz states: If a woman passes away without leaving any children or grandchildren, her husband takes exactly half her estate by explicit Quranic decree.',
+      ar: 'ذكر الشيخ عبد العزيز بن باز رحمه الله: إذا توفيت المرأة وليس لها ولد ولا ولد ابن، فلزوجها النصف بنص كتاب الله تعالى.',
+      ur: 'شیخ ابن باز رحمہ اللہ فرماتے ہیں: اگر عورت بغیر اولاد اور پوتوں کے فوت ہو جائے تو اس کے شوہر کو قطعی قرآنی حکم کے مطابق آدھا ترکہ ملے گا۔',
+    },
+  },
+  'quran-4-12-wife-eighth': {
+    id: 'quran-4-12-wife-eighth',
+    type: 'quran',
+    title: {
+      en: 'Wife\'s Share with Descendants (1/8)',
+      ar: 'ميراث الزوجة أو الزوجات مع وجود الفرع الوارث (الثمن)',
+      ur: 'میت کی اولاد ہونے پر بیوی کا حصہ (آٹھواں - 1/8)',
+    },
+    source: 'Surah An-Nisa (4:12) - سورة النساء الآية ١٢',
+    arabicText: 'فَإِنْ كَانَ لَكُمْ وَلَدٌ فَلَهُنَّ الثُّمُنُ مِمَّا تَرَكْتُمْ مِنْ بَعْدِ وَصِيَّةٍ تُوصُونَ بِهَا أَوْ دَيْنٍ',
+    englishTranslation: 'But if you leave a child, then for them is an eighth of what you leave, after any bequest you [may have] made or debt.',
+    urduTranslation: 'پس اگر تمہاری کوئی اولاد ہو تو ان (بیویوں) کے لیے تمہارے چھوڑے ہوئے مال کا آٹھواں (1/8) حصہ ہے، اس وصیت کے بعد جو تم کر گئے ہو یا قرض کی ادائیگی کے بعد۔',
+    scholarlyNotes: {
+      en: 'All jurists unanimously agree: Whether the deceased husband left one wife or four wives, they share this 1/8 equally among themselves; it is not multiplied per wife.',
+      ar: 'أجمع المسلمون على أن الثمن يقسم بين الزوجات بالسوية إن كن أكثر من واحدة، فلا يزاد الثمن بتعددهن.',
+      ur: 'تمام علمائے امت کا اجماع ہے کہ اگر میت کی ایک سے زیادہ بیویاں ہوں تو وہ تمام اس آٹھویں حصے (1/8) میں برابر کی شریک ہوں گی، بیویوں کی تعداد سے حصہ نہیں بڑھے گا۔',
+    },
+  },
+  'quran-4-12-wife-fourth': {
+    id: 'quran-4-12-wife-fourth',
+    type: 'quran',
+    title: {
+      en: 'Wife\'s Share without Descendants (1/4)',
+      ar: 'ميراث الزوجة أو الزوجات عند عدم الفرع الوارث (الربع)',
+      ur: 'میت کی اولاد نہ ہونے پر بیوی کا حصہ (چوتھائی - 1/4)',
+    },
+    source: 'Surah An-Nisa (4:12) - سورة النساء الآية ١٢',
+    arabicText: 'وَلَهُنَّ الرُّبُعُ مِمَّا تَرَكْتُمْ إِنْ لَمْ يَكُنْ لَكُمْ وَلَدٌ',
+    englishTranslation: 'And for the wives is one fourth if you leave no child.',
+    urduTranslation: 'اور ان (بیویوں) کے لیے تمہارے ترکے کا چوتھائی حصہ ہے اگر تمہاری کوئی اولاد نہ ہو۔',
+    scholarlyNotes: {
+      en: 'Shaykh Ibn Uthaymeen: The wife takes 1/4 if the deceased husband has no child or grandchild from any marriage.',
+      ar: 'قال ابن عثيمين: تأخذ الزوجة أو الزوجات الربع فرضاً إذا لم يكن للميت فرع وارث منهن أو من غيرهن.',
+      ur: 'شیخ ابن عثیمین: بیوی یا بیویاں چوتھائی حصہ پاتی ہیں اگر میت کا کوئی بیٹا، بیٹی یا پوتا پوتی نہ ہو۔',
+    },
+  },
+  'quran-4-11-mother-sixth': {
+    id: 'quran-4-11-mother-sixth',
+    type: 'quran',
+    title: {
+      en: 'Mother\'s Share: One-Sixth (1/6)',
+      ar: 'ميراث الأم: السدس مع وجود الفرع أو جمع الإخوة',
+      ur: 'ماں کا حصہ: چھٹا (1/6) حصہ اولاد یا بھائی بہنوں کی موجودگی میں',
+    },
+    source: 'Surah An-Nisa (4:11) - سورة النساء الآية ١١',
+    arabicText: 'وَلِأَبَوَيْهِ لِكُلِّ وَاحِدٍ مِنْهُمَا السُّدُسُ مِمَّا تَرَكَ إِنْ كَانَ لَهُ وَلَدٌ ۚ فَإِنْ لَمْ يَكُنْ لَهُ وَلَدٌ وَوَرِثَهُ أَبَوَاهُ فَلِأُمِّهِ الثُّلُثُ ۚ فَإِنْ كَانَ لَهُ إِخْوَةٌ فَلِأُمِّهِ السُّدُسُ',
+    englishTranslation: 'And for one\'s parents, to each one of them is a sixth of his estate if he left children... And if he had brothers [or sisters], for his mother is a sixth.',
+    urduTranslation: 'اور میت کے والدین میں سے ہر ایک کے لیے چھٹا حصہ ہے اگر اس کی اولاد ہو۔ اور اگر اس کے کئی بھائی بہن ہوں تو اس کی ماں کا چھٹا حصہ ہوگا۔',
+    scholarlyNotes: {
+      en: 'Jurists note: Even if the siblings are blocked from inheriting (e.g. by the father), their mere presence still reduces the mother\'s share from 1/3 to 1/6 (Hajb Nuqsan).',
+      ar: 'قاعدة فقهية مقررة: الإخوة يحجبون الأم حجب نقصان من الثلث إلى السدس وإن كانوا محجوبين بالأب حجب حرمان.',
+      ur: 'فقہی قاعدہ: میت کے دو یا زیادہ بھائی بہن ماں کو حجب نقصان کر کے 1/3 سے 1/6 پر لے آتے ہیں، خواہ وہ خود باپ کی وجہ سے وراثت سے محروم ہی کیوں نہ ہوں۔',
+    },
+  },
+  'quran-4-11-mother-third': {
+    id: 'quran-4-11-mother-third',
+    type: 'quran',
+    title: {
+      en: 'Mother\'s Share: One-Third (1/3)',
+      ar: 'ميراث الأم: الثلث كاملاً عند عدم الفرع والإخوة',
+      ur: 'ماں کا حصہ: مکمل تہائی (1/3) اولاد اور بھائیوں کی عدم موجودگی میں',
+    },
+    source: 'Surah An-Nisa (4:11) - سورة النساء الآية ١١',
+    arabicText: 'فَإِنْ لَمْ يَكُنْ لَهُ وَلَدٌ وَوَرِثَهُ أَبَوَاهُ فَلِأُمِّهِ الثُّلُثُ',
+    englishTranslation: 'But if he had no children and the parents [alone] inherit him, then for his mother is one third.',
+    urduTranslation: 'اور اگر میت کی کوئی اولاد نہ ہو اور اس کے وارث صرف ماں باپ ہوں تو اس کی ماں کے لیے تہائی (1/3) ہے۔',
+    scholarlyNotes: {
+      en: 'Under normal circumstances without a spouse, the mother receives 1/3 of the entire estate, and the father takes the remaining 2/3 as Asabah.',
+      ar: 'في الأصل تأخذ الأم ثلث جميع المال ويأخذ الأب الباقي تعصيباً.',
+      ur: 'عام حالات میں ماں تمام ترکے کا تہائی (1/3) لیتی ہے اور باپ باقی ماندہ دو تہائی بطور عصبہ لیتا ہے۔',
+    },
+  },
+  'quran-4-11-father-sixth': {
+    id: 'quran-4-11-father-sixth',
+    type: 'quran',
+    title: {
+      en: 'Father\'s Prescribed Share (1/6)',
+      ar: 'فرض الأب: السدس مع وجود الفرع الوارث الذكر',
+      ur: 'باپ کا فرض حصہ: چھٹا (1/6) مذکر اولاد کی موجودگی میں',
+    },
+    source: 'Surah An-Nisa (4:11) - سورة النساء الآية ١١',
+    arabicText: 'وَلِأَبَوَيْهِ لِكُلِّ وَاحِدٍ مِنْهُمَا السُّدُسُ مِمَّا تَرَكَ إِنْ كَانَ لَهُ وَلَدٌ',
+    englishTranslation: 'And for one\'s parents, to each one of them is a sixth of his estate if he left children.',
+    urduTranslation: 'اور میت کے ماں باپ میں سے ہر ایک کے لیے ترکے کا چھٹا حصہ ہے اگر میت کی اولاد ہو۔',
+    scholarlyNotes: {
+      en: 'When a son or grandson is present, the father inherits strictly 1/6 by Quranic prescription and does not take residue.',
+      ar: 'إذا وجد الابن أو ابن الابن، فالأب يرث بالفرض فقط (السدس) ولا نصيب له في التعصيب لأن الابن يحجب عصوبته.',
+      ur: 'اگر بیٹا یا پوتا موجود ہو تو باپ صرف فرض کے طور پر چھٹا حصہ (1/6) لیتا ہے اور عصبہ نہیں بنتا کیونکہ بیٹا عصبہ میں مقدم ہے۔',
+    },
+  },
+  'quran-4-11-single-daughter-half': {
+    id: 'quran-4-11-single-daughter-half',
+    type: 'quran',
+    title: {
+      en: 'Single Daughter\'s Share: Half (1/2)',
+      ar: 'ميراث البنت الواحدة المنفردة (النصف)',
+      ur: 'اکیلی بیٹی کا حصہ: آدھا (1/2)',
+    },
+    source: 'Surah An-Nisa (4:11) - سورة النساء الآية ١١',
+    arabicText: 'وَإِنْ كَانَتْ وَاحِدَةً فَلَهَا النِّصْفُ',
+    englishTranslation: 'And if there is only one, for her is half.',
+    urduTranslation: 'اور اگر صرف ایک ہی لڑکی ہو تو اس کے لیے آدھا (1/2) ہے۔',
+    scholarlyNotes: {
+      en: 'A single surviving daughter with no brother (son) takes exactly 1/2 of the estate by unambiguous Quranic text.',
+      ar: 'البنت المنفردة التي لا معصب لها (لا أخ لها) تأخذ النصف فرضاً.',
+      ur: 'اکیلی بیٹی جس کا کوئی بھائی (میت کا بیٹا) نہ ہو، قطعی قرآنی حکم کے مطابق نصف کی حقدار ہے۔',
+    },
+  },
+  'quran-4-11-two-daughters-two-thirds': {
+    id: 'quran-4-11-two-daughters-two-thirds',
+    type: 'quran',
+    title: {
+      en: 'Multiple Daughters\' Share: Two-Thirds (2/3)',
+      ar: 'ميراث البنات المتعددات (الثلثان بالسوية)',
+      ur: 'دو یا زیادہ بیٹیوں کا حصہ: دو تہائی (2/3) برابر تقسیم',
+    },
+    source: 'Surah An-Nisa (4:11) - سورة النساء الآية ١١',
+    arabicText: 'فَإِنْ كُنَّ نِسَاءً فَوْقَ اثْنَتَيْنِ فَلَهُنَّ ثُلُثَا مَا تَرَكَ',
+    englishTranslation: 'But if there are only daughters, two or more, for them is two thirds of one\'s estate.',
+    urduTranslation: 'پس اگر صرف لڑکیاں ہی ہوں دو یا دو سے زیادہ، تو ان کے لیے ترکے کا دو تہائی (2/3) ہے۔',
+    scholarlyNotes: {
+      en: 'Although the phrasing mentions "above two", the Sunnah and unanimous consensus of the Sahabah confirm that two daughters also receive 2/3 (Hadith of Sa\'d ibn al-Rabi\' daughters in Abu Dawud and Tirmidhi).',
+      ar: 'قضى رسول الله ﷺ لابنتي سعد بن الربيع بالثلثين، فانعقد الإجماع على أن الثنتين فما فوق لهن الثلثان.',
+      ur: 'رسول اللہ ﷺ نے سعد بن ربیع کی دو بیٹیوں کو دو تہائی دیا تھا، جس پر امت کا اجماع ہے کہ دو یا دو سے زیادہ بیٹیاں 2/3 پاتی ہیں۔',
+    },
+  },
+  'quran-4-11-male-two-females': {
+    id: 'quran-4-11-male-two-females',
+    type: 'quran',
+    title: {
+      en: 'Children Asabah: Male Receives Double Female Share',
+      ar: 'تعصيب الأولاد بالغير: للذكر مثل حظ الأنثيين',
+      ur: 'اولاد کا عصبہ بننا: لڑکے کا حصہ دو لڑکیوں کے برابر',
+    },
+    source: 'Surah An-Nisa (4:11) - سورة النساء الآية ١١',
+    arabicText: 'يُوصِيكُمُ اللَّهُ فِي أَوْلَادِكُمْ ۖ لِلذَّكَرِ مِثْلُ حَظِّ الْأُنْثَيَيْنِ',
+    englishTranslation: 'Allah instructs you concerning your children: for the male, what is equal to the share of two females.',
+    urduTranslation: 'اللہ تمہیں تمہاری اولاد کے بارے میں حکم دیتا ہے: ایک لڑکے کا حصہ دو لڑکیوں کے برابر ہے۔',
+    scholarlyNotes: {
+      en: 'When both sons and daughters are alive, daughters do not receive a fixed fard share; rather, sons and daughters inherit the remainder as Asabah bi-ghayriha with a 2:1 distribution.',
+      ar: 'إذا اجتمع البنون والبنات صاروا عصبة بالغير، وسقط الفرض وقُسم الباقي بينهم للذكر سهمان وللأنثى سهم.',
+      ur: 'جب بیٹے اور بیٹیاں دونوں موجود ہوں تو بیٹیوں کا مخصوص فرض حصہ ختم ہو جاتا ہے اور وہ عصبہ بالغیر بن کر 2:1 کے تناسب سے شریک ہوتے ہیں۔',
+    },
+  },
+  'quran-4-12-kalalah': {
+    id: 'quran-4-12-kalalah',
+    type: 'quran',
+    title: {
+      en: 'Maternal Siblings (Kalalah Rules)',
+      ar: 'ميراث الإخوة لأم في الكلالة',
+      ur: 'اخیافی بہن بھائیوں (ماں شریک) کی وراثت (کلالہ)',
+    },
+    source: 'Surah An-Nisa (4:12) - سورة النساء الآية ١٢',
+    arabicText: 'وَإِنْ كَانَ رَجُلٌ يُورَثُ كَلَالَةً أَوِ امْرَأَةٌ وَلَهُ أَخٌ أَوْ أُخْتٌ فَلِكُلِّ وَاحِدٍ مِنْهُمَا السُّدُسُ ۚ فَإِنْ كَانُوا أَكْثَرَ مِنْ ذَلِكَ فَهُمْ شُرَكَاءُ فِي الثُّلُثِ ۚ مِنْ بَعْدِ وَصِيَّةٍ يُوصَىٰ بِهَا أَوْ دَيْنٍ غَيْرَ مُضَارٍّ',
+    englishTranslation: 'And if a man or woman leaves neither ascendants nor descendants, but has a brother or a sister, then for each one of them is a sixth. But if they are more than that, they share a third, after any bequest which was made or debt, as long as there is no harm caused.',
+    urduTranslation: 'اور اگر کسی ایسے مرد یا عورت کا ترکہ بانٹا جائے جو کلالہ ہو (نہ اس کے والدین ہوں نہ اولاد) اور اس کا ایک بھائی یا ایک بہن ہو، تو ان دونوں میں سے ہر ایک کے لیے چھٹا (1/6) حصہ ہے۔ پھر اگر وہ اس سے زیادہ ہوں تو وہ سب تہائی (1/3) میں شریک ہوں گے، وصیت کے بعد یا قرض کی ادائیگی کے بعد، بغیر کسی کو نقصان پہنچائے۔',
+    scholarlyNotes: {
+      en: 'Maternal siblings have unique features: (1) Males and females share equally without 2:1 differentiation, (2) Blocked by any child (male/female) or father/grandfather.',
+      ar: 'اختص الإخوة لأم بأحكام فريدة: يستوي ذكرهم وأنثاهم في القسمة لقوله تعالى: {فَهُمْ شُرَكَاءُ فِي الثُّلُثِ}، ويسقطون بالفرع الوارث مطلقاً وبالأصل الوارث الذكر.',
+      ur: 'اخیافی بھائی بہنوں کی خاص خصوصیت ہے کہ وہ تہائی (1/3) میں مرد و عورت بالکل برابر حصہ پاتے ہیں، اور میت کی اولاد یا باپ دادا کی موجودگی میں ساقط ہو جاتے ہیں۔',
+    },
+  },
+  'quran-4-176': {
+    id: 'quran-4-176',
+    type: 'quran',
+    title: {
+      en: 'Full and Paternal Siblings in Kalalah',
+      ar: 'ميراث الإخوة والأخوات الأشقاء ولأب (خاتمة سورة النساء)',
+      ur: 'سگے اور علاتی بہن بھائیوں کی وراثت (سورۃ النساء کی آخری آیت)',
+    },
+    source: 'Surah An-Nisa (4:176) - سورة النساء الآية ١٧٦',
+    arabicText: 'يَسْتَفْتُونَكَ قُلِ اللَّهُ يُفْتِيكُمْ فِي الْكَلَالَةِ ۚ إِنِ امْرُؤٌ هَلَكَ لَيْسَ لَهُ وَلَدٌ وَلَهُ أُخْتٌ فَلَهَا نِصْفُ مَا تَرَكَ ۚ وَهُوَ يَرِثُهَا إِنْ لَمْ يَكُنْ لَهَا وَلَدٌ ۚ فَإِنْ كَانَتَا اثْنَتَيْنِ فَلَهُمَا الثُّلُثَانِ مِمَّا تَرَكَ ۚ وَإِنْ كَانُوا إِخْوَةً رِجَالًا وَنِسَاءً فَلِلذَّكَرِ مِثْلُ حَظِّ الْأُنْثَيَيْنِ',
+    englishTranslation: 'They request from you a [legal] ruling. Say, "Allah gives you a ruling concerning the Kalalah." If a person dies leaving no child, but has a sister, she had half of what he leaves. And he would inherit [all of] her if she had no child. But if there were two sisters, they have two thirds of what he leaves. If there are brothers and sisters, then the male will have twice the share of the female.',
+    urduTranslation: 'وہ آپ سے فتویٰ مانگتے ہیں۔ کہہ دیجیے کہ اللہ تمہیں کلالہ کے بارے میں حکم دیتا ہے: اگر کوئی شخص مر جائے جس کی اولاد نہ ہو اور اس کی ایک بہن ہو تو اس کے لیے ترکے کا آدھا حصہ ہے۔ اور وہ مرد اس کا وارث ہوگا اگر اس عورت کی کوئی اولاد نہ ہو۔ پس اگر دو بہنیں ہوں تو ان کے لیے ترکے کا دو تہائی (2/3) ہے۔ اور اگر بھائی اور بہنیں ملے جلے ہوں تو مرد کے لیے دو عورتوں کے برابر حصہ ہے۔',
+    scholarlyNotes: {
+      en: 'This verse revealed at the end of Surah An-Nisa governs full and paternal siblings when the deceased leaves no ascendants or descendants.',
+      ar: 'هذه الآية الكريمة نزلت في الإخوة لغير أم (الأشقاء أو لأب)، وأبانت فرض الأخت المنفردة (النصف)، والأختين فأكثر (الثلثين)، وقسمة العصبة بالغير.',
+      ur: 'یہ آیت سگے اور علاتی بھائی بہنوں کے حصے واضح کرتی ہے: اکیلی بہن کے لیے نصف، دو یا زیادہ کے لیے دو تہائی، اور مشترک ہونے پر 2:1 کا تناسب۔',
+    },
+  },
+  'hadith-bukhari-6732': {
+    id: 'hadith-bukhari-6732',
+    type: 'hadith',
+    title: {
+      en: 'Principle of Asabah (Residuary Heirs)',
+      ar: 'قاعدة العصبات: ألحقوا الفرائض بأهلها',
+      ur: 'عصبہ کا بنیادی اصول: فرائض ان کے حقداروں کو دو، باقی قریبی مرد کو',
+    },
+    source: 'Sahih al-Bukhari (6732) & Sahih Muslim (1615) - صحيح البخاري وصحيح مسلم',
+    arabicText: 'عَنِ ابْنِ عَبَّاسٍ رَضِيَ اللَّهُ عَنْهُمَا، عَنِ النَّبِيِّ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ قَالَ: "أَلْحِقُوا الفَرَائِضَ بِأَهْلِهَا، فَمَا بَقِيَ فَهُوَ لِأَوْلَى رَجُلٍ ذَكَرٍ"',
+    englishTranslation: 'Narrated by Ibn Abbas (may Allah be pleased with them), the Prophet ﷺ said: "Give the prescribed shares (fard) to those who are entitled to them, and whatever remains goes to the closest male relative (asabah)."',
+    urduTranslation: 'حضرت ابن عباس رضی اللہ عنہما سے روایت ہے کہ نبی کریم ﷺ نے فرمایا: "مقررہ حصے ان کے حقداروں تک پہنچاؤ، پھر جو باقی بچ جائے وہ سب سے قریبی مرد رشتہ دار کے لیے ہے۔"',
+    scholarlyNotes: {
+      en: 'Shaykh Ibn Baz: This hadith is the bedrock of the entire chapter of Asabah. After all Ashab al-Furud have taken their Quranic shares, the closest male agnate takes whatever is left.',
+      ar: 'قال الإمام ابن باز: هذا الحديث الشريف هو الأصل العظيم في باب العصبات، فمن بقي بعد أصحاب الفروض فهو لأقرب عاصب بالنفس بحسب جهات العصوبة.',
+      ur: 'شیخ ابن باز رحمہ اللہ: یہ حدیث باب العصبات کی بنیاد ہے۔ اصحاب الفروض کے بعد جو بچ جائے وہ ترتیب کے مطابق سب سے قریبی مذکر رشتہ دار کا حق ہے۔',
+    },
+  },
+  'hadith-ibn-masud-bukhari-6736': {
+    id: 'hadith-ibn-masud-bukhari-6736',
+    type: 'hadith',
+    title: {
+      en: 'Judgment of the Prophet: Daughter, Granddaughter, and Sister',
+      ar: 'قضاء النبي ﷺ للبنت وابنة الابن والأخت',
+      ur: 'نبی کریم ﷺ کا فیصلہ: بیٹی، پوتی اور بہن کی وراثت',
+    },
+    source: 'Sahih al-Bukhari (6736) - صحيح البخاري',
+    arabicText: 'عَنْ هُزَيْلِ بْنِ شُرَحْبِيلَ قَالَ: سُئِلَ أَبُو مُوسَى عَنِ ابْنَةٍ، وَابْنَةِ ابْنٍ، وَأُخْتٍ... فَأَتَى ابْنَ مَسْعُودٍ، فَقَالَ: لَأَقْضِيَنَّ فِيهَا بِقَضَاءِ النَّبِيِّ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ: "لِلابْنَةِ النِّصْفُ، وَلِابْنَةِ الابْنِ السُّدُسُ تَكْمِلَةَ الثُّلُثَيْنِ، وَمَا بَقِيَ فَلِلأُخْتِ"',
+    englishTranslation: 'Narrated Huzayl ibn Shurahbil: Ibn Mas\'ud said regarding a case with a daughter, a son\'s daughter (granddaughter), and a sister: "I will judge between them according to the judgment of the Prophet ﷺ: For the daughter is half, for the son\'s daughter is one-sixth to complete the two-thirds, and whatever remains is for the sister."',
+    urduTranslation: 'ہزیل بن شرحبیل سے روایت ہے کہ حضرت عبداللہ بن مسعود رضی اللہ عنہ نے فرمایا: میں اس مقدمے میں رسول اللہ ﷺ کے فیصلے کے مطابق فیصلہ کروں گا: بیٹی کے لیے آدھا (1/2)، پوتی کے لیے چھٹا (1/6) تاکہ دو تہائی مکمل ہو جائیں، اور جو باقی بچے وہ بہن کا ہے۔',
+    scholarlyNotes: {
+      en: 'This authentic hadith forms the definitive proof for two major rules: (1) Granddaughters take 1/6 with a single daughter to complete 2/3, and (2) Sisters become Asabah ma\'a ghayriha with daughters.',
+      ar: 'أصل أصيل في مسألتين: استحقاق بنت الابن السدس تكملة للثلثين مع البنت الصلبية، وتوريث الأخت بالتعصيب مع البنات.',
+      ur: 'یہ صحیح حدیث دو عظیم اصولوں کی دلیل ہے: اکیلی بیٹی کے ساتھ پوتی کو 2/3 مکمل کرنے کے لیے 1/6 ملنا، اور بیٹیوں کی موجودگی میں بہنوں کا عصبہ مع الغیر بننا۔',
+    },
+  },
+  'hadith-bukhari-6742-sisters-with-daughters': {
+    id: 'hadith-bukhari-6742-sisters-with-daughters',
+    type: 'hadith',
+    title: {
+      en: 'Sisters as Residuaries with Daughters (Asabah ma\'a Ghayriha)',
+      ar: 'العصبة مع الغير: اجعلوا الأخوات مع البنات عصبة',
+      ur: 'عصبہ مع الغیر: بیٹیوں کے ساتھ بہنوں کو عصبہ بناؤ',
+    },
+    source: 'Sahih al-Bukhari (6742) - صحيح البخاري',
+    arabicText: 'قَالَ رَسُولُ اللَّهِ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ: "اجْعَلُوا الأَخَوَاتِ مَعَ البَنَاتِ عَصَبَةً"',
+    englishTranslation: 'The Prophet ﷺ said: "Make sisters with daughters residuaries (Asabah)."',
+    urduTranslation: 'رسول اللہ ﷺ نے ارشاد فرمایا: "بیٹیوں کے ساتھ بہنوں کو عصبہ بناؤ۔"',
+    scholarlyNotes: {
+      en: 'Shaykh Salih al-Fawzan explains: When full or paternal sisters exist alongside daughters or granddaughters (and no brothers or father), the sisters inherit the remaining estate as Asabah ma\'a ghayriha and block any collateral male agnates (like nephews or uncles).',
+      ar: 'أوضح الشيخ الفوزان: إذا كانت الأخت مع البنت صارت عصبة مع الغير تأخذ ما فضل بعد أصحاب الفروض، وتُنزّل منزلة الأخ الشقيق في حجب العصبات المتأخرين كأبناء الأخ والأعمام.',
+      ur: 'شیخ فوزان فرماتے ہیں: بیٹیوں کی موجودگی میں بہنیں عصبہ مع الغیر بن کر باقی ترکہ لیتی ہیں، اور بھتیجوں اور چچاؤں کو وراثت سے محجوب کر دیتی ہیں۔',
+    },
+  },
+  'hadith-grandmother-sixth-abu-dawud': {
+    id: 'hadith-grandmother-sixth-abu-dawud',
+    type: 'hadith',
+    title: {
+      en: 'Grandmother\'s Share of One-Sixth (1/6)',
+      ar: 'ميراث الجدة: السدس بقضاء الصحابة وسنة النبي ﷺ',
+      ur: 'دادی/نانی کا حصہ: چھٹا (1/6) حصہ سنت نبوی سے ثابت',
+    },
+    source: 'Sunan Abi Dawud (2894) & Jami\' at-Tirmidhi (2101) - سنن أبي داود وجامع الترمذي',
+    arabicText: 'جَاءَتِ الْجَدَّةُ إِلَى أَبِي بَكْرٍ الصِّدِّيقِ تَسْأَلُهُ مِيرَاثَهَا، فَقَالَ: مَا لَكِ فِي كِتَابِ اللَّهِ شَيْءٌ، وَمَا عَلِمْتُ لَكِ فِي سُنَّةِ نَبِيِّ اللَّهِ شَيْئًا... فَشَهِدَ الْمُغِيرَةُ بْنُ شُعْبَةَ وَمُحَمَّدُ بْنُ مَسْلَمَةَ أَنَّ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ أَعْطَاهَا السُّدُسَ، فَأَنْفَذَهُ لَهَا أَبُو بَكْرٍ.',
+    englishTranslation: 'A grandmother came to Abu Bakr asking for her inheritance. Al-Mughirah ibn Shu\'bah and Muhammad ibn Maslamah testified that the Messenger of Allah ﷺ gave her one-sixth, so Abu Bakr implemented it for her.',
+    urduTranslation: 'ایک دادی حضرت ابوبکر صدیق رضی اللہ عنہ کے پاس وراثت مانگنے آئیں۔ حضرت مغیرہ بن شعبہ اور حضرت محمد بن مسلمہ نے گواہی دی کہ رسول اللہ ﷺ نے دادی کو چھٹا (1/6) حصہ دیا تھا، چنانچہ حضرت ابوبکر نے اسے نافذ فرمایا۔',
+    scholarlyNotes: {
+      en: 'Unanimous scholarly consensus: Maternal and paternal grandmothers share 1/6 equally when eligible, and are completely blocked if the mother is alive.',
+      ar: 'أجمع أهل العلم على أن للجدة السدس، وإذا اجتمعت جدتان في درجة واحدة اقتسمتا السدس، وتسقطان بالأم إجماعاً.',
+      ur: 'تمام ائمہ کا اجماع ہے کہ دادی اور نانی کو چھٹا حصہ ملتا ہے، اور ماں کی موجودگی میں وہ بالاتفاق محجوب ہوتی ہیں۔',
+    },
+  },
+  'umariyyatan-gharrawan-umar': {
+    id: 'umariyyatan-gharrawan-umar',
+    type: 'scholar',
+    title: {
+      en: 'Special Case: Al-Gharrawan / Al-Umariyyatan (Spouse + Mother + Father)',
+      ar: 'المسألة العمرية (الغراوان): زوج أو زوجة مع أم وأب',
+      ur: 'مسئلہ عمریہ / الغراوان: شریک حیات، ماں اور باپ کا منفرد مسئلہ',
+    },
+    source: 'Judgment of Caliph Umar ibn al-Khattab with Zayd ibn Thabit & Uthman (Confirmed by Ibn Baz & Ibn Uthaymeen)',
+    arabicText: 'قَضَى عُمَرُ بْنُ الْخَطَّابِ رَضِيَ اللَّهُ عَنْهُ، وَتَابَعَهُ عَلَيْهِ عُثْمَانُ وَزَيْدُ بْنُ ثَابِتٍ وَجَمَاهِيرُ الصَّحَابَةِ، بِأَنَّ لِلأُمِّ ثُلُثَ البَاقِي بَعْدَ فَرْضِ الزَّوْجِ أَوْ الزَّوْجَةِ، وَالبَاقِي لِلأَبِ، لِيَبْقَى لِلأَبِ ضِعْفُ نَصِيبِ الأُمِّ (لِلذَّكَرِ مِثْلُ حَظِّ الأُنْثَيَيْنِ).',
+    englishTranslation: 'Caliph Umar ibn al-Khattab (RA) ruled, supported by Uthman, Zayd ibn Thabit, and the majority of the Sahabah, that the mother receives one-third of the remainder after the spouse\'s share, and the rest goes to the father, ensuring the father receives twice the mother\'s portion (2:1).',
+    urduTranslation: 'خلیفہ راشد حضرت عمر بن خطاب رضی اللہ عنہ نے فیصلہ فرمایا، اور حضرت عثمان و حضرت زید بن ثابت اور جمہور صحابہ نے اس کی تائید کی، کہ شوہر یا بیوی کا حصہ نکالنے کے بعد ماں کو باقی ماندہ کا تہائی (1/3) ملے گا اور بقیہ سب باپ کا ہوگا تاکہ باپ کو ماں سے دوگنا ملے۔',
+    scholarlyNotes: {
+      en: 'Shaykh Ibn Uthaymeen explains in Tashil al-Fara\'id: If the mother were given 1/3 of the whole estate when a husband is present, she would receive 1/3 while the father would get 1/6 (residue), giving the female double the male, which contradicts the overarching Shariah principle. Umar\'s judgment preserves justice and harmony.',
+      ar: 'بين الشيخ ابن عثيمين: لو أخذت الأم ثلث الأصل مع الزوج لأخذت سهمين ولأخذ الأب سهماً واحداً، فكانت الأنثى تأخذ ضعف الذكر وهو خلاف الأصل الشرعي، فقضى عمر بثلث الباقي لتأخذ سهماً ويأخذ الأب سهمين.',
+      ur: 'شیخ ابن عثیمین فرماتے ہیں: اگر شوہر کے ساتھ ماں کو کل کا تہائی دیا جاتا تو ماں کا حصہ باپ سے دوگنا ہو جاتا، جو شریعت کے عام اصول کے برعکس تھا، اس لیے حضرت عمر نے باقی کا تہائی مقرر فرمایا۔',
+    },
+  },
+  'awl-rule-umar': {
+    id: 'awl-rule-umar',
+    type: 'scholar',
+    title: {
+      en: 'Al-\'Awl (Proportional Reduction of Shares in Deficit)',
+      ar: 'أصل العول في الفرائض وقضاء عمر بن الخطاب والصحابة',
+      ur: 'عول کا اصول: حصص زیادہ ہونے پر مساوی تناسب سے کمی',
+    },
+    source: 'Ijma of the Sahabah initiated by Caliph Umar ibn al-Khattab (Sahih al-Athar)',
+    arabicText: 'أَوَّلُ مَنْ أَعَالَ الفَرَائِضَ عُمَرُ بْنُ الْخَطَّابِ رَضِيَ اللَّهُ عَنْهُ حِينَ تَزَاحَمَتِ الفُرُوضُ (زَوْجٌ وَأُخْتَانِ)، فَقَالَ: "وَاللَّهِ مَا أَدْرِي أَيَّكُمْ قَدَّمَ اللَّهُ وَأَيَّكُمْ أَخَّرَ؟ وَمَا أَجِدُ شَيْئًا أَوْسَعَ مِنْ أَنْ أَقْسِمَ هَذَا المَالَ عَلَيْكُمْ بِالقَدْرِ حِصَصِكُمْ"، فَأَجْمَعَ الصَّحَابَةُ عَلَى ذَلِكَ.',
+    englishTranslation: 'The first to implement Al-\'Awl was Caliph Umar ibn al-Khattab (RA) when prescribed shares exceeded the estate (e.g. husband and two sisters). He said: "By Allah, I know not whom Allah has preferred or delayed; and I find nothing more just than dividing this estate among you according to the proportion of your shares." The Sahabah unanimously agreed with him.',
+    urduTranslation: 'سب سے پہلے عول کا فیصلہ حضرت عمر بن خطاب رضی اللہ عنہ نے کیا جب مقررہ حصے ترکے سے بڑھ گئے (جیسے شوہر اور دو بہنیں)۔ انہوں نے فرمایا: "اللہ کی قسم مجھے نہیں معلوم کہ اللہ نے کسے ترجیح دی ہے، پس سب سے بہتر یہی ہے کہ ترکہ تمہارے حصوں کے تناسب سے تقسیم کیا جائے"۔ تمام صحابہ نے اس پر اتفاق کیا۔',
+    scholarlyNotes: {
+      en: 'Shaykh Salih al-Fawzan states in al-Tahqiqat al-Mardiyyah: Al-\'Awl is like proportional loss in a bankruptcy case where debts exceed assets. All heirs bear a just, balanced deduction without depriving anyone.',
+      ar: 'قال الشيخ الفوزان: العول نظير قسمة الغرماء في الديون إذا ضاقت التركة، فيدخل النقص على الجميع بالقسط والعدل.',
+      ur: 'شیخ فوزان فرماتے ہیں: عول قرض خواہوں میں ترکہ تقسیم کرنے کی طرح ہے، جب مال کم ہو تو سب کے حصے سے انصاف کے ساتھ تناسب کے مطابق کمی کی جاتی ہے۔',
+    },
+  },
+  'radd-rule-scholars': {
+    id: 'radd-rule-scholars',
+    type: 'scholar',
+    title: {
+      en: 'Al-Radd (Surplus Redistribution to Prescribed Heirs)',
+      ar: 'الرد على أهل الفروض عدا الزوجين',
+      ur: 'رد کا اصول: عصبہ نہ ہونے پر بچا ہوا ترکہ ورثاء پر لوٹانا',
+    },
+    source: 'Rajih opinion of Jumhoor, Hanbalis, Ibn Baz, and Ibn Uthaymeen',
+    arabicText: 'قَالَ الشَّيْخُ ابْنُ بَازٍ وَابْنُ عُثَيْمِينَ رَحِمَهُمَا اللَّهُ: إِذَا فَضَلَ مِنَ التَّرَكَةِ فَاضِلٌ بَعْدَ فُرُوضِ أَهْلِ الفُرُوضِ وَلَا عَاصِبَ، رُدَّ ذَلِكَ الفَاضِلُ عَلَى أَهْلِ الفُرُوضِ بِنِسْبَةِ فُرُوضِهِمْ، عَدَا الزَّوْجَيْنِ، لِأَنَّ صِلَتَهُمَا سَبَبِيَّةٌ انْقَطَعَتْ بِالمَوْتِ، وَصِلَةُ أَهْلِ الفُرُوضِ نَسَبِيَّةٌ رَحِمِيَّةٌ ثَابِتَةٌ لِقَوْلِهِ تَعَالَى: {وَأُولُو الْأَرْحَامِ بَعْضُهُمْ أَوْلَىٰ بِبَعْضٍ فِي كِتَابِ اللَّهِ}.',
+    englishTranslation: 'Shaykh Ibn Baz and Shaykh Ibn Uthaymeen stated: If any surplus remains after prescribed heirs take their shares and no Asabah exists, that surplus is returned to the prescribed heirs in proportion to their shares, EXCEPT the spouses, because marital relations end with death while blood ties are permanent under the verse: "And blood relatives are closer to one another in the decree of Allah" (Surah Al-Ahzab 33:6).',
+    urduTranslation: 'شیخ ابن باز اور شیخ ابن عثیمین فرماتے ہیں: اگر اصحاب الفروض کے بعد ترکہ بچ جائے اور کوئی عصبہ نہ ہو، تو یہ بچا ہوا مال شوہر اور بیوی کے علاوہ باقی تمام قرآنی وارثوں پر ان کے حصوں کے تناسب سے لوٹا دیا جائے گا، کیونکہ قرابت داری کا رشتہ مستقل ہے۔',
+    scholarlyNotes: {
+      en: 'This is the official fatwa applied in Islamic courts across Saudi Arabia and the Muslim world.',
+      ar: 'هذا هو القول الراجح والمعمول به في المحاكم الشرعية في المملكة العربية السعودية وأغلب العالم الإسلامي.',
+      ur: 'یہی سعودی عرب کی شرعی عدالتوں اور اکثر اسلامی دنیا میں معتمد اور راجح فتویٰ ہے۔',
+    },
+  },
+  'scholar-ibn-baz-fatawa': {
+    id: 'scholar-ibn-baz-fatawa',
+    type: 'scholar',
+    title: {
+      en: 'Scholarly Ruling: Shaykh Ibn Baz on Agnation & Exclusion',
+      ar: 'فتوى سماحة الشيخ ابن باز: أحكام الحجب والعصوبة وتوريث الجد',
+      ur: 'سماحۃ الشیخ ابن باز کا فتوٰی: حجب اور عصبہ کے شرعی احکام',
+    },
+    source: "Majmu' Fatawa wa Maqalat Mutanawwi'ah li-Ibn Baz (Vol. 20) - مجموع فتاوى الشيخ ابن باز",
+    arabicText: 'قَالَ سَمَاحَةُ الشَّيْخِ عَبْدِ العَزِيزِ بْنِ بَازٍ رَحِمَهُ اللَّهُ: الصَّحِيحُ مِنْ قَوْلَيِ العُلَمَاءِ أَنَّ الجَدَّ أَبٌ يُنَزَّلُ مَنْزِلَةَ الأَبِ عِنْدَ عَدَمِهِ، فَيَحْجُبُ الإِخْوَةَ وَالأَخَوَاتِ أَشِقَّاءَ كَانُوا أَوْ لِأَبٍ كَمَا يَحْجُبُهُمُ الأَبُ، وَهُوَ قَوْلُ الصِّدِّيقِ أَبِي بَكْرٍ وَابْنِ عَبَّاسٍ وَعَائِشَةَ رَضِيَ اللَّهُ عَنْهُمْ، وَهُوَ الرَّاجِحُ دَلِيلًا.',
+    englishTranslation: 'Shaykh Abdul-Aziz ibn Baz stated: The correct scholarly opinion is that the paternal grandfather takes the place of the father in the father\'s absence; thus he completely excludes brothers and sisters (whether full or paternal) just as the father excludes them. This is the verdict of Abu Bakr al-Siddiq, Ibn Abbas, and Aisha, and is the strongest position based on scriptural evidence.',
+    urduTranslation: 'شیخ عبد العزیز ابن باز رحمہ اللہ فرماتے ہیں: علماء کے راجح قول کے مطابق باپ کی غیر موجودگی میں دادا باپ کا درجہ رکھتا ہے، پس وہ سگے اور علاتی بھائی بہنوں کو اسی طرح محروم کرتا ہے جیسے باپ کرتا ہے۔ یہ حضرت ابوبکر صدیق، ابن عباس اور سیدہ عائشہ رضی اللہ عنہم کا فیصلہ ہے اور دلیل میں سب سے قوی ہے۔',
+    scholarlyNotes: {
+      en: 'Shaykh Ibn Baz extensively affirmed that collateral relatives cannot inherit alongside the primary ascending agnate (the grandfather), maintaining the integrity of vertical inheritance.',
+      ar: 'رجح سماحة الشيخ ابن باز مذهب أبي بكر الصديق وابن عباس في حجب الجد للإخوة لكونه أباً في لغة القرآن والشرع.',
+      ur: 'شیخ ابن باز نے حضرت ابوبکر صدیق کے قول کو ترجیح دی ہے کہ دادا قرآنی اعتبار سے باپ ہے اور بھائیوں کو حجب حرمان کرتا ہے۔',
+    },
+  },
+  'quran-4-176-single-sister-half': {
+    id: 'quran-4-176-single-sister-half',
+    type: 'quran',
+    title: {
+      en: 'Single Sister\'s Prescribed Share (Half - 1/2)',
+      ar: 'فرض الأخت الواحدة المنفردة في الكلالة (النصف)',
+      ur: 'اکیلی بہن کا قرآنی حصہ (نصف - 1/2)',
+    },
+    source: 'Surah An-Nisa (4:176) - سورة النساء الآية ١٧٦',
+    arabicText: 'إِنِ امْرُؤٌ هَلَكَ لَيْسَ لَهُ وَلَدٌ وَلَهُ أُخْتٌ فَلَهَا نِصْفُ مَا تَرَكَ',
+    englishTranslation: 'If a person dies leaving no child, but has a sister, she has half of what he leaves.',
+    urduTranslation: 'اگر کوئی شخص مر جائے جس کی اولاد نہ ہو اور اس کی ایک بہن ہو تو اس کے لیے ترکے کا آدھا (1/2) حصہ ہے۔',
+    scholarlyNotes: {
+      en: 'A single surviving full or paternal sister inherits 1/2 of the estate if there are no children, no father/grandfather, and no brother to make her Asabah.',
+      ar: 'تأخذ الأخت الشقيقة أو لأب النصف فرضاً عند انفرادها عن المعصب وعن المشارك وعند عدم الفرع والأصل الوارث.',
+      ur: 'اکیلی سگی یا علاتی بہن میت کی اولاد اور باپ دادا کی عدم موجودگی میں نصف (1/2) کی حقدار ہے۔',
+    },
+  },
+  'quran-4-176-two-sisters-two-thirds': {
+    id: 'quran-4-176-two-sisters-two-thirds',
+    type: 'quran',
+    title: {
+      en: 'Multiple Sisters\' Share (Two-Thirds - 2/3)',
+      ar: 'فرض الأختين فأكثر في الكلالة (الثلثان بالسوية)',
+      ur: 'دو یا زیادہ بہنوں کا قرآنی حصہ (دو تہائی - 2/3)',
+    },
+    source: 'Surah An-Nisa (4:176) - سورة النساء الآية ١٧٦',
+    arabicText: 'فَإِنْ كَانَتَا اثْنَتَيْنِ فَلَهُمَا الثُّلُثَانِ مِمَّا تَرَكَ',
+    englishTranslation: 'But if there were two sisters, they have two thirds of what he leaves.',
+    urduTranslation: 'پس اگر دو یا دو سے زیادہ بہنیں ہوں تو ان کے لیے ترکے کا دو تہائی (2/3) حصہ ہے۔',
+    scholarlyNotes: {
+      en: 'Two or more sisters divide 2/3 equally among themselves if no brother or blocking relative is present in Kalalah.',
+      ar: 'الأختان الشقيقتان أو لأب فصاعداً يشتركن في الثلثين بالسوية لعدم وجود المعصب والأصل والفرع.',
+      ur: 'دو یا زیادہ بہنیں دو تہائی (2/3) حصہ آپس میں برابر تقسیم کرتی ہیں بشرطیکہ کوئی معصب یا حاجب موجود نہ ہو۔',
+    },
+  },
+  'quran-4-176-male-two-females': {
+    id: 'quran-4-176-male-two-females',
+    type: 'quran',
+    title: {
+      en: 'Siblings Asabah: Male Takes Double Female Portion',
+      ar: 'تعصيب الإخوة بالغير: للذكر مثل حظ الأنثيين',
+      ur: 'بھائی بہنوں کا عصبہ بننا: مرد کا حصہ دو عورتوں کے برابر',
+    },
+    source: 'Surah An-Nisa (4:176) - سورة النساء الآية ١٧٦',
+    arabicText: 'وَإِنْ كَانُوا إِخْوَةً رِجَالًا وَنِسَاءً فَلِلذَّكَرِ مِثْلُ حَظِّ الْأُنْثَيَيْنِ ۗ يُبَيِّنُ اللَّهُ لَكُمْ أَنْ تَضِلُّوا ۗ وَاللَّهُ بِكُلِّ شَيْءٍ عَلِيمٌ',
+    englishTranslation: 'If there are brothers and sisters, then the male will have twice the share of the female. Allah makes [His rulings] clear to you, lest you go astray. And Allah is Knowing of all things.',
+    urduTranslation: 'اور اگر بھائی اور بہنیں ملے جلے ہوں تو مرد کے لیے دو عورتوں کے برابر حصہ ہے۔ اللہ تمہارے لیے اپنے احکام واضح فرماتا ہے تاکہ تم گمراہ نہ ہو، اور اللہ ہر چیز کا خوب جاننے والا ہے۔',
+    scholarlyNotes: {
+      en: 'When brothers and sisters are present together in Kalalah, sisters lose their fixed fraction and inherit the remainder with brothers under the 2:1 agnatic ratio.',
+      ar: 'إذا اجتمع الإخوة الأشقاء أو لأب ذكوراً وإناثاً سقط فرض الأخوات وصرن عصبة بالغير للذكر مثل حظ الأنثيين.',
+      ur: 'جب بھائی اور بہنیں مل کر وارث ہوں تو بہنوں کا مقررہ فرض ختم ہو جاتا ہے اور وہ 2:1 کے تناسب سے عصبہ بنتی ہیں۔',
+    },
+  },
+  'quran-4-176-kalalah': {
+    id: 'quran-4-176-kalalah',
+    type: 'quran',
+    title: {
+      en: 'Kalalah: Succession Rules for Collateral Relatives',
+      ar: 'الكلالة: حكم ميراث الحواشي والإخوة',
+      ur: 'کلالہ: بہن بھائیوں اور حواشی کی وراثت کا حکم',
+    },
+    source: 'Surah An-Nisa (4:176) - سورة النساء الآية ١٧٦',
+    arabicText: 'يَسْتَفْتُونَكَ قُلِ اللَّهُ يُفْتِيكُمْ فِي الْكَلَالَةِ ۚ إِنِ امْرُؤٌ هَلَكَ لَيْسَ لَهُ وَلَدٌ وَلَهُ أُخْتٌ فَلَهَا نِصْفُ مَا تَرَكَ ۚ وَهُوَ يَرِثُهَا إِنْ لَمْ يَكُنْ لَهَا وَلَدٌ',
+    englishTranslation: 'They request from you a [legal] ruling. Say, "Allah gives you a ruling concerning the Kalalah: If a person dies leaving no child, but has a sister, she has half of what he leaves. And he would inherit [all of] her if she had no child..."',
+    urduTranslation: 'وہ آپ سے فتویٰ مانگتے ہیں۔ فرما دیجیے کہ اللہ تمہیں کلالہ کے بارے میں حکم دیتا ہے: اگر کوئی شخص مر جائے جس کی اولاد نہ ہو اور اس کی ایک بہن ہو تو اس کے لیے ترکے کا آدھا حصہ ہے...',
+    scholarlyNotes: {
+      en: 'Kalalah by definition designates a deceased person who leaves neither ascendants (father/grandfather) nor descendants (children). Siblings only inherit when Kalalah conditions are met.',
+      ar: 'الكلالة من لا ولد له ولا والد، فإذا وجد الولد أو الوالد حجب الإخوة إجماعاً لأن شرط استحقاقهم هو الكلالة.',
+      ur: 'کلالہ اس میت کو کہتے ہیں جس کے نہ والدین ہوں اور نہ اولاد۔ اگر باپ یا اولاد موجود ہو تو بھائی بہن کلالہ کی شرط ختم ہونے پر محجوب ہو جاتے ہیں۔',
+    },
+  },
+  'hajb-closest-relative': {
+    id: 'hajb-closest-relative',
+    type: 'hadith',
+    title: {
+      en: 'Universal Rule of Exclusion: The Closer Excludes the Remote',
+      ar: 'قاعدة الحجب الكبرى: الأقرب يحجب الأبعد درجة',
+      ur: 'حجب کا بنیادی اصول: قریبی رشتہ دار دور والے کو محروم کرتا ہے',
+    },
+    source: 'Sahih al-Bukhari (6732) & Sahih Muslim (1615) - صحيح البخاري وصحيح مسلم',
+    arabicText: 'قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ: «أَلْحِقُوا الفَرَائِضَ بِأَهْلِهَا، فَمَا بَقِيَ فَهُوَ لِأَوْلَى رَجُلٍ ذَكَرٍ». وَقَاعِدَةُ الإِجْمَاعِ: «الأَقْرَبُ دَرَجَةً يَحْجُبُ الأَبْعَدَ».',
+    englishTranslation: 'The Messenger of Allah ﷺ said: "Give the prescribed shares to those entitled to them, and what remains is for the closest surviving male relative." Legal canon: "The closer in degree completely excludes the more distant relative."',
+    urduTranslation: 'رسول اللہ ﷺ نے فرمایا: "مقررہ حصے ان کے حقداروں کو دو، پھر جو باقی بچے وہ سب سے قریبی مرد کا ہے"۔ اور فقہی اجماع کا اصول ہے: "قریبی رشتہ دار دور کے رشتہ دار کو ساقط کر دیتا ہے"۔',
+    scholarlyNotes: {
+      en: 'Because a direct son is one degree of descent from the deceased while a grandson is two degrees, the direct son completely excludes grandsons and granddaughters.',
+      ar: 'الابن يحجب ابن الابن وبنت الابن لأنه أقرب درجة إلى الميت، فكل من اتصل بالميت بدرجة أقرب قدم على الأبعد.',
+      ur: 'بیٹا پوتے اور پوتی کو وراثت سے خارج کر دیتا ہے کیونکہ بیٹا میت سے ایک درجہ قریب ہے اور پوتا دو درجے۔',
+    },
+  },
+  'hajb-rule-wasita': {
+    id: 'hajb-rule-wasita',
+    type: 'scholar',
+    title: {
+      en: 'Principle of Intermediary Exclusion (Man Adla bi-Wasita)',
+      ar: 'قاعدة الواسطة: من أدلى بواسطة حُجب بتلك الواسطة',
+      ur: 'واسطہ کا اصول: جو کسی واسطے سے جڑے وہ اس واسطے کی موجودگی میں محجوب ہے',
+    },
+    source: 'Unanimous Consensus of the Sahabah & Four Sunni Madhhabs - إجماع الصحابة والمذاهب الأربعة',
+    arabicText: 'القَاعِدَةُ الفِقْهِيَّةُ المُجْمَعُ عَلَيْهَا بَيْنَ سَائِرِ الفُقَهَاءِ: «كُلُّ مَنْ أَدْلَى إِلَى المَيِّتِ بِوَاسِطَةٍ، حَجَبَتْهُ تِلْكَ الوَاسِطَةُ عِنْدَ وُجُودِهَا»، إِلَّا الإِخْوَةَ لِأُمٍّ فَإِنَّهُمْ يَرِثُونَ مَعَهَا اسْتِثْنَاءً بِنَصِّ القُرْآنِ.',
+    englishTranslation: 'The universally accepted legal maxim states: "Whoever connects to the deceased through an intermediary is completely excluded by the presence of that intermediary", with the single Quranic exception of maternal siblings who inherit despite connecting through the mother.',
+    urduTranslation: 'فقہائے اسلام کا متفقہ اور اجماعی قاعدہ: "جو شخص بھی میت سے کسی واسطے کے ذریعے جڑتا ہو، اس واسطے کی موجودگی میں وہ محروم ہو جاتا ہے"، سوائے اخیافی بھائی بہنوں کے جن کا ماں کے ساتھ وارث ہونا قرآن سے مستثنٰی ہے۔',
+    scholarlyNotes: {
+      en: 'By this universal consensus: the father excludes the paternal grandfather (who connects through the father), and the mother excludes the maternal and paternal grandmothers.',
+      ar: 'حُجب الجد بالأب لأنه يدلي به، وحُجبت الجدة بالأم لأنها تدلي بالأمومة.',
+      ur: 'باپ کی موجودگی میں دادا اور ماں کی موجودگی میں نانی اور دادی اس متفقہ اصول کے تحت محجوب ہوتی ہیں۔',
+    },
+  },
+  'scholar-ibn-uthaymeen-tashil': {
+    id: 'scholar-ibn-uthaymeen-tashil',
+    type: 'scholar',
+    title: {
+      en: 'Treatise of Shaykh Ibn Uthaymeen: Tashil al-Fara\'id',
+      ar: 'تحقيقات الشيخ ابن عثيمين في تسهيل الفرائض',
+      ur: 'شیخ ابن عثیمین کی کتاب "تسیل الفرائض" کے مستند احکام',
+    },
+    source: 'Tashil al-Fara\'id by Shaykh Muhammad ibn Salih al-Uthaymeen - تسهيل الفرائض',
+    arabicText: 'قَالَ الشَّيْخُ ابْنُ عُثَيْمِينَ رَحِمَهُ اللَّهُ فِي تَسْهِيلِ الفَرَائِضِ: إِذَا اسْتَكْمَلَتِ الأَخَوَاتُ الشَّقَائِقُ الثُّلُثَيْنِ سَقَطَتِ الأَخَوَاتُ لِأَبٍ إِلَّا أَنْ يَكُونَ مَعَهُنَّ أَخٌ لِأَبٍ يُعَصِّبُهُنَّ، كَمَا تَسْقُطُ بَنَاتُ الابْنِ إِذَا اسْتَكْمَلَتِ البَنَاتُ الثُّلُثَيْنِ.',
+    englishTranslation: 'Shaykh Ibn Uthaymeen stated: When full sisters exhaust the maximum 2/3 share, paternal sisters are excluded from fixed shares unless accompanied by a paternal brother who makes them residuary, mirroring the exact rule for granddaughters when direct daughters exhaust the 2/3.',
+    urduTranslation: 'شیخ ابن عثیمین نے تسہیل الفرائض میں واضح فرمایا کہ جب سگی بہنیں دو تہائی (2/3) حصہ پورا کر لیں تو علاتی بہنیں ساقط ہو جاتی ہیں، سوائے اس کے کہ علاتی بھائی موجود ہو جو انہیں عصبہ بنا دے۔',
+    scholarlyNotes: {
+      en: 'This foundational analogy connects Surah An-Nisa 4:11 (daughters/granddaughters) with 4:176 (sisters/paternal sisters).',
+      ar: 'قياس شرعي جلي بين سقوط بنات الابن بالبنات وسقوط الأخوات لأب بالشقائق عند استكمال الثلثين.',
+      ur: 'سگی بہنوں کے 2/3 پورا کرنے پر علاتی بہنوں کا ساقط ہونا بیٹیوں اور پوتیوں کے شرعی اصول کے عین مطابق ہے۔',
+    },
+  },
+  'scholar-fawzan-tahqiqat': {
+    id: 'scholar-fawzan-tahqiqat',
+    type: 'scholar',
+    title: {
+      en: 'Shaykh al-Fawzan: Priority of Two-Sided Kinship (Full vs Paternal)',
+      ar: 'التحقيقات المرضية للشيخ الفوزان: تقديم ذي القرابتين على ذي القرابة الواحدة',
+      ur: 'شیخ فوزان کی "التحقیقات المرضیہ": دو رشتوں والے (سگے) کی ترجیح علاتی پر',
+    },
+    source: 'Al-Tahqiqat al-Mardiyyah by Shaykh Salih al-Fawzan - التحقيقات المرضية في المباحث الفرضية',
+    arabicText: 'قَالَ الشَّيْخُ صَالِحُ الفَوْزَانِ: اتَّفَقَ الفُقَهَاءُ عَلَى أَنَّ الأَخَ الشَّقِيقَ يُقَدَّمُ عَلَى الأَخِ لِأَبٍ فِي العُصُوبَةِ لِأَنَّهُ أَدْلَى بِقَرَابَتَيْنِ (الأَبِ وَالأُمِّ) وَالأَخُ لِأَبٍ أَدْلَى بِقَرَابَةٍ وَاحِدَةٍ، وَالقَاعِدَةُ: «قُوَّةُ القَرَابَةِ تُقَدَّمُ عِنْدَ اتِّحَادِ الجِهَةِ وَالدَّرَجَةِ».',
+    englishTranslation: 'Shaykh Salih al-Fawzan wrote: Jurists unanimously agree that the full brother takes precedence over the paternal brother in Asabah because he connects via two ties (father and mother), while the paternal brother connects through one. The rule states: "Strength of kinship takes precedence when degree and class are equal."',
+    urduTranslation: 'شیخ صالح الفوزان فرماتے ہیں: فقہاء کا اتفاق ہے کہ عصبہ میں سگے بھائی کو علاتی بھائی پر فوقیت حاصل ہے کیونکہ وہ دو واسطوں (ماں اور باپ) سے جڑتا ہے۔ فقہی قاعدہ ہے: درجہ اور جہت یکساں ہونے پر قرابت کی قوت کو ترجیح دی جاتی ہے۔',
+    scholarlyNotes: {
+      en: 'This principle dictates that full brothers block paternal brothers, full nephews block paternal nephews, and full uncles block paternal uncles.',
+      ar: 'قاعدة قوة القرابة تسري في جميع العصبات: الشقيق يحجب الذي لأب في الإخوة وبنيهم والأعمام وبنيهم.',
+      ur: 'قرابت کی قوت کا یہ اصول تمام عصبات میں نافذ ہوتا ہے کہ سگا رشتہ دار علاتی کو محجوب کرتا ہے۔',
+    },
+  },
+  'hadith-bukhari-6742': {
+    id: 'hadith-bukhari-6742',
+    type: 'hadith',
+    title: {
+      en: 'Sisters as Residuaries with Daughters (Asabah ma\'a Ghayriha)',
+      ar: 'العصبة مع الغير: اجعلوا الأخوات مع البنات عصبة',
+      ur: 'عصبہ مع الغیر: بیٹیوں کے ساتھ بہنوں کو عصبہ بناؤ',
+    },
+    source: 'Sahih al-Bukhari (6742) - صحيح البخاري',
+    arabicText: 'قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ: «اجْعَلُوا الأَخَوَاتِ مَعَ البَنَاتِ عَصَبَةً»',
+    englishTranslation: 'The Prophet ﷺ said: "Make sisters with daughters residuaries (Asabah)."',
+    urduTranslation: 'رسول اللہ ﷺ نے ارشاد فرمایا: "بیٹیوں کے ساتھ بہنوں کو عصبہ بناؤ۔"',
+    scholarlyNotes: {
+      en: 'When full or paternal sisters inherit alongside daughters, they take the remaining estate and block more distant male collaterals like nephews and uncles.',
+      ar: 'أوضح الشيخ الفوزان: إذا كانت الأخت مع البنت صارت عصبة مع الغير تأخذ ما فضل بعد أصحاب الفروض، وتُنزّل منزلة الأخ الشقيق في حجب العصبات المتأخرين كأبناء الأخ والأعمام.',
+      ur: 'شیخ فوزان فرماتے ہیں: بیٹیوں کی موجودگی میں بہنیں عصبہ مع الغیر بن کر باقی ترکہ لیتی ہیں، اور بھتیجوں اور چچاؤں کو وراثت سے محجوب کر دیتی ہیں۔',
+    },
+  },
+};
