@@ -43,7 +43,15 @@ export const BetaDisclaimerBanner: React.FC<BetaDisclaimerBannerProps> = ({
               </span>
             </div>
 
-            <p className="text-obsidian-700 leading-relaxed text-[11px] sm:text-xs max-w-4xl">
+            <p className="sm:hidden text-obsidian-700 leading-relaxed text-[11px]">
+              {language === 'ar'
+                ? 'المنصة تجريبية؛ راجع النتائج مع عالم موثوق قبل تنفيذ القسمة.'
+                : language === 'ur'
+                ? 'یہ بیٹا ورژن ہے؛ عملی تقسیم سے پہلے مستند عالم سے تصدیق ضرور کرائیں۔'
+                : 'Beta guidance only—verify results with a qualified scholar before distributing an estate.'}
+            </p>
+
+            <p className="hidden sm:block text-obsidian-700 leading-relaxed text-xs max-w-4xl">
               {language === 'ar'
                 ? 'تم بناء خوارزميات المنصة وفق قواعد الفقه الإسلامي المعتمدة وتحقيقات كبار العلماء. ونظراً لدقة مسائل التركات وتشعباتها، فالمنصة قيد الاختبار النشط ويُنصح بمراجعة النتائج مع المحاكم الشرعية والعلماء المعتمدين قبل التنفيذ الفعلي لإبراء الذمة.'
                 : language === 'ur'

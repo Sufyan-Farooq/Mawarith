@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { RotateCcw, BookOpenCheck, AlertCircle, Undo2 } from 'lucide-react';
+import { RotateCcw, BookOpenCheck, AlertCircle, Undo2, ArrowDown, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { DeceasedGender, EstateInput, HeirsInput, MawarithResult } from '../engine/types';
 import { SupportedLanguage, TRANSLATIONS } from '../i18n/translations';
@@ -8,6 +8,7 @@ import { EstateLedger } from './EstateLedger';
 import { HeirSelector } from './HeirSelector';
 import { ResultsView } from './ResultsView';
 import { CustomSelect, SelectOption } from './ui/CustomSelect';
+import { formatCurrency } from '../utils/currency';
 
 interface VisualStudioProps {
   gender: DeceasedGender;
@@ -73,46 +74,26 @@ export const VisualStudio: React.FC<VisualStudioProps> = ({
   }));
 
   return (
-    <div className="space-y-6" dir={isRtl ? 'rtl' : 'ltr'}>
+    <div className="space-y-6 pb-20 lg:pb-0" dir={isRtl ? 'rtl' : 'ltr'}>
 
-      {/* Notice Banner when a Demo Scenario is Active */}
-      {activeScenario && (
-        <div className="p-3 sm:p-4 rounded-2xl bg-amber-500/[0.08] border border-amber-300/70 shadow-micro flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
-          <div className="flex items-center gap-2.5">
-            <span className="inline-flex items-center px-2 py-0.5 rounded-md font-mono text-[10px] font-bold bg-amber-200/80 text-amber-950 border border-amber-300">
-              {t.viewingSample}
-            </span>
-            <span className="font-bold text-obsidian-900 text-xs sm:text-sm">
-              {activeScenario.name[language]}
-            </span>
-            <span className="text-obsidian-600 hidden md:inline">
-              — {language === 'ar' ? 'يمكنك تعديل الأرقام مباشرة، أو البدء بحساب تركة جديدة فارغة.' : 'You can edit these numbers freely, or start fresh with a clean estate.'}
-            </span>
-          </div>
-
-          <button
-            type="button"
-            onClick={handleRequestReset}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white hover:bg-slate-50 border border-amber-300/80 text-obsidian-900 font-semibold text-xs shadow-micro transition-all active:scale-95 cursor-pointer shrink-0 w-fit"
-          >
-            <RotateCcw className="w-3.5 h-3.5 text-amber-700" />
-            <span>{t.startFresh}</span>
-          </button>
-        </div>
-      )}
-      
       {/* Top Controls Bar: Classical Case Studies & Rapid Reset */}
-      <div className="p-3 sm:p-4 rounded-2xl bg-white border border-slate-200/90 shadow-float flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div className="p-3 sm:p-4 rounded-2xl bg-white border border-slate-200/90 shadow-micro flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-xl bg-jade-50 text-jade-700 flex items-center justify-center border border-jade-200/60 shadow-micro">
             <BookOpenCheck className="w-4 h-4" />
           </div>
           <div>
-            <span className="text-xs font-bold text-obsidian-900 block">
+            <span className="text-xs font-bold text-obsidian-900 flex flex-wrap items-center gap-2">
               {t.sampleScenarios}
+              {activeScenario && (
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full font-mono text-[9px] font-bold bg-amber-100 text-amber-900 border border-amber-200">
+                  <Sparkles className="w-2.5 h-2.5" />
+                  {t.viewingSample}
+                </span>
+              )}
             </span>
             <span className="text-[11px] text-obsidian-500">
-              {t.selectSample}
+              {activeScenario ? activeScenario.name[language] : t.selectSample}
             </span>
           </div>
         </div>
@@ -232,7 +213,7 @@ export const VisualStudio: React.FC<VisualStudioProps> = ({
         </div>
 
         {/* Right Sticky Calculation Ledger */}
-        <div className="lg:col-span-5 lg:sticky lg:top-20 space-y-6">
+        <div id="results-panel" className="lg:col-span-5 lg:sticky lg:top-24 space-y-6 scroll-mt-28">
           <ResultsView
             result={result}
             estate={estate}
@@ -245,6 +226,28 @@ export const VisualStudio: React.FC<VisualStudioProps> = ({
           />
         </div>
 
+      </div>
+
+      <div className="fixed inset-x-3 bottom-3 z-30 lg:hidden">
+        <button
+          type="button"
+          onClick={() => document.getElementById('results-panel')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+          className="w-full flex items-center justify-between gap-4 rounded-2xl bg-obsidian-900 text-white px-4 py-3 border border-white/10 shadow-float active:scale-[0.99] transition-transform"
+          aria-label={language === 'ar' ? 'عرض نتائج الميراث' : language === 'ur' ? 'تقسیم کے نتائج دیکھیں' : 'View inheritance results'}
+        >
+          <span className="text-start min-w-0">
+            <span className="block text-[10px] uppercase tracking-wider text-obsidian-400 font-semibold">
+              {language === 'ar' ? 'صافي التركة' : language === 'ur' ? 'خالص ترکہ' : 'Net estate'}
+            </span>
+            <span className="block font-mono text-sm font-bold text-white truncate">
+              {formatCurrency(result.summary.netInheritableEstate, currency, language)}
+            </span>
+          </span>
+          <span className="inline-flex items-center gap-2 rounded-xl bg-jade-600 px-3.5 py-2 text-xs font-bold shrink-0">
+            {language === 'ar' ? 'عرض النتائج' : language === 'ur' ? 'نتائج دیکھیں' : 'View results'}
+            <ArrowDown className="w-3.5 h-3.5" />
+          </span>
+        </button>
       </div>
 
     </div>

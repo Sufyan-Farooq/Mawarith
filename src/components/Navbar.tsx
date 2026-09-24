@@ -28,33 +28,41 @@ export const Navbar: React.FC<NavbarProps> = ({
   // Currency select options
   const currencyOptions: SelectOption[] = CURRENCIES.map((c) => ({
     value: c.code,
-    label: `${c.code} (${c.symbol})`,
+    label: `${c.code} · ${c.symbol}`,
   }));
 
   // Language select options
   const languageOptions: SelectOption[] = [
-    { value: 'en', label: 'English (EN)' },
-    { value: 'ar', label: 'العربية (AR)' },
-    { value: 'ur', label: 'اردو (UR)' },
+    { value: 'en', label: 'English' },
+    { value: 'ar', label: 'العربية' },
+    { value: 'ur', label: 'اردو' },
   ];
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-white/90 backdrop-blur-md border-b border-slate-200/80 transition-all duration-300">
+    <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-xl border-b border-slate-200/80 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 gap-4">
+        <div className="flex flex-wrap sm:flex-nowrap items-center justify-between min-h-16 py-2 sm:py-0 gap-2 sm:gap-4">
           
           {/* Brand Emblem & Typography */}
-          <div className="flex items-center gap-3">
-            <BrandLogo size={36} showText={true} language={language} />
+          <div className="flex items-center gap-3 shrink-0">
+            <div className="hidden sm:block">
+              <BrandLogo size={36} showText={true} language={language} />
+            </div>
+            <div className="sm:hidden">
+              <BrandLogo size={34} />
+            </div>
           </div>
 
           {/* Framer-grade Sliding Pill Switcher */}
-          <nav className="relative flex items-center p-1 rounded-xl bg-slate-100/90 border border-slate-200/70">
+          <nav
+            className="relative order-3 sm:order-none flex items-center p-1 rounded-xl bg-slate-100/90 border border-slate-200/70 w-full sm:w-auto"
+            aria-label="Workspace mode"
+          >
             {/* Visual Studio Tab */}
             <button
               type="button"
               onClick={() => onSelectMode('studio')}
-              className={`relative z-10 flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-colors duration-200 ${
+              className={`relative z-10 flex flex-1 sm:flex-initial justify-center items-center gap-2 px-3.5 py-2 sm:py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-colors duration-200 ${
                 currentMode === 'studio' ? 'text-white' : 'text-obsidian-600 hover:text-obsidian-900'
               }`}
             >
@@ -73,7 +81,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               type="button"
               onClick={() => onSelectMode('chat')}
-              className={`relative z-10 flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-colors duration-200 ${
+              className={`relative z-10 flex flex-1 sm:flex-initial justify-center items-center gap-2 px-3.5 py-2 sm:py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-colors duration-200 ${
                 currentMode === 'chat' ? 'text-white' : 'text-obsidian-600 hover:text-obsidian-900'
               }`}
             >
@@ -90,7 +98,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </nav>
 
           {/* Currency & Language Custom Dropdowns (Zero Default Selects) */}
-          <div className="flex items-center gap-2 sm:gap-2.5">
+          <div className="flex items-center gap-1.5 sm:gap-2.5 min-w-0">
             <CustomSelect
               options={currencyOptions}
               value={currency}
