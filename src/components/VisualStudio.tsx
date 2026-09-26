@@ -86,13 +86,13 @@ export const VisualStudio: React.FC<VisualStudioProps> = ({
             <span className="text-xs font-bold text-obsidian-900 flex flex-wrap items-center gap-2">
               {t.sampleScenarios}
               {activeScenario && (
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full font-mono text-[9px] font-bold bg-amber-100 text-amber-900 border border-amber-200">
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full font-mono text-xs font-bold bg-amber-100 text-amber-900 border border-amber-200">
                   <Sparkles className="w-2.5 h-2.5" />
                   {t.viewingSample}
                 </span>
               )}
             </span>
-            <span className="text-[11px] text-obsidian-500">
+            <span className="text-xs text-obsidian-500">
               {activeScenario ? activeScenario.name[language] : t.selectSample}
             </span>
           </div>
@@ -236,14 +236,14 @@ export const VisualStudio: React.FC<VisualStudioProps> = ({
           aria-label={language === 'ar' ? 'عرض نتائج الميراث' : language === 'ur' ? 'تقسیم کے نتائج دیکھیں' : 'View inheritance results'}
         >
           <span className="text-start min-w-0">
-            <span className="block text-[10px] uppercase tracking-wider text-obsidian-400 font-semibold">
+            <span className="block text-xs uppercase tracking-wider text-obsidian-400 font-semibold">
               {language === 'ar' ? 'صافي التركة' : language === 'ur' ? 'خالص ترکہ' : 'Net estate'}
             </span>
             <span className="block font-mono text-sm font-bold text-white truncate">
               {formatCurrency(result.summary.netInheritableEstate, currency, language)}
             </span>
           </span>
-          <span className="inline-flex items-center gap-2 rounded-xl bg-jade-600 px-3.5 py-2 text-xs font-bold shrink-0">
+          <span className="inline-flex items-center gap-2 rounded-xl bg-jade-700 px-3.5 py-2 text-xs font-bold shrink-0">
             {language === 'ar' ? 'عرض النتائج' : language === 'ur' ? 'نتائج دیکھیں' : 'View results'}
             <ArrowDown className="w-3.5 h-3.5" />
           </span>

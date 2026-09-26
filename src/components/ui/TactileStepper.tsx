@@ -44,7 +44,7 @@ export const TactileStepper: React.FC<TactileStepperProps> = ({
             {label}
           </span>
           {sublabel && (
-            <span className="text-[11px] text-obsidian-400">
+            <span className="text-xs text-obsidian-500">
               {sublabel}
             </span>
           )}

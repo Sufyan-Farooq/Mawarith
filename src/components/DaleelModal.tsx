@@ -45,7 +45,7 @@ export const DaleelModal: React.FC<DaleelModalProps> = ({
                 <h3 className="text-base font-bold text-white">
                   {language === 'ar' ? 'الأدلة الشرعية والتحقيق الفقهي' : language === 'ur' ? 'شرعی دلائل اور فقہی تحقیق' : 'Authentic Shariah Daleel & Proofs'}
                 </h3>
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-semibold bg-jade-500/20 text-jade-300 rounded-full border border-jade-500/30">
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold bg-jade-500/20 text-jade-300 rounded-full border border-jade-500/30">
                   <CheckCircle2 className="w-3 h-3 text-jade-400" />
                   <span>{language === 'ar' ? 'موثق' : 'Verified'}</span>
                 </span>
@@ -119,7 +119,7 @@ export const DaleelModal: React.FC<DaleelModalProps> = ({
                 {/* Verified Translations */}
                 <div className="space-y-2.5 text-xs sm:text-sm text-obsidian-700">
                   <div className="ps-3 border-s-2 border-slate-300">
-                    <span className="block text-[11px] font-bold uppercase tracking-wider text-obsidian-400 mb-1 font-sans">
+                    <span className="block text-xs font-bold uppercase tracking-wider text-obsidian-400 mb-1 font-sans">
                       English Translation
                     </span>
                     <p className="leading-relaxed text-obsidian-800">
@@ -128,7 +128,7 @@ export const DaleelModal: React.FC<DaleelModalProps> = ({
                   </div>
 
                   <div className="ps-3 border-s-2 border-slate-300" dir="rtl">
-                    <span className="block text-[11px] font-bold uppercase tracking-wider text-obsidian-400 mb-1 font-sans">
+                    <span className="block text-xs font-bold uppercase tracking-wider text-obsidian-400 mb-1 font-sans">
                       اردو ترجمہ
                     </span>
                     <p className="font-urdu text-base leading-loose text-obsidian-800">

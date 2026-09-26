@@ -45,7 +45,7 @@ export const MoneyInput: React.FC<MoneyInputProps> = ({
           {label}
         </label>
         {sublabel && (
-          <span className="text-[11px] text-obsidian-400">
+          <span className="text-xs text-obsidian-500">
             {sublabel}
           </span>
         )}
@@ -91,7 +91,7 @@ export const MoneyInput: React.FC<MoneyInputProps> = ({
             key={preset}
             type="button"
             onClick={() => addPreset(preset)}
-            className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-md bg-slate-100/80 hover:bg-jade-50 hover:text-jade-800 text-[11px] font-mono font-medium text-obsidian-600 border border-slate-200/60 transition-colors active:scale-95"
+            className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-md bg-slate-100/80 hover:bg-jade-50 hover:text-jade-800 text-xs font-mono font-medium text-obsidian-600 border border-slate-200/60 transition-colors active:scale-95"
           >
             <Plus className="w-2.5 h-2.5 opacity-60" />
             <span>{preset >= 1000 ? `${preset / 1000}k` : preset}</span>

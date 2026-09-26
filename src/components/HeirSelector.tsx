@@ -221,7 +221,7 @@ export const HeirSelector: React.FC<HeirSelectorProps> = ({
               )}
               <span className="relative z-10 flex items-center gap-1.5">
                 <span>{t.male}</span>
-                <span className="text-[11px] opacity-70">({language === 'ar' ? 'مورث' : 'Husband/Father'})</span>
+                <span className="text-xs opacity-70">({language === 'ar' ? 'مورث' : 'Husband/Father'})</span>
               </span>
             </button>
 
@@ -244,7 +244,7 @@ export const HeirSelector: React.FC<HeirSelectorProps> = ({
               )}
               <span className="relative z-10 flex items-center gap-1.5">
                 <span>{t.female}</span>
-                <span className="text-[11px] opacity-70">({language === 'ar' ? 'مورثة' : 'Wife/Mother'})</span>
+                <span className="text-xs opacity-70">({language === 'ar' ? 'مورثة' : 'Wife/Mother'})</span>
               </span>
             </button>
           </div>
@@ -297,7 +297,7 @@ export const HeirSelector: React.FC<HeirSelectorProps> = ({
           <div className="flex items-center justify-between py-2.5 px-3 rounded-xl border border-slate-200/80 bg-white">
             <div>
               <span className="text-xs font-bold text-obsidian-800 block">{t.husband}</span>
-              <span className="text-[11px] text-obsidian-400">
+              <span className="text-xs text-obsidian-500">
                 {language === 'ar' ? 'له النصف (دون فرع وارث) أو الربع' : language === 'ur' ? 'نصف یا چوتھائی کا حقدار' : 'Takes 1/2 or 1/4'}
               </span>
             </div>
@@ -385,10 +385,10 @@ export const HeirSelector: React.FC<HeirSelectorProps> = ({
               >
                 <div>
                   <span className="text-xs font-bold block">{item.label}</span>
-                  <span className="text-[10px] text-obsidian-400">{item.sub}</span>
+                  <span className="text-xs text-obsidian-500">{item.sub}</span>
                 </div>
-                <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-md ${
-                  isAlive ? 'bg-jade-700 text-white' : 'bg-slate-100 text-obsidian-500'
+                <span className={`text-xs font-semibold px-2 py-0.5 rounded-md ${
+                  isAlive ? 'bg-jade-700 text-white' : 'bg-slate-100 text-obsidian-600'
                 }`}>
                   {isAlive 
                     ? (language === 'ar' ? 'حي' : language === 'ur' ? 'حیات' : 'Alive') 
@@ -450,7 +450,7 @@ export const HeirSelector: React.FC<HeirSelectorProps> = ({
       <div className="space-y-3 pt-2">
         <div className="flex items-center justify-between text-xs font-semibold text-obsidian-500 border-t border-slate-100 pt-3">
           <span>{t.collaterals}</span>
-          <span className="text-[11px] text-obsidian-400 font-normal">
+          <span className="text-xs text-obsidian-500 font-normal">
             {language === 'ar' ? 'العصبة بالنفس عند انعدام الأقرب' : 'Agnatic collaterals'}
           </span>
         </div>
@@ -507,12 +507,12 @@ export const HeirSelector: React.FC<HeirSelectorProps> = ({
               {language === 'ar' ? 'تخصيص أسماء الورثة (اختياري)' : language === 'ur' ? 'ورثاء کے ذاتی نام درج کریں (اختیاری)' : 'Personalize Heir Names (Optional)'}
             </span>
             {totalNamesEntered > 0 && (
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-jade-100 text-jade-800 border border-jade-200">
+              <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-jade-100 text-jade-800 border border-jade-200">
                 {totalNamesEntered} {language === 'ar' ? 'اسم مضاف' : 'named'}
               </span>
             )}
           </div>
-          <div className="flex items-center gap-1 text-obsidian-500 text-[11px]">
+          <div className="flex items-center gap-1 text-obsidian-500 text-xs">
             <span>{showNamesSection ? (language === 'ar' ? 'إخفاء' : 'Hide') : (language === 'ar' ? 'إظهار' : 'Show')}</span>
             {showNamesSection ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
           </div>
@@ -537,7 +537,7 @@ export const HeirSelector: React.FC<HeirSelectorProps> = ({
                     <div key={group.key} className="p-3 rounded-xl bg-slate-50/70 border border-slate-200/60 space-y-2">
                       <div className="flex items-center justify-between text-xs font-semibold text-obsidian-800">
                         <span>{group.label}</span>
-                        <span className="text-[11px] text-obsidian-400 font-mono">({group.count})</span>
+                        <span className="text-xs text-obsidian-500 font-mono">({group.count})</span>
                       </div>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         {Array.from({ length: group.count }).map((_, idx) => (

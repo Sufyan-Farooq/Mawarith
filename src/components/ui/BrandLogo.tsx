@@ -53,7 +53,7 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
               {language === 'ur' ? 'مواریث' : 'مَوارِيث'}
             </span>
           </div>
-          <span className="text-[11px] text-obsidian-500 font-medium leading-none mt-1">
+          <span className="text-xs text-obsidian-500 font-medium leading-none mt-1">
             {language === 'ar' ? 'علم الفرائض والمواريث' : language === 'ur' ? 'شرعی تقسیمِ ترکہ' : 'Shariah Inheritance System'}
           </span>
         </div>

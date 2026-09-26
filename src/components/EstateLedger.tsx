@@ -63,7 +63,7 @@ export const EstateLedger: React.FC<EstateLedgerProps> = ({
 
         {/* Real-Time Gross Metric Pill */}
         <div className="text-end">
-          <span className="text-[11px] font-medium text-obsidian-400 block">
+          <span className="text-xs font-medium text-obsidian-500 block">
             {t.grossEstate}
           </span>
           <span className="font-mono text-base font-bold text-jade-700">
@@ -128,7 +128,7 @@ export const EstateLedger: React.FC<EstateLedgerProps> = ({
               {language === 'ar' ? 'الحقوق المتعلقة بالتركة' : language === 'ur' ? 'ترکہ سے قبل کی ادائیگیاں' : 'Pre-Inheritance Obligations'}
             </span>
           </div>
-          <span className="text-[11px] text-obsidian-500">
+          <span className="text-xs text-obsidian-500">
             {language === 'ar' ? '(تجهيز، ديون، وصية)' : language === 'ur' ? '(تجہیز، قرض، وصیت)' : 'Order: Funeral → Debts → Wasiyyah'}
           </span>
         </div>

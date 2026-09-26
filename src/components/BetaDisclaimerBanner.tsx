@@ -38,12 +38,12 @@ export const BetaDisclaimerBanner: React.FC<BetaDisclaimerBannerProps> = ({
                   ? 'شرعی و قانونی رہنمائی برائے تقسیمِ ترکہ'
                   : 'Advisory Notice & Shariah Cross-Verification'}
               </span>
-              <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-200/70 text-amber-900 border border-amber-300/80">
+              <span className="px-2 py-0.5 rounded text-xs font-mono font-bold bg-amber-200/70 text-amber-900 border border-amber-300/80">
                 v1.0 Beta
               </span>
             </div>
 
-            <p className="sm:hidden text-obsidian-700 leading-relaxed text-[11px]">
+            <p className="sm:hidden text-obsidian-700 leading-relaxed text-xs">
               {language === 'ar'
                 ? 'المنصة تجريبية؛ راجع النتائج مع عالم موثوق قبل تنفيذ القسمة.'
                 : language === 'ur'
@@ -63,7 +63,7 @@ export const BetaDisclaimerBanner: React.FC<BetaDisclaimerBannerProps> = ({
               <button
                 type="button"
                 onClick={onOpenWelcome}
-                className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-jade-800 hover:text-jade-950 underline underline-offset-2 transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-jade-800 hover:text-jade-950 underline underline-offset-2 transition-colors cursor-pointer"
               >
                 <BookOpen className="w-3.5 h-3.5 text-jade-700" />
                 <span>

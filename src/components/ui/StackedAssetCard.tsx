@@ -151,7 +151,7 @@ export const StackedAssetCard: React.FC<StackedAssetCardProps> = ({
             {label}
           </label>
           {isStacked && items && items.length > 0 && (
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium bg-jade-100/70 text-jade-800 font-mono">
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-jade-100/70 text-jade-800 font-mono">
               <Layers className="w-2.5 h-2.5" />
               <span>{items.length} {tStack.stackedBadge}</span>
             </span>
@@ -163,7 +163,7 @@ export const StackedAssetCard: React.FC<StackedAssetCardProps> = ({
           <button
             type="button"
             onClick={handleRevertToSingle}
-            className="text-[11px] font-medium text-obsidian-500 hover:text-obsidian-800 hover:underline transition-colors"
+            className="text-xs font-medium text-obsidian-500 hover:text-obsidian-800 hover:underline transition-colors"
           >
             {tStack.singleInput}
           </button>
@@ -171,7 +171,7 @@ export const StackedAssetCard: React.FC<StackedAssetCardProps> = ({
           <button
             type="button"
             onClick={handleStartStacking}
-            className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-jade-50 hover:bg-jade-100 text-jade-700 text-[11px] font-semibold transition-colors border border-jade-200/60"
+            className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-jade-50 hover:bg-jade-100 text-jade-700 text-xs font-semibold transition-colors border border-jade-200/60"
           >
             <Layers className="w-3 h-3 text-jade-600" />
             <span>{tStack.stackBtn}</span>
@@ -201,7 +201,7 @@ export const StackedAssetCard: React.FC<StackedAssetCardProps> = ({
 
                 {/* Currency Badge & Amount Input */}
                 <div className="flex-1 flex items-center">
-                  <span className="text-[11px] font-bold font-mono text-jade-700 select-none pe-1.5">
+                  <span className="text-xs font-bold font-mono text-jade-700 select-none pe-1.5">
                     {currency}
                   </span>
                   <input
@@ -239,7 +239,7 @@ export const StackedAssetCard: React.FC<StackedAssetCardProps> = ({
             </button>
 
             <div className="flex items-center gap-1.5 font-mono">
-              <span className="text-[11px] text-obsidian-400 font-sans">{tStack.total}:</span>
+              <span className="text-xs text-obsidian-500 font-sans">{tStack.total}:</span>
               <span className="font-bold text-jade-700 text-sm">
                 {formatCurrency(categoryTotal, currency, language)}
               </span>
@@ -270,7 +270,7 @@ export const StackedAssetCard: React.FC<StackedAssetCardProps> = ({
                 key={preset}
                 type="button"
                 onClick={() => addPreset(preset)}
-                className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-md bg-slate-100/80 hover:bg-jade-50 hover:text-jade-800 text-[11px] font-mono font-medium text-obsidian-600 border border-slate-200/60 transition-colors active:scale-95"
+                className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-md bg-slate-100/80 hover:bg-jade-50 hover:text-jade-800 text-xs font-mono font-medium text-obsidian-600 border border-slate-200/60 transition-colors active:scale-95"
               >
                 <Plus className="w-2.5 h-2.5 opacity-60" />
                 <span>{preset >= 1000 ? `${preset / 1000}k` : preset}</span>

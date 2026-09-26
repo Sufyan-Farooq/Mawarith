@@ -103,7 +103,7 @@ export const WelcomeModal: React.FC<WelcomeModalProps> = ({
               <p className="font-arabic text-base sm:text-lg text-white leading-relaxed text-right">
                 «تَعَلَّمُوا الْفَرَائِضَ وَعَلِّمُوهَا النَّاسَ، فَإِنَّهُ نِصْفُ الْعِلْمِ، وَهُوَ يُنْسَى، وَهُوَ أَوَّلُ شَيْءٍ يُنْتَزَعُ مِنْ أُمَّتِي»
               </p>
-              <div className="flex items-center justify-between text-[11px] text-obsidian-400 font-mono pt-1.5 border-t border-white/[0.08]">
+              <div className="flex items-center justify-between text-xs text-obsidian-400 font-mono pt-1.5 border-t border-white/[0.08]">
                 <span>{language === 'ar' ? 'حديث شريف' : 'Prophetic Sunnah'}</span>
                 <span>{language === 'ar' ? 'رواه ابن ماجه (٢٧١٩) والحاكم' : 'Sunan Ibn Majah (2719)'}</span>
               </div>
@@ -129,7 +129,7 @@ export const WelcomeModal: React.FC<WelcomeModalProps> = ({
                     {language === 'ar' ? 'ترتيب تصفية الحقوق الشرعية' : language === 'ur' ? 'ترکہ سے متعلق شرعی حقوق کی ترتیب' : 'The Strict Shariah Distribution Sequence'}
                   </span>
                 </div>
-                <span className="font-mono text-[11px] text-obsidian-400 font-normal">
+                <span className="font-mono text-xs text-obsidian-400 font-normal">
                   {language === 'ar' ? 'قضاء النبي ﷺ' : 'Prophetic Order'}
                 </span>
               </div>
@@ -140,7 +140,7 @@ export const WelcomeModal: React.FC<WelcomeModalProps> = ({
                     <ShieldCheck className="w-3.5 h-3.5" />
                     <span>1. {language === 'ar' ? 'الديون والوصية' : 'Debts & Bequests'}</span>
                   </div>
-                  <p className="text-obsidian-600 text-[11px] leading-relaxed">
+                  <p className="text-obsidian-600 text-xs leading-relaxed">
                     {language === 'ar'
                       ? 'تسديد الديون (بما فيها المهر المؤجل) ثم الوصية لغير وارث (بحد أقصى الثلث) قبل قسمة التركة.'
                       : language === 'ur'
@@ -154,7 +154,7 @@ export const WelcomeModal: React.FC<WelcomeModalProps> = ({
                     <Users className="w-3.5 h-3.5" />
                     <span>2. {language === 'ar' ? 'حصر الورثة والحجب' : 'Surviving Heirs & Hajb'}</span>
                   </div>
-                  <p className="text-obsidian-600 text-[11px] leading-relaxed">
+                  <p className="text-obsidian-600 text-xs leading-relaxed">
                     {language === 'ar'
                       ? 'تحديد الورثة الأحياء لحظة الوفاة بدقة وتطبيق قواعد الحجب الشرعي التلقائي.'
                       : language === 'ur'
@@ -168,7 +168,7 @@ export const WelcomeModal: React.FC<WelcomeModalProps> = ({
                     <FileCheck className="w-3.5 h-3.5" />
                     <span>3. {language === 'ar' ? 'الصك ومشاركة الأسرة' : 'Decree & Family Share'}</span>
                   </div>
-                  <p className="text-obsidian-600 text-[11px] leading-relaxed">
+                  <p className="text-obsidian-600 text-xs leading-relaxed">
                     {language === 'ar'
                       ? 'استخراج صك رسمي معتمد ومشاركة الملخص الفوري مع العائلة عبر تطبيق واتساب.'
                       : language === 'ur'

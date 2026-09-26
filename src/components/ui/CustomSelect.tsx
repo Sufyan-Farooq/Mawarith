@@ -92,7 +92,7 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
           <span>{selectedOption ? selectedOption.label : placeholder}</span>
         </span>
         <ChevronDown
-          className={`w-3.5 h-3.5 text-obsidian-400 transition-transform duration-200 shrink-0 ${
+          className={`w-3.5 h-3.5 text-obsidian-500 transition-transform duration-200 shrink-0 ${
             isOpen ? 'rotate-180 text-jade-700' : ''
           }`}
         />
@@ -132,7 +132,7 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
                       {option.icon}
                       <span>{option.label}</span>
                       {option.sublabel && (
-                        <span className="text-[11px] text-obsidian-400 font-normal">
+                        <span className="text-xs text-obsidian-500 font-normal">
                           {option.sublabel}
                         </span>
                       )}
