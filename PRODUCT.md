@@ -16,7 +16,7 @@ Mawarith (مَوارِيث) provides an authoritative, mathematically exact, and
 
 ## Positioning
 
-Unlike generic financial calculators or opaque legal spreadsheets, Mawarith anchors every allocation in explicit scriptural evidence (Daleel citations from Surah An-Nisa and Sahih Hadith), enforces the strict Shariah debt-and-bequest liquidation waterfall before distribution, and integrates an interactive visual calculation studio alongside a context-aware AI Shariah advisor.
+Unlike generic financial calculators or opaque legal spreadsheets, Mawarith anchors every allocation in explicit scriptural evidence (Daleel citations from Surah An-Nisa and Sahih Hadith), enforces the strict Shariah debt-and-bequest liquidation waterfall before distribution, and presents the results in an interactive visual calculation studio.
 
 ## Operating Context
 
@@ -29,7 +29,6 @@ Used during emotionally sensitive moments of bereavement, family meetings, legal
 - **Consensus Calculation Engine:** Implements the majority Sunni consensus (Jumhur: Hanafi, Maliki, Shafi'i, Hanbali standard rules) handling Fardh, Asabah (bi-nafsihi, bi-ghayrihi, ma'a ghayrihi), Hajb Nuqsan, Hajb Hirman, Awl (share expansion), and Radd (proportional return).
 - **Evidentiary Verification (Daleel):** Provides modal breakdowns linking each heir's assigned fraction to primary Islamic texts (Quranic ayat and Sahih ahadith).
 - **Distribution Certificate:** Generates a formal, printable/exportable estate distribution certificate.
-- **AI Shariah Consultant:** Gemini-powered interactive assistant answering nuanced inheritance queries with conversation-to-studio state synchronization.
 
 ## Brand Commitments
 

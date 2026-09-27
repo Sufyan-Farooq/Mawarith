@@ -96,7 +96,6 @@ mawarith/
 │   ├── components/             # UI Presentation Layer
 │   │   ├── BetaDisclaimerBanner.tsx   # Testing advisory & beta notice
 │   │   ├── CertificateModal.tsx       # Printable official estate decree
-│   │   ├── ChatInterface.tsx          # Shariah consultant conversational mode
 │   │   ├── DaleelModal.tsx            # Scriptural evidentiary proofs modal
 │   │   ├── EstateLedger.tsx           # Debt & bequest waterfall input ledger
 │   │   ├── HeirSelector.tsx           # Surviving relatives matrix selector
@@ -116,7 +115,6 @@ mawarith/
 │   │   ├── hajb.ts                    # Exclusion & blocking matrix
 │   │   └── types.ts                   # Domain types and data models
 │   ├── i18n/                          # Trilingual dictionary (EN, AR, UR)
-│   ├── services/                      # Gemini AI advisor & fallback engine
 │   └── utils/                         # Currency formatting & bilingual titles
 ├── DESIGN.md                   # Visual design system & token definitions
 ├── PRODUCT.md                  # Product requirement & domain specifications
@@ -138,29 +136,39 @@ cd Mawarith
 npm install
 ```
 
-### 2. Environment Configuration (Optional)
-For the conversational AI advisor, copy `.env.example` to `.env` and add your Google Gemini API key:
-```bash
-cp .env.example .env
-# Edit .env and set VITE_GEMINI_API_KEY=your_key_here
-```
-*(Note: If no API key is provided, Mawarith automatically utilizes its built-in offline Shariah rule-based advisor).*
-
-### 3. Run Development Server
+### 2. Run Development Server
 ```bash
 npm run dev
 ```
 Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-### 4. Run Test Suite
+### 3. Run Test Suite
 Mawarith includes a rigorous test suite covering 11 classical Islamic inheritance benchmark scenarios:
 ```bash
 npm test
 ```
 
-### 5. Build for Production
+### 4. Build for Production
 ```bash
 npm run build
+```
+
+### 5. Run with Docker
+Build and start the production container (served at [http://localhost:8081](http://localhost:8081)):
+```bash
+docker compose up --build -d
+```
+
+To publish the image, sign in to Docker Hub and replace `YOUR_DOCKERHUB_USERNAME` with your account name:
+```bash
+docker login
+docker build -t YOUR_DOCKERHUB_USERNAME/mawarith:latest .
+docker push YOUR_DOCKERHUB_USERNAME/mawarith:latest
+```
+
+Anyone can then run it with:
+```bash
+docker run --rm -p 8081:80 YOUR_DOCKERHUB_USERNAME/mawarith:latest
 ```
 
 ---

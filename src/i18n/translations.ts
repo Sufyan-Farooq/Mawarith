@@ -5,8 +5,6 @@ export interface Translations {
   appSubtitle: string;
   shariahCertified: string;
   scholarBasis: string;
-  conversationalMode: string;
-  visualMode: string;
   sampleScenarios: string;
   selectSample: string;
   deceasedDetails: string;
@@ -77,19 +75,6 @@ export interface Translations {
   umariyyatanBadge: string;
   printCertificate: string;
   downloadReport: string;
-  chatPlaceholder: string;
-  send: string;
-  chatAdvisorTitle: string;
-  chatAdvisorSubtitle: string;
-  apiKeyNotice: string;
-  setApiKey: string;
-  enterGeminiApiKey: string;
-  saveKey: string;
-  keySaved: string;
-  clearKey: string;
-  noKeyUseRuleEngine: string;
-  aiThinking: string;
-  quickReplies: string;
   fard: string;
   asabah: string;
   fard_and_asabah: string;
@@ -117,8 +102,6 @@ export const TRANSLATIONS: Record<SupportedLanguage, Translations> = {
     appSubtitle: 'Shariah-Compliant Inheritance & Estate Platform (علم المواريث)',
     shariahCertified: 'Strictly according to Quran, Sahih Sunnah & Scholarly Consensus',
     scholarBasis: 'Fatawa & rulings of Shaykh Ibn Baz, Shaykh Ibn \'Uthaymeen, and Shaykh Salih al-Fawzan',
-    conversationalMode: 'AI Chat Advisor',
-    visualMode: 'Interactive Studio',
     sampleScenarios: 'Classical Scenarios',
     selectSample: 'Load an authentic case study...',
     deceasedDetails: '2. Deceased Information',
@@ -189,19 +172,6 @@ export const TRANSLATIONS: Record<SupportedLanguage, Translations> = {
     umariyyatanBadge: 'Al-Gharrawan / Umariyyatan Special Case',
     printCertificate: 'Print Shariah Certificate',
     downloadReport: 'Download Estate Summary',
-    chatPlaceholder: 'Ask a question about estate distribution, or type deceased details...',
-    send: 'Send',
-    chatAdvisorTitle: 'Mawarith AI Islamic Estate Advisor',
-    chatAdvisorSubtitle: 'Empathetic, Shariah-guided conversational assessment grounded in authentic Fatawa',
-    apiKeyNotice: 'Powered by Gemini AI. Enter your API key for personalized conversational reasoning, or use the built-in Shariah expert.',
-    setApiKey: 'Gemini API Key',
-    enterGeminiApiKey: 'Enter your Google Gemini API Key (e.g. AIzaSy...)',
-    saveKey: 'Save Key',
-    keySaved: 'API Key configured',
-    clearKey: 'Clear Key',
-    noKeyUseRuleEngine: 'Default expert mode active',
-    aiThinking: 'Analyzing Shariah rulings and computing shares...',
-    quickReplies: 'Suggested Responses',
     fard: 'Prescribed (Fard)',
     asabah: 'Residuary (Asabah)',
     fard_and_asabah: 'Fard & Asabah',
@@ -227,8 +197,6 @@ export const TRANSLATIONS: Record<SupportedLanguage, Translations> = {
     appSubtitle: 'المنصة الإسلامية لقسمة المواريث والتركات وفق الشريعة الغراء',
     shariahCertified: 'مبني بدقة على نصوص القرآن وصحيح السنة وإجماع كبار العلماء',
     scholarBasis: 'وفق تحقيقات وفتاوى الشيخ ابن باز والشيخ ابن عثيمين والشيخ صالح الفوزان',
-    conversationalMode: 'المستشار الذكي (محادثة)',
-    visualMode: 'الموزع التفاعلي',
     sampleScenarios: 'مسائل فقهية مشهورة',
     selectSample: 'اختر مسألة فقهية نموذجية...',
     deceasedDetails: '٢. بيانات المتوفى',
@@ -299,19 +267,6 @@ export const TRANSLATIONS: Record<SupportedLanguage, Translations> = {
     umariyyatanBadge: 'المسألة العمرية (الغراوان: ثلث الباقي للأم)',
     printCertificate: 'طباعة صك التوزيع الشرعي',
     downloadReport: 'تنزيل ملخص التركة',
-    chatPlaceholder: 'اكتب سؤالك الشرعي أو اذكر تفاصيل المتوفى وأقاربه...',
-    send: 'إرسال',
-    chatAdvisorTitle: 'المستشار الذكي لقسمة التركات',
-    chatAdvisorSubtitle: 'محادثة شرعية تفاعلية موثوقة تستند إلى كتب الفرائض المعتمدة',
-    apiKeyNotice: 'مدعوم بنموذج Gemini الذكي. يمكنك إدخال مفتاحك الخاص أو استخدام المحرك الفقهي الداخلي المدمج.',
-    setApiKey: 'مفتاح Gemini API',
-    enterGeminiApiKey: 'أدخل مفتاح Google Gemini الخاص بك...',
-    saveKey: 'حفظ المفتاح',
-    keySaved: 'المفتاح محفوظ وجاهز',
-    clearKey: 'مسح المفتاح',
-    noKeyUseRuleEngine: 'المحرك الفقهي الداخلي نشط',
-    aiThinking: 'جاري استحضار الأدلة الشرعية وحساب السهام...',
-    quickReplies: 'إجابات سريعة مقترحة',
     fard: 'فرضاً',
     asabah: 'تعصيباً',
     fard_and_asabah: 'فرضاً وتعصيباً',
@@ -337,8 +292,6 @@ export const TRANSLATIONS: Record<SupportedLanguage, Translations> = {
     appSubtitle: 'اسلامی شریعت کے مطابق تقسیمِ ترکہ و وراثت کا مستند پلیٹ فارم (علم المواريث)',
     shariahCertified: 'قرآن کریم، سنتِ نبوی اور جمہور ائمہ و فقہاء کے اجماع کے عین مطابق',
     scholarBasis: 'شیخ ابن باز، شیخ ابن عثیمین اور شیخ صالح الفوزان کے مستند فتاویٰ کی روشنی میں',
-    conversationalMode: 'ذہین مشیر (چیٹ موڈ)',
-    visualMode: 'انٹرایکٹو خاندانی چارٹ',
     sampleScenarios: 'مشہور فقہی مسائل',
     selectSample: 'کوئی مستند فقہی مثال منتخب کریں...',
     deceasedDetails: '۲. میت کی تفصیلات',
@@ -409,19 +362,6 @@ export const TRANSLATIONS: Record<SupportedLanguage, Translations> = {
     umariyyatanBadge: 'مسئلہ عمریہ / الغراوان (ماں کو باقی کا تہائی)',
     printCertificate: 'شرعی سرٹیفکیٹ پرنٹ کریں',
     downloadReport: 'گوشوارہ ڈاؤن لوڈ کریں',
-    chatPlaceholder: 'تقسیم ترکہ سے متعلق سوال پوچھیں یا میت اور ورثاء کی تفصیل لکھیں...',
-    send: 'بھیجیں',
-    chatAdvisorTitle: 'مواریث اے آئی شرعی مشیر',
-    chatAdvisorSubtitle: 'مستند کتبِ فرائض اور فتاویٰ کی بنیاد پر ہمدردانہ اور درست رہنمائی',
-    apiKeyNotice: 'گوگل جیمنائی (Gemini) سے لیس۔ اپنا ذاتی API کی درج کریں یا متبادل طور پر داخلی شرعی انجن استعمال کریں۔',
-    setApiKey: 'Gemini API کی',
-    enterGeminiApiKey: 'اپنی Google Gemini API Key یہاں درج کریں...',
-    saveKey: 'کی محفوظ کریں',
-    keySaved: 'API کی محفوظ ہو گئی',
-    clearKey: 'کی ختم کریں',
-    noKeyUseRuleEngine: 'داخلی شرعی انجن فعال ہے',
-    aiThinking: 'شرعی احکام کی جانچ اور حصص کا حساب لگایا جا رہا ہے...',
-    quickReplies: 'تجویز کردہ جوابات',
     fard: 'فرض (مقررہ)',
     asabah: 'عصبہ (باقی ماندہ)',
     fard_and_asabah: 'فرض اور عصبہ',

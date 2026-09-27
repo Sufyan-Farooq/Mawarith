@@ -1,7 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { VisualStudio } from './components/VisualStudio';
-import { ChatInterface } from './components/ChatInterface';
 import { DaleelModal } from './components/DaleelModal';
 import { CertificateModal } from './components/CertificateModal';
 import { WelcomeModal } from './components/WelcomeModal';
@@ -58,7 +57,6 @@ const initialHeirs: HeirsInput = {
 
 export const App: React.FC = () => {
   // Navigation & Localization
-  const [currentMode, setCurrentMode] = useState<'studio' | 'chat'>('studio');
   const [language, setLanguage] = useState<SupportedLanguage>(() => {
     return (localStorage.getItem('mawarith_language') as SupportedLanguage) || 'en';
   });
@@ -206,8 +204,6 @@ export const App: React.FC = () => {
 
       {/* Top Navigation */}
       <Navbar
-        currentMode={currentMode}
-        onSelectMode={setCurrentMode}
         language={language}
         onSelectLanguage={setLanguage}
         currency={currency}
@@ -222,8 +218,7 @@ export const App: React.FC = () => {
           onOpenWelcome={() => setIsWelcomeOpen(true)}
         />
 
-        {currentMode === 'studio' ? (
-          <VisualStudio
+        <VisualStudio
             gender={gender}
             onChangeGender={handleGenderChange}
             estate={estate}
@@ -240,19 +235,7 @@ export const App: React.FC = () => {
             activeScenarioId={activeScenarioId}
             onUndoReset={handleUndoReset}
             canUndoReset={Boolean(undoState)}
-          />
-        ) : (
-          <ChatInterface
-            language={language}
-            onSwitchToStudioWithData={(g, e, h) => {
-              setGender(g);
-              setEstate(e);
-              setHeirs(h);
-              setActiveScenarioId(null);
-              setCurrentMode('studio');
-            }}
-          />
-        )}
+        />
       </main>
 
       {/* Brand-Elevated Footer */}

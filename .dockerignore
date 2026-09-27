@@ -1,0 +1,12 @@
+.git
+.github
+.impeccable
+node_modules
+dist
+.env
+.env.*
+*.env
+npm-debug.log*
+README.md
+DESIGN.md
+PRODUCT.md

@@ -1,0 +1,7 @@
+services:
+  mawarith:
+    build: .
+    image: mawarith:latest
+    ports:
+      - "8081:80"
+    restart: unless-stopped
