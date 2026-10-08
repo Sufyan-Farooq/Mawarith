@@ -1,0 +1,10 @@
+name: mawarith
+services:
+  app:
+    image: ${APP_IMAGE:?}
+    restart: unless-stopped
+    ports: [127.0.0.1:3300:80]
+    mem_limit: 128m
+    logging:
+      driver: json-file
+      options: {max-size: 10m, max-file: '3'}
