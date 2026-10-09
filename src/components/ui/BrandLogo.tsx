@@ -17,14 +17,14 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
     <div className={`inline-flex items-center gap-2.5 ${className}`}>
       {/* Handcrafted Sacred Geometry Emblem (Rub el Hizb + Mathematical Division Astrolabe) */}
       <div 
-        className="relative shrink-0 flex items-center justify-center rounded-xl bg-obsidian-900 text-brass-400 p-1.5 shadow-float border border-white/[0.08]"
+        className="relative shrink-0 flex items-center justify-center rounded-xl bg-obsidian-900 text-brass-400 p-1.5 border border-white/[0.08]"
         style={{ width: size, height: size }}
       >
         <svg
           viewBox="0 0 32 32"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-full text-brass-400 transition-transform duration-500 hover:rotate-45"
+          className="w-full h-full text-brass-400 "
         >
           {/* Subtle Outer Boundary Ring */}
           <circle cx="16" cy="16" r="14" stroke="currentColor" strokeWidth="0.75" strokeDasharray="1.5 1.5" className="opacity-40" />

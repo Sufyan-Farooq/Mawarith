@@ -1,4 +1,4 @@
-﻿# Product
+# Product
 
 <!-- impeccable:product-schema 1 -->
 
@@ -12,11 +12,11 @@ Primary users are Muslim families, estate executors, inheritors, and individuals
 
 ## Product Purpose
 
-Mawarith (مَوارِيث) provides an authoritative, mathematically exact, and spiritually reassuring platform for Islamic inheritance distribution. It translates complex rules of Quranic shares (Ashab al-Furood), residuary entitlement (Asabah), partial/total blocking (Hajb), proportional deficit adjustments (Awl), and surplus reallocation (Radd) into an intuitive, transparent interface with verifiable scriptural proofs (Daleel) and official distribution certificates.
+Mawarith (مَوارِيث) provides an authoritative, mathematically exact, and spiritually reassuring platform for Islamic inheritance distribution. It translates complex rules of Quranic shares (Ashab al-Furood), residuary entitlement (Asabah), partial/total blocking (Hajb), proportional deficit adjustments (Awl), and surplus reallocation (Radd) into an intuitive, transparent interface with verifiable scriptural proofs (Daleel).
 
 ## Positioning
 
-Unlike generic financial calculators or opaque legal spreadsheets, Mawarith anchors every allocation in explicit scriptural evidence (Daleel citations from Surah An-Nisa and Sahih Hadith), enforces the strict Shariah debt-and-bequest liquidation waterfall before distribution, and presents the results in an interactive visual calculation studio.
+Unlike generic financial calculators or opaque legal spreadsheets, Mawarith anchors every allocation in explicit scriptural evidence (Daleel citations from Surah An-Nisa and Sahih Hadith), enforces the strict Shariah debt-and-bequest liquidation waterfall before distribution, and presents the results in a guided calculator with a responsive share breakdown.
 
 ## Operating Context
 
@@ -28,7 +28,7 @@ Used during emotionally sensitive moments of bereavement, family meetings, legal
 - **Comprehensive Heir Categorization:** Evaluates over 22 distinct heir categories (spouses, parents, grandparents, primary offspring, grandchildren, full/consanguine/uterine siblings, nephews, uncles, cousins).
 - **Consensus Calculation Engine:** Implements the majority Sunni consensus (Jumhur: Hanafi, Maliki, Shafi'i, Hanbali standard rules) handling Fardh, Asabah (bi-nafsihi, bi-ghayrihi, ma'a ghayrihi), Hajb Nuqsan, Hajb Hirman, Awl (share expansion), and Radd (proportional return).
 - **Evidentiary Verification (Daleel):** Provides modal breakdowns linking each heir's assigned fraction to primary Islamic texts (Quranic ayat and Sahih ahadith).
-- **Distribution Certificate:** Generates a formal, printable/exportable estate distribution certificate.
+- **Focused Calculation Flow:** Starts with a blank estate and guides users through Estate, Family, and Shares. Examples are optional and explicitly labeled; certificate generation is outside the product scope.
 
 ## Brand Commitments
 
@@ -54,3 +54,7 @@ Used during emotionally sensitive moments of bereavement, family meetings, legal
 - Bidirectional layout support (RTL for Arabic and Urdu, LTR for English) with dynamic `dir` and `lang` synchronization.
 - High-contrast text against backgrounds ensuring readability for older family members and executors.
 - Fully accessible keyboard navigation and modal dialogs.
+
+## Calculator Experience
+
+The primary task is understanding an estate distribution. Avoid release badges, certificate language, unsolicited sample values and ceremonial onboarding. Use a brief, dismissible first-use introduction. Keep extended family, itemization, and personalized names discoverable through optional details. Preserve evidence, exact fractions, warnings, unallocated remainders and all supported family categories.

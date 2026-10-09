@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AmountInput } from './AmountInput';
 import { Plus, RotateCcw } from 'lucide-react';
 
 interface MoneyInputProps {
@@ -18,17 +19,11 @@ export const MoneyInput: React.FC<MoneyInputProps> = ({
   value,
   onChange,
   currency,
-  language: _language,
+  language = 'en',
   placeholder = '0',
   presets = [5000, 25000, 100000],
 }) => {
   const [isFocused, setIsFocused] = useState(false);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const raw = e.target.value.replace(/[^0-9.]/g, '');
-    const num = parseFloat(raw);
-    onChange(isNaN(num) ? 0 : Math.max(0, num));
-  };
 
   const addPreset = (delta: number) => {
     onChange((value || 0) + delta);
@@ -40,7 +35,7 @@ export const MoneyInput: React.FC<MoneyInputProps> = ({
 
   return (
     <div className="space-y-1.5">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-1">
         <label className="text-xs font-semibold text-obsidian-800 tracking-tight">
           {label}
         </label>
@@ -62,22 +57,21 @@ export const MoneyInput: React.FC<MoneyInputProps> = ({
         <span className="text-xs font-bold font-mono text-jade-700 select-none pe-2 border-e border-slate-100">
           {currency}
         </span>
-        <input
-          type="text"
-          inputMode="numeric"
-          value={value ? value.toLocaleString() : ''}
-          onChange={handleInputChange}
+        <AmountInput
+          aria-label={label}
+          value={value}
+          onAmountChange={onChange}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           placeholder={placeholder}
-          className="w-full bg-transparent ps-2.5 font-mono text-sm sm:text-base font-bold text-obsidian-900 focus:outline-none placeholder:text-slate-300 placeholder:font-normal"
+          className="w-full min-w-0 bg-transparent ps-2.5 font-mono text-sm sm:text-base font-bold text-obsidian-900 focus:outline-none placeholder:text-slate-300 placeholder:font-normal"
         />
         {value > 0 && (
           <button
             type="button"
             onClick={handleReset}
             className="p-1 rounded-md text-obsidian-300 hover:text-obsidian-600 hover:bg-slate-100 transition-colors"
-            title="Reset to 0"
+            aria-label={`${language === 'ar' ? 'مسح' : language === 'ur' ? 'صاف کریں' : 'Clear'} ${label}`}
           >
             <RotateCcw className="w-3.5 h-3.5" />
           </button>

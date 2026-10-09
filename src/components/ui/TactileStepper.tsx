@@ -10,6 +10,7 @@ interface TactileStepperProps {
   label?: string;
   sublabel?: string;
   className?: string;
+  language?: string;
 }
 
 export const TactileStepper: React.FC<TactileStepperProps> = ({
@@ -20,6 +21,7 @@ export const TactileStepper: React.FC<TactileStepperProps> = ({
   label,
   sublabel,
   className = '',
+  language = 'en',
 }) => {
   const canDecrement = value > min;
   const canIncrement = value < max;
@@ -51,13 +53,14 @@ export const TactileStepper: React.FC<TactileStepperProps> = ({
         </div>
       )}
 
-      <div className="flex items-center gap-1.5 ms-auto">
+      <div className="flex items-center gap-1 ms-auto shrink-0">
         <motion.button
           type="button"
           whileTap={canDecrement ? { scale: 0.88 } : {}}
+          aria-label={`${language === 'ar' ? 'تقليل' : language === 'ur' ? 'کم کریں' : 'Decrease'} ${label}`}
           onClick={handleDecrement}
           disabled={!canDecrement}
-          className={`w-7 h-7 rounded-lg flex items-center justify-center border transition-colors ${
+          className={`w-11 h-11 rounded-lg flex items-center justify-center border transition-colors ${
             canDecrement
               ? 'bg-white text-obsidian-800 border-slate-300 hover:bg-slate-100 hover:border-slate-400 active:bg-slate-200 shadow-micro'
               : 'bg-slate-50 text-slate-300 border-slate-200 cursor-not-allowed'
@@ -75,9 +78,10 @@ export const TactileStepper: React.FC<TactileStepperProps> = ({
         <motion.button
           type="button"
           whileTap={canIncrement ? { scale: 0.88 } : {}}
+          aria-label={`${language === 'ar' ? 'زيادة' : language === 'ur' ? 'بڑھائیں' : 'Increase'} ${label}`}
           onClick={handleIncrement}
           disabled={!canIncrement}
-          className={`w-7 h-7 rounded-lg flex items-center justify-center border transition-colors ${
+          className={`w-11 h-11 rounded-lg flex items-center justify-center border transition-colors ${
             canIncrement
               ? 'bg-white text-obsidian-800 border-slate-300 hover:bg-jade-50 hover:text-jade-800 hover:border-jade-300 active:bg-jade-100 shadow-micro'
               : 'bg-slate-50 text-slate-300 border-slate-200 cursor-not-allowed'

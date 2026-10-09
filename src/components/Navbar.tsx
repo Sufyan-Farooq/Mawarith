@@ -1,71 +1,10 @@
-import React from 'react';
-import { SupportedLanguage, TRANSLATIONS } from '../i18n/translations';
+import { SupportedLanguage } from '../i18n/translations';
 import { CURRENCIES } from '../utils/currency';
 import { BrandLogo } from './ui/BrandLogo';
-import { CustomSelect, SelectOption } from './ui/CustomSelect';
-
-interface NavbarProps {
-  language: SupportedLanguage;
-  onSelectLanguage: (lang: SupportedLanguage) => void;
-  currency: string;
-  onSelectCurrency: (curr: string) => void;
+interface NavbarProps {language: SupportedLanguage; onSelectLanguage: (l: SupportedLanguage) => void; currency: string; onSelectCurrency: (c: string) => void;}
+export function Navbar({language,onSelectLanguage,currency,onSelectCurrency}: NavbarProps) {
+  return <header className="app-header"><div className="header-content"><a href="#" className="brand-link" aria-label="Mawarith"><BrandLogo size={38}/><span className="brand-type"><span lang="ar" dir="rtl" className="brand-arabic">{language === 'ur' ? 'مواریث' : 'مَوارِيث'}</span><span className="brand-latin" lang="en">Mawarith</span></span></a><div className="header-settings">
+    <select aria-label={language === 'en' ? 'Currency' : language === 'ar' ? 'العملة' : 'کرنسی'} value={currency} onChange={e => onSelectCurrency(e.target.value)}>{CURRENCIES.map(c => <option key={c.code} value={c.code}>{c.code}</option>)}</select>
+    <select aria-label={language === 'en' ? 'Language' : language === 'ar' ? 'اللغة' : 'زبان'} value={language} onChange={e => onSelectLanguage(e.target.value as SupportedLanguage)}><option value="en">English</option><option value="ar">العربية</option><option value="ur">اردو</option></select>
+  </div></div></header>;
 }
-
-export const Navbar: React.FC<NavbarProps> = ({
-  language,
-  onSelectLanguage,
-  currency,
-  onSelectCurrency,
-}) => {
-  const t = TRANSLATIONS[language];
-
-  // Currency select options
-  const currencyOptions: SelectOption[] = CURRENCIES.map((c) => ({
-    value: c.code,
-    label: `${c.code} · ${c.symbol}`,
-  }));
-
-  // Language select options
-  const languageOptions: SelectOption[] = [
-    { value: 'en', label: 'English' },
-    { value: 'ar', label: 'العربية' },
-    { value: 'ur', label: 'اردو' },
-  ];
-
-  return (
-    <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-xl border-b border-slate-200/80 transition-all duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-wrap sm:flex-nowrap items-center justify-between min-h-16 py-2 sm:py-0 gap-2 sm:gap-4">
-          
-          {/* Brand Emblem & Typography */}
-          <div className="flex items-center gap-3 shrink-0">
-            <div className="hidden sm:block">
-              <BrandLogo size={36} showText={true} language={language} />
-            </div>
-            <div className="sm:hidden">
-              <BrandLogo size={34} />
-            </div>
-          </div>
-
-          {/* Currency & Language Custom Dropdowns (Zero Default Selects) */}
-          <div className="flex items-center gap-1.5 sm:gap-2.5 min-w-0">
-            <CustomSelect
-              options={currencyOptions}
-              value={currency}
-              onChange={onSelectCurrency}
-              size="sm"
-            />
-
-            <CustomSelect
-              options={languageOptions}
-              value={language}
-              onChange={(val) => onSelectLanguage(val as SupportedLanguage)}
-              size="sm"
-            />
-          </div>
-
-        </div>
-      </div>
-    </header>
-  );
-};

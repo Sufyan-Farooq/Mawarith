@@ -1,4 +1,4 @@
-﻿---
+---
 name: Mawarith
 description: Shariah-Compliant Inheritance Platform (علم الفرائض والمواريث)
 colors:
@@ -122,7 +122,7 @@ The palette balances warm organic neutrality with deep mineral tones and sacred 
 **Character:** Dignified geometric clarity in Latin paired with calligraphic warmth in Arabic and Nastaliq Urdu script, maintaining baseline alignment across language shifts.
 
 ### Hierarchy
-- **Display** (Bold 700, clamp(1.75rem, 4vw, 2.5rem), 1.2): Main view headings and ceremonial certificate banners.
+- **Display** (Bold 700, clamp(1.75rem, 4vw, 2.5rem), 1.2): Main view headings.
 - **Headline** (SemiBold 600, 1.25rem / 20px, 1.3): Major card headers, modal titles, and heir category sections.
 - **Title** (SemiBold 600, 1rem / 16px, 1.4): Heir names, ledger items, and accordion triggers.
 - **Body** (Regular 400, 0.875rem / 14px, 1.5): Descriptive text, scholarly daleel excerpts, and instructions.
@@ -196,3 +196,25 @@ Form inputs utilize a 1px solid stroke with inset highlight on focus.
 - **Don't** use harsh neon colors or high-contrast saturation that disrupts the calm, solemn environment.
 - **Don't** hide or round off fractions in ways that obscure exact Quranic share definitions.
 - **Don't** break RTL layout harmony when rendering mixed Arabic and numeric/Latin strings.
+
+
+## Calculator surface refinement (October 2026)
+
+Mode: Operate. The established ivory, jade and geometric brand mark remain. The calculator uses a quiet introduction, an optional example picker and an Estate → Family → Shares sequence. Desktop pairs the current input stage with a live breakdown; below 1024px one stage is visible at a time, including persistent stage navigation on the results screen.
+
+Results are divided rows, rather than a horizontal table or a dark dashboard. Show relationship, fraction, percentage, amount, per-person amount, evidence and an optional explanation. Do not use certificates, release tags or compliance badges. A blank estate is the starting state; all sample values are identified.
+
+The calculator uses green-tinted neutrals: foreground `#17221d`, secondary `#52625a`, muted `#67746d`, border `#dce2dc`, field border `#d5ded6`, selection `#d1e9df`, and surface tint `#edf5ef`. Jade `#047857` and deep jade `#065f46` identify actions and totals. Notices use `#f6efe0` with text `#6c4d19`. Distribution colors are `#047857`, `#ad7932`, `#517c75`, `#755f50`, `#64748b`, and `#6f6c96`.
+
+English retains Plus Jakarta Sans; Arabic uses Amiri and Urdu uses Noto Naskh Arabic for readable form controls. Form labels and supporting text are 13–15px, inputs 16px, headings 21–23px and the page heading 29–42px. Buttons use 8px corners; workspace surfaces use 12px corners; native dialogs use 16px corners. Main actions are at least 48px high and number-stepper buttons 44px square.
+
+Use native select controls and native modal dialogs, with browser focus containment, Escape dismissal and focus restoration. Respect reduced motion. Step transitions scroll immediately after the new content renders, avoiding moving click targets.
+
+
+## Heritage refinement
+
+The calculator retains its focused flow while making its Islamic identity more visible. Use a bilingual Arabic/Latin wordmark, an Arabic Mawarith signature with a precise eight-point geometric divider, and a warm editorial heading face (Lora for English, Amiri for Arabic). The primary headline names the task: understanding the family's inheritance shares.
+
+Brass accents (`#96713b`, foreground `#715323`, light surface `#f5efdf`, and borders `#daceb5` / `#e4d7b9`) identify heritage details and evidence links. A warm white navigation surface (`#fffdf8`), cream step navigation (`#f8f6ef`) and soft sage net-estate band (`#f3f5ed`) provide depth through tone. The wordmark uses deep jade `#204c3b`.
+
+The results heading is “Shares & their evidence.” Evidence actions remain attached to each heir and open the existing source dialog. Geometric decoration is confined to the brand signature and brief welcome introduction; keep forms clear. The welcome includes a short Bismillah followed by the established practical instructions. On phones, compress the signature into one row and stack the bilingual header wordmark to preserve room for language and currency controls.

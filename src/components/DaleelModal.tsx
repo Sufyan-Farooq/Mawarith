@@ -1,6 +1,7 @@
 import React from 'react';
 import { X, BookOpen, Scroll, Award, CheckCircle2 } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
+import { Dialog } from './ui/Dialog';
 import { DALEEL_DATABASE, DaleelItem } from '../data/daleel/database';
 import { SupportedLanguage } from '../i18n/translations';
 
@@ -19,7 +20,6 @@ export const DaleelModal: React.FC<DaleelModalProps> = ({
   language,
   heirTitle,
 }) => {
-  if (!isOpen || daleelIds.length === 0) return null;
 
   const isRtl = language === 'ar' || language === 'ur';
 
@@ -28,21 +28,20 @@ export const DaleelModal: React.FC<DaleelModalProps> = ({
     .filter(Boolean);
 
   return (
-    <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-obsidian-900/60 backdrop-blur-sm">
+    <Dialog open={isOpen} onClose={onClose} titleId="evidence-title" className="evidence-dialog">
         <motion.div
           initial={{ opacity: 0, scale: 0.96, y: 8 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.96, y: 8 }}
           transition={{ type: 'spring', bounce: 0.15, duration: 0.35 }}
-          className="w-full max-w-2xl max-h-[90vh] flex flex-col bg-white border border-slate-200/90 shadow-float rounded-2xl overflow-hidden text-obsidian-900"
+          className="w-full max-h-[85dvh] flex flex-col bg-white overflow-hidden text-obsidian-900"
           dir={isRtl ? 'rtl' : 'ltr'}
         >
           {/* Header */}
           <div className="px-6 py-4 bg-obsidian-900 text-white border-b border-white/[0.08] flex items-center justify-between">
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-base font-bold text-white">
+                <h3 id="evidence-title" className="text-base font-bold text-white">
                   {language === 'ar' ? 'الأدلة الشرعية والتحقيق الفقهي' : language === 'ur' ? 'شرعی دلائل اور فقہی تحقیق' : 'Authentic Shariah Daleel & Proofs'}
                 </h3>
                 <span className="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold bg-jade-500/20 text-jade-300 rounded-full border border-jade-500/30">
@@ -56,8 +55,9 @@ export const DaleelModal: React.FC<DaleelModalProps> = ({
             </div>
 
             <button
+              aria-label={language === 'en' ? 'Close evidence' : language === 'ar' ? 'إغلاق الأدلة' : 'دلائل بند کریں'}
               onClick={onClose}
-              className="p-1.5 rounded-lg text-obsidian-400 hover:text-white hover:bg-white/[0.1] transition-colors"
+              className="p-3 rounded-lg text-obsidian-400 hover:text-white hover:bg-white/[0.1] transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
@@ -154,7 +154,7 @@ export const DaleelModal: React.FC<DaleelModalProps> = ({
 
           {/* Footer */}
           <div className="px-6 py-3 bg-slate-50 border-t border-slate-200 flex items-center justify-between text-xs text-obsidian-500">
-            <span>Mawarith Shariah Authentication Engine</span>
+            <span>{language === 'en' ? 'Supporting evidence' : language === 'ar' ? 'الأدلة الشرعية' : 'شرعی دلائل'}</span>
             <button
               onClick={onClose}
               className="px-4 py-1.5 rounded-xl bg-slate-200 hover:bg-slate-300 font-semibold text-obsidian-800 transition-colors"
@@ -163,7 +163,6 @@ export const DaleelModal: React.FC<DaleelModalProps> = ({
             </button>
           </div>
         </motion.div>
-      </div>
-    </AnimatePresence>
+    </Dialog>
   );
 };

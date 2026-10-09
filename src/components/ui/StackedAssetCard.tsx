@@ -1,4 +1,6 @@
 import React from 'react';
+import { AmountInput } from './AmountInput';
+import { workflow } from '../../i18n/workflow';
 import { Plus, Trash2, Layers } from 'lucide-react';
 import { EstateItem } from '../../engine/types';
 import { SupportedLanguage } from '../../i18n/translations';
@@ -25,6 +27,7 @@ export const StackedAssetCard: React.FC<StackedAssetCardProps> = ({
   presets = [10000, 50000, 200000],
   onChange,
 }) => {
+  const c = workflow(language);
   const isRtl = language === 'ar' || language === 'ur';
 
   // Automatically in stacked mode if items exist and have length > 0
@@ -70,12 +73,12 @@ export const StackedAssetCard: React.FC<StackedAssetCardProps> = ({
     const initialItems: EstateItem[] = [
       {
         id: `item-${Date.now()}-1`,
-        name: `${defaultItemPrefix} 1`,
+        name: `${language === 'en' ? defaultItemPrefix : language === 'ar' ? 'بند' : 'اندراج'} 1`,
         amount: currentVal,
       },
       {
         id: `item-${Date.now()}-2`,
-        name: `${defaultItemPrefix} 2`,
+        name: `${language === 'en' ? defaultItemPrefix : language === 'ar' ? 'بند' : 'اندراج'} 2`,
         amount: 0,
       },
     ];
@@ -91,7 +94,7 @@ export const StackedAssetCard: React.FC<StackedAssetCardProps> = ({
     const nextIndex = currentItems.length + 1;
     const newItem: EstateItem = {
       id: `item-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
-      name: `${defaultItemPrefix} ${nextIndex}`,
+      name: `${language === 'en' ? defaultItemPrefix : language === 'ar' ? 'بند' : 'اندراج'} ${nextIndex}`,
       amount: 0,
     };
     const updated = [...currentItems, newItem];
@@ -115,20 +118,9 @@ export const StackedAssetCard: React.FC<StackedAssetCardProps> = ({
     onChange(categoryTotal || 0, updated);
   };
 
-  const handleItemAmountChange = (id: string, rawVal: string) => {
-    const clean = rawVal.replace(/[^0-9.]/g, '');
-    const num = parseFloat(clean);
-    const amount = isNaN(num) ? 0 : Math.max(0, num);
-    const updated = (items || []).map((i) => (i.id === id ? { ...i, amount } : i));
-    const sum = updated.reduce((s, i) => s + (i.amount || 0), 0);
-    onChange(sum, updated);
-  };
-
-  // Single mode handlers
-  const handleSingleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const raw = e.target.value.replace(/[^0-9.]/g, '');
-    const num = parseFloat(raw);
-    onChange(isNaN(num) ? 0 : Math.max(0, num), []);
+  const handleItemAmountChange = (id: string, amount: number) => {
+    const updated = (items || []).map(i => i.id === id ? {...i, amount} : i);
+    onChange(updated.reduce((sum,i) => sum + i.amount,0),updated);
   };
 
   const addPreset = (delta: number) => {
@@ -137,11 +129,7 @@ export const StackedAssetCard: React.FC<StackedAssetCardProps> = ({
 
   return (
     <div
-      className={`rounded-xl border transition-all duration-200 p-3.5 space-y-3 ${
-        isStacked
-          ? 'bg-slate-50/70 border-jade-600/30 shadow-micro ring-1 ring-jade-600/10'
-          : 'bg-white border-slate-200 shadow-micro hover:border-slate-300'
-      }`}
+      className="asset-field space-y-3"
       dir={isRtl ? 'rtl' : 'ltr'}
     >
       {/* Header Bar */}
@@ -165,7 +153,7 @@ export const StackedAssetCard: React.FC<StackedAssetCardProps> = ({
             onClick={handleRevertToSingle}
             className="text-xs font-medium text-obsidian-500 hover:text-obsidian-800 hover:underline transition-colors"
           >
-            {tStack.singleInput}
+            {c.total}
           </button>
         ) : (
           <button
@@ -174,7 +162,7 @@ export const StackedAssetCard: React.FC<StackedAssetCardProps> = ({
             className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-jade-50 hover:bg-jade-100 text-jade-700 text-xs font-semibold transition-colors border border-jade-200/60"
           >
             <Layers className="w-3 h-3 text-jade-600" />
-            <span>{tStack.stackBtn}</span>
+            <span>{c.itemize}</span>
           </button>
         )}
       </div>
@@ -191,26 +179,26 @@ export const StackedAssetCard: React.FC<StackedAssetCardProps> = ({
                 {/* Item Label / Name Input */}
                 <input
                   type="text"
+                  aria-label={`${label} ${idx + 1}: ${tStack.namePlaceholder}`}
                   value={item.name}
                   onChange={(e) => handleItemNameChange(item.id, e.target.value)}
                   placeholder={tStack.namePlaceholder}
-                  className="w-1/2 bg-transparent text-xs font-semibold text-obsidian-800 px-2 py-1 focus:outline-none placeholder:text-slate-300 placeholder:font-normal"
+                  className="w-1/3 min-w-0 bg-transparent text-xs font-semibold text-obsidian-800 px-2 py-1 focus:outline-none placeholder:text-slate-300 placeholder:font-normal"
                 />
 
                 <span className="text-slate-200 font-thin">|</span>
 
                 {/* Currency Badge & Amount Input */}
-                <div className="flex-1 flex items-center">
+                <div className="flex-1 min-w-0 flex items-center">
                   <span className="text-xs font-bold font-mono text-jade-700 select-none pe-1.5">
                     {currency}
                   </span>
-                  <input
-                    type="text"
-                    inputMode="numeric"
-                    value={item.amount ? item.amount.toLocaleString() : ''}
-                    onChange={(e) => handleItemAmountChange(item.id, e.target.value)}
+                  <AmountInput
+                    aria-label={`${label} ${idx + 1}: ${currency}`}
+                    value={item.amount}
+                    onAmountChange={amount => handleItemAmountChange(item.id,amount)}
                     placeholder="0"
-                    className="w-full bg-transparent font-mono text-xs sm:text-sm font-bold text-obsidian-900 focus:outline-none placeholder:text-slate-300"
+                    className="w-full min-w-0 bg-transparent font-mono text-xs sm:text-sm font-bold text-obsidian-900 focus:outline-none placeholder:text-slate-300"
                   />
                 </div>
 
@@ -219,7 +207,7 @@ export const StackedAssetCard: React.FC<StackedAssetCardProps> = ({
                   type="button"
                   onClick={() => handleRemoveItem(item.id)}
                   className="p-1 text-obsidian-300 hover:text-rose-600 hover:bg-rose-50 rounded transition-colors"
-                  title="Remove item"
+                  aria-label={`${language === 'ar' ? 'حذف' : language === 'ur' ? 'حذف کریں' : 'Remove'} ${item.name}`}
                 >
                   <Trash2 className="w-3.5 h-3.5" />
                 </button>
@@ -235,7 +223,7 @@ export const StackedAssetCard: React.FC<StackedAssetCardProps> = ({
               className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white hover:bg-slate-50 text-obsidian-700 text-xs font-semibold border border-slate-200/90 shadow-micro transition-colors active:scale-95"
             >
               <Plus className="w-3 h-3 text-jade-600" />
-              <span>{tStack.addItem}</span>
+              <span>{c.add}</span>
             </button>
 
             <div className="flex items-center gap-1.5 font-mono">
@@ -253,13 +241,12 @@ export const StackedAssetCard: React.FC<StackedAssetCardProps> = ({
             <span className="text-xs font-bold font-mono text-jade-700 select-none pe-2 border-e border-slate-100">
               {currency}
             </span>
-            <input
-              type="text"
-              inputMode="numeric"
-              value={categoryTotal ? categoryTotal.toLocaleString() : ''}
-              onChange={handleSingleInputChange}
+            <AmountInput
+              aria-label={label}
+              value={categoryTotal}
+              onAmountChange={value => onChange(value,[])}
               placeholder="0"
-              className="w-full bg-transparent ps-2.5 font-mono text-sm sm:text-base font-bold text-obsidian-900 focus:outline-none placeholder:text-slate-300 placeholder:font-normal"
+              className="w-full min-w-0 bg-transparent ps-2.5 font-mono text-sm sm:text-base font-bold text-obsidian-900 focus:outline-none placeholder:text-slate-300 placeholder:font-normal"
             />
           </div>
 
